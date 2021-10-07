@@ -1,0 +1,8 @@
+.avc {
+    display: flex;
+    align-items: center;
+}
+
+.active {
+    background-color: #dc3545 !important;
+}
