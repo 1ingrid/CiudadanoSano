@@ -15,6 +15,7 @@
             if(!empty($datos['countries'])) $permits .=  ','.$datos['countries'];
             if(!empty($datos['cities'])) $permits .=  ','.$datos['cities'];
             if(!empty($datos['headquarters'])) $permits .=  ','.$datos['headquarters'];
+            if(!empty($datos['types_contracts'])) $permits .=  ','.$datos['types_contracts'];
             $this->query = '
                 INSERT INTO roles 
                 (name, description, permits) 
@@ -30,6 +31,7 @@
             if(!empty($put->countries)) $permits .=  ','.$put->countries;
             if(!empty($put->cities)) $permits .=  ','.$put->cities;
             if(!empty($put->headquarters)) $permits .=  ','.$put->headquarters;
+            if(!empty($put->types_contracts)) $permits .=  ','.$put->types_contracts;
             $this->query = '
                 UPDATE roles SET 
                 name = "'.utf8_decode($put->name).'",

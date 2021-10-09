@@ -1,7 +1,7 @@
-function rolesCtrl() {
+function types_contractsCtrl() {
   var dt = $("#listado").DataTable({
     ajax: {
-      url: BASE_URL + "role.php",
+      url: BASE_URL + "type_contract.php",
       type: "GET",
       headers: {
         accion: "listar",
@@ -14,14 +14,13 @@ function rolesCtrl() {
         render: function (data) {
           return (
             (data == 1
-              ? '<button class="btn btn-danger btn-xs mr-1 desactivar" title="Desactivar rol"><i class="fas fa-trash"></i></button>'
-              : '<button class="btn btn-info btn-xs mr-1 activar" title="Activar rol"><i class="fas fa-redo-alt"></i></button>') +
-            '<button class="btn btn-success btn-xs editar" title="Editar rol"><i class="far fa-edit"></i></button>'
+              ? '<button class="btn btn-danger btn-xs mr-1 desactivar" title="Desactivar tipo de contrato"><i class="fas fa-trash"></i></button>'
+              : '<button class="btn btn-info btn-xs mr-1 activar" title="Activar tipo de contrato"><i class="fas fa-redo-alt"></i></button>') +
+            '<button class="btn btn-success btn-xs editar" title="Editar tipo de contrato"><i class="far fa-edit"></i></button>'
           );
         },
       },
       { data: "name" },
-      { data: "description" },
       {
         data: "status",
         render: function (data) {
@@ -46,8 +45,8 @@ function rolesCtrl() {
   $(".card").on("click", ".nuevo", function () {
     $(this).hide();
     $("#listado_wrapper").hide();
-    $(".card-title").html("Crear rol");
-    $("#formSave").load("./roles/nuevo.php", function () {
+    $(".card-title").html("Crear tipo de contrato");
+    $("#formSave").load("./types_contracts/nuevo.php", function () {
       $("#alert").hide();
     });
   });
@@ -58,7 +57,7 @@ function rolesCtrl() {
       $("#alert").show();
     } else {
       $.ajax({
-        url: BASE_URL + "role.php",
+        url: BASE_URL + "type_contract.php",
         type: "POST",
         headers: {
           accion: "registro",
@@ -66,8 +65,9 @@ function rolesCtrl() {
         },
         data: form.serialize(),
       }).done(function (response) {
-        if (response == 1) toastr.success("Rol agregado con exito");
-        else toastr.error("Error al agregar el rol");
+        if (response == 1)
+          toastr.success("Tipo de contrato agregado con exito");
+        else toastr.error("Error al agregar el tipo de contrato");
         volver();
         dt.page("last").draw("page");
         dt.ajax.reload(null, false);
@@ -79,20 +79,11 @@ function rolesCtrl() {
     var data = dt.row($(this).parents("tr")).data();
     $(".nuevo").hide();
     $("#listado_wrapper").hide();
-    $(".card-title").html("Actualizar rol");
-    $("#formSave").load("./roles/editar.php", function () {
+    $(".card-title").html("Actualizar tipo de contrato");
+    $("#formSave").load("./types_contracts/editar.php", function () {
       $("#alert").hide();
       $("#id").val(data.id);
       $("#name").val(data.name);
-      $("#description").val(data.description);
-      var permits = data.permits.split(",");
-      permits.splice(0, 1);
-      if (permits.indexOf("roles") > -1) $("#roles").prop("checked", true);
-      if (permits.indexOf("users") > -1) $("#users").prop("checked", true);
-      if (permits.indexOf("countries") > -1) $("#countries").prop("checked", true);
-      if (permits.indexOf("cities") > -1) $("#cities").prop("checked", true);
-      if (permits.indexOf("headquarters") > -1) $("#headquarters").prop("checked", true);
-      if (permits.indexOf("types_contracts") > -1) $("#types_contracts").prop("checked", true);
     });
   });
 
@@ -102,7 +93,7 @@ function rolesCtrl() {
       $("#alert").show();
     } else {
       $.ajax({
-        url: BASE_URL + "role.php",
+        url: BASE_URL + "type_contract.php",
         type: "PUT",
         headers: {
           accion: "modificar",
@@ -111,8 +102,9 @@ function rolesCtrl() {
         data: JSON.stringify(getFormData(form)),
         contentType: "application/json",
       }).done(function (response) {
-        if (response == 1) toastr.success("Rol actualizado con exito");
-        else toastr.error("Error al actualizar el rol");
+        if (response == 1)
+          toastr.success("Tipo de contrato actualizado con exito");
+        else toastr.error("Error al actualizar el tipo de contrato");
         volver();
         dt.page("last").draw("page");
         dt.ajax.reload(null, false);
@@ -123,7 +115,7 @@ function rolesCtrl() {
   $("#listado").on("click", ".desactivar", function () {
     var data = dt.row($(this).parents("tr")).data();
     $.ajax({
-      url: BASE_URL + "role.php",
+      url: BASE_URL + "type_contract.php",
       type: "DELETE",
       headers: {
         accion: "desactivar",
@@ -131,8 +123,9 @@ function rolesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Rol desactivado con exito");
-      else toastr.error("Error al desactivar el rol");
+      if (response == 1)
+        toastr.success("Tipo de contrato desactivado con exito");
+      else toastr.error("Error al desactivar el tipo de contrato");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
     });
@@ -141,7 +134,7 @@ function rolesCtrl() {
   $("#listado").on("click", ".activar", function () {
     var data = dt.row($(this).parents("tr")).data();
     $.ajax({
-      url: BASE_URL + "role.php",
+      url: BASE_URL + "type_contract.php",
       type: "DELETE",
       headers: {
         accion: "activar",
@@ -149,8 +142,8 @@ function rolesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Rol activado con exito");
-      else toastr.error("Error al activar el rol");
+      if (response == 1) toastr.success("Tipo de contrato activado con exito");
+      else toastr.error("Error al activar el tipo de contrato");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
     });
@@ -163,7 +156,7 @@ function rolesCtrl() {
   const volver = () => {
     $(".nuevo").show();
     $("#listado_wrapper").show();
-    $(".card-title").html("Listado de roles");
+    $(".card-title").html("Listado de tipos de contratos");
     $("#formSave").html("");
   };
 }

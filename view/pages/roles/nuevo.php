@@ -37,6 +37,9 @@
             <div class="input-group">
                 <label><input type="checkbox" id="headquarters" name="headquarters" value="headquarters"> Sedes</label>
             </div>
+            <div class="input-group">
+                <label><input type="checkbox" id="types_contracts" name="types_contracts" value="types_contracts"> Tipos de contratos</label>
+            </div>
         </div>
     </div>
     <div id="alert" class="alert alert-danger text-center" role="alert">

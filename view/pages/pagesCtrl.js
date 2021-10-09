@@ -73,7 +73,9 @@ function pagesCtrl() {
   });
 
   const cFLetter = (str) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    str = str.charAt(0).toUpperCase() + str.slice(1);
+    if (str.indexOf("_") > -1) str = str.replace(/_/g, " ");
+    return str;
   };
 
   $(".ml-auto").on("click", "#logout", function () {
