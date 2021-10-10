@@ -1,9 +1,9 @@
-function usersCtrl() {
-  var confir_email = false;
+function employeesCtrl() {
+  var confir_docu = false;
 
   var dt = $("#listado").DataTable({
     ajax: {
-      url: BASE_URL + "user.php",
+      url: BASE_URL + "employe.php",
       type: "GET",
       headers: {
         accion: "listar",
@@ -16,16 +16,19 @@ function usersCtrl() {
         render: function (data) {
           return (
             (data == 1
-              ? '<button class="btn btn-danger btn-xs mr-1 desactivar" title="Desactivar usuario"><i class="fas fa-trash"></i></button>'
-              : '<button class="btn btn-info btn-xs mr-1 activar" title="Activar usuario"><i class="fas fa-redo-alt"></i></button>') +
-            '<button class="btn btn-success btn-xs editar" title="Editar usuario"><i class="far fa-edit"></i></button>'
+              ? '<button class="btn btn-danger btn-xs mr-1 desactivar" title="Desactivar empleado"><i class="fas fa-trash"></i></button>'
+              : '<button class="btn btn-info btn-xs mr-1 activar" title="Activar empleado"><i class="fas fa-redo-alt"></i></button>') +
+            '<button class="btn btn-success btn-xs editar" title="Editar empleado"><i class="far fa-edit"></i></button>'
           );
         },
       },
-      { data: "rol" },
+      { data: "seat" },
+      { data: "no_document" },
       { data: "name" },
       { data: "last_name" },
       { data: "email" },
+      { data: "address" },
+      { data: "cell_phone" },
       {
         data: "status",
         render: function (data) {
@@ -50,52 +53,47 @@ function usersCtrl() {
   $(".card").on("click", ".nuevo", function () {
     $(this).hide();
     $("#listado_wrapper").hide();
-    $(".card-title").html("Crear usuario");
-    $("#formSave").load("./users/nuevo.php", function () {
-      getRoles();
-      confir_email = false;
+    $(".card-title").html("Crear empleado");
+    $("#formSave").load("./employees/nuevo.php", function () {
+      getHeadquarters();
+      confir_docu = false;
       $("#alert").hide();
-      $("#alertPass").hide();
-      $("#alertEmail").hide();
+      $("#alertDocu").hide();
     });
   });
 
   $(".card").on("click", "#create", function () {
     var form = $("form");
     if (
+      !form[0].seat_id.value ||
+      !form[0].no_document.value ||
       !form[0].name.value ||
       !form[0].last_name.value ||
-      !form[0].rol_id.value ||
-      !form[0].email.value ||
-      !form[0].password.value ||
-      !form[0].confir_password.value
+      !form[0].address.value ||
+      !form[0].cell_phone.value ||
+      !form[0].email.value
     ) {
       $("#alert").show();
     } else {
       $("#alert").hide();
-      if (form[0].password.value !== form[0].confir_password.value) {
-        $("#alertPass").show();
+      if (confir_docu) {
+        $("#alertDocu").show();
       } else {
-        $("#alertPass").hide();
-        if (confir_email) {
-          $("#alertEmail").show();
-        } else {
-          $.ajax({
-            url: BASE_URL + "user.php",
-            type: "POST",
-            headers: {
-              accion: "registro",
-              token: createToken(getToken()),
-            },
-            data: form.serialize(),
-          }).done(function (response) {
-            if (response == 1) toastr.success("Usuario agregado con exito");
-            else toastr.error("Error al agregar el usuario");
-            volver();
-            dt.page("last").draw("page");
-            dt.ajax.reload(null, false);
-          });
-        }
+        $.ajax({
+          url: BASE_URL + "employe.php",
+          type: "POST",
+          headers: {
+            accion: "registro",
+            token: createToken(getToken()),
+          },
+          data: form.serialize(),
+        }).done(function (response) {
+          if (response == 1) toastr.success("Empleado agregado con exito");
+          else toastr.error("Error al agregar el empleado");
+          volver();
+          dt.page("last").draw("page");
+          dt.ajax.reload(null, false);
+        });
       }
     }
   });
@@ -104,16 +102,18 @@ function usersCtrl() {
     var data = dt.row($(this).parents("tr")).data();
     $(".nuevo").hide();
     $("#listado_wrapper").hide();
-    $(".card-title").html("Actualizar usuario");
-    $("#formSave").load("./users/editar.php", function () {
-      getRoles(data.rol_id);
-      confir_email = false;
+    $(".card-title").html("Actualizar empleado");
+    $("#formSave").load("./employees/editar.php", function () {
+      getHeadquarters(data.seat_id);
+      confir_docu = false;
       $("#alert").hide();
-      $("#alertPass").hide();
-      $("#alertEmail").hide();
+      $("#alertDocu").hide();
       $("#id").val(data.id);
+      $("#no_document").val(data.no_document);
       $("#name").val(data.name);
       $("#last_name").val(data.last_name);
+      $("#address").val(data.address);
+      $("#cell_phone").val(data.cell_phone);
       $("#email").val(data.email);
     });
   });
@@ -121,61 +121,59 @@ function usersCtrl() {
   $(".card").on("click", "#update", function () {
     var form = $("form");
     if (
+      !form[0].seat_id.value ||
+      !form[0].no_document.value ||
       !form[0].name.value ||
       !form[0].last_name.value ||
-      !form[0].rol_id.value ||
+      !form[0].address.value ||
+      !form[0].cell_phone.value ||
       !form[0].email.value
     ) {
       $("#alert").show();
     } else {
       $("#alert").hide();
-      if (form[0].password.value !== form[0].confir_password.value) {
-        $("#alertPass").show();
+      if (confir_docu) {
+        $("#alertDocu").show();
       } else {
-        $("#alertPass").hide();
-        if (confir_email) {
-          $("#alertEmail").show();
-        } else {
-          $.ajax({
-            url: BASE_URL + "user.php",
-            type: "PUT",
-            headers: {
-              accion: "modificar",
-              token: createToken(getToken()),
-            },
-            data: JSON.stringify(getFormData(form)),
-            contentType: "application/json",
-          }).done(function (response) {
-            if (response == 1) toastr.success("Usuario actualizado con exito");
-            else toastr.error("Error al actualizar el usuario");
-            volver();
-            dt.page("last").draw("page");
-            dt.ajax.reload(null, false);
-          });
-        }
+        $.ajax({
+          url: BASE_URL + "employe.php",
+          type: "PUT",
+          headers: {
+            accion: "modificar",
+            token: createToken(getToken()),
+          },
+          data: JSON.stringify(getFormData(form)),
+          contentType: "application/json",
+        }).done(function (response) {
+          if (response == 1) toastr.success("Empleado actualizado con exito");
+          else toastr.error("Error al actualizar el empleado");
+          volver();
+          dt.page("last").draw("page");
+          dt.ajax.reload(null, false);
+        });
       }
     }
   });
 
-  $(".card").on("keyup", "#email", function (e) {
+  $(".card").on("keyup", "#no_document", function (e) {
     e.preventDefault();
     $.ajax({
-      url: BASE_URL + "user.php",
+      url: BASE_URL + "employe.php",
       type: "GET",
       headers: {
-        accion: "verificarEmail",
+        accion: "verificarDocument",
         token: createToken(getToken()),
       },
-      data: { email: $(this).val() },
+      data: { no_document: $(this).val() },
     }).done(function (response) {
-      confir_email = JSON.parse(response).exists;
+      confir_docu = JSON.parse(response).exists;
     });
   });
 
   $("#listado").on("click", ".desactivar", function () {
     var data = dt.row($(this).parents("tr")).data();
     $.ajax({
-      url: BASE_URL + "user.php",
+      url: BASE_URL + "employe.php",
       type: "DELETE",
       headers: {
         accion: "desactivar",
@@ -183,8 +181,8 @@ function usersCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Usuario desactivado con exito");
-      else toastr.error("Error al desactivar el usuario");
+      if (response == 1) toastr.success("Empleado desactivado con exito");
+      else toastr.error("Error al desactivar el empleado");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
     });
@@ -193,7 +191,7 @@ function usersCtrl() {
   $("#listado").on("click", ".activar", function () {
     var data = dt.row($(this).parents("tr")).data();
     $.ajax({
-      url: BASE_URL + "user.php",
+      url: BASE_URL + "employe.php",
       type: "DELETE",
       headers: {
         accion: "activar",
@@ -201,8 +199,8 @@ function usersCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Usuario activado con exito");
-      else toastr.error("Error al activar el usuario");
+      if (response == 1) toastr.success("Empleado activado con exito");
+      else toastr.error("Error al activar el empleado");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
     });
@@ -215,22 +213,22 @@ function usersCtrl() {
   const volver = () => {
     $(".nuevo").show();
     $("#listado_wrapper").show();
-    $(".card-title").html("Listado de usuarios");
+    $(".card-title").html("Listado de empleados");
     $("#formSave").html("");
   };
 
-  const getRoles = (id) => {
+  const getHeadquarters = (id) => {
     $.ajax({
-      url: BASE_URL + "user.php",
+      url: BASE_URL + "employe.php",
       type: "GET",
       headers: {
-        accion: "listarRoles",
+        accion: "listarHeadquarters",
         token: createToken(getToken()),
       },
     }).done(function (response) {
       $.each(JSON.parse(response)["data"], function (index, value) {
         if (id && id == value.id)
-          $("#rol_id").append(
+          $("#seat_id").append(
             "<option selected value='" +
               value.id +
               "'>" +
@@ -238,7 +236,7 @@ function usersCtrl() {
               "</option>"
           );
         else
-          $("#rol_id").append(
+          $("#seat_id").append(
             "<option value='" + value.id + "'>" + value.name + "</option>"
           );
       });
