@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-10-2021 a las 06:10:37
+-- Tiempo de generación: 11-10-2021 a las 06:07:03
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -42,6 +42,32 @@ CREATE TABLE `cities` (
 INSERT INTO `cities` (`id`, `country_id`, `name`, `status`, `updated_at`, `created_at`) VALUES
 (1, 2, 'Cali', 1, '2021-09-30 22:38:41', '2021-09-30 22:21:23'),
 (2, 1, 'New York', 1, '2021-09-30 22:38:57', '2021-09-30 22:38:57');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `contracts`
+--
+
+CREATE TABLE `contracts` (
+  `id` int(11) NOT NULL,
+  `type_contract_id` int(11) NOT NULL,
+  `employe_id` int(11) NOT NULL,
+  `profession_id` int(11) NOT NULL,
+  `date_init` date NOT NULL,
+  `date_end` date DEFAULT NULL,
+  `duration` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `contracts`
+--
+
+INSERT INTO `contracts` (`id`, `type_contract_id`, `employe_id`, `profession_id`, `date_init`, `date_end`, `duration`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 1, '2021-10-11', '2022-10-11', '1 año', 1, '2021-10-10 17:29:53', '2021-10-10 23:05:13');
 
 -- --------------------------------------------------------
 
@@ -90,7 +116,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `seat_id`, `no_document`, `name`, `last_name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, '1122489657', 'Paterson', 'Sinisterra', 'paterson@hotmail.com', 'Ave 12 # 45 - 105', '3113054896', 1, '2021-10-09 21:12:14', '2021-10-09 21:49:47'),
+(1, 2, '1122489657', 'Paterson', 'Sinisterra', 'paterson@hotmail.com', 'Ave 12 # 45 - 105', '3113054896', 1, '2021-10-09 21:12:14', '2021-10-10 14:33:48'),
 (2, 1, '11447896523', 'Serafin', 'Cerquera', 'serafin@ciudadanosano.com', 'Ave 44 # 78 - 18', '3114562389', 1, '2021-10-09 21:40:17', '2021-10-09 21:40:17');
 
 -- --------------------------------------------------------
@@ -158,7 +184,7 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `description`, `permits`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Administrador', 'Super usuario con todos los permisos del sistema.', ',roles,users,countries,cities,headquarters,types_contracts,professions,employees', 1, '2021-09-19 16:07:10', '2021-09-24 17:56:15'),
+(1, 'Administrador', 'Super usuario con todos los permisos del sistema.', ',roles,users,countries,cities,headquarters,types_contracts,professions,employees,contracts', 1, '2021-09-19 16:07:10', '2021-09-24 17:56:15'),
 (2, 'Paciente', 'Rol para el ingreso de pacientes al sistema', '', 1, '2021-09-19 17:47:54', '2021-09-19 17:47:54'),
 (3, 'Director de sedes', 'Rol asignado al director para la gestión de sedes', ',roles', 1, '2021-09-19 17:55:33', '2021-09-21 00:17:27'),
 (4, 'Asesor de afiliación', 'Rol asignado al asesor de afiliación para la gestión de pacientes', ',roles,users', 1, '2021-09-19 19:36:52', '2021-09-21 00:18:25'),
@@ -225,6 +251,15 @@ ALTER TABLE `cities`
   ADD KEY `fk-cities_countries` (`country_id`);
 
 --
+-- Indices de la tabla `contracts`
+--
+ALTER TABLE `contracts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `type_contract_id` (`type_contract_id`),
+  ADD KEY `employe_id` (`employe_id`),
+  ADD KEY `profession_id` (`profession_id`);
+
+--
 -- Indices de la tabla `countries`
 --
 ALTER TABLE `countries`
@@ -279,6 +314,11 @@ ALTER TABLE `users`
 ALTER TABLE `cities`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT de la tabla `contracts`
+--
+ALTER TABLE `contracts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT de la tabla `countries`
 --
 ALTER TABLE `countries`
@@ -322,6 +362,14 @@ ALTER TABLE `users`
 --
 ALTER TABLE `cities`
   ADD CONSTRAINT `fk-cities_countries` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`);
+
+--
+-- Filtros para la tabla `contracts`
+--
+ALTER TABLE `contracts`
+  ADD CONSTRAINT `fk-contracts_employees` FOREIGN KEY (`employe_id`) REFERENCES `employees` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk-contracts_professions` FOREIGN KEY (`profession_id`) REFERENCES `professions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk-contracts_types_contracts` FOREIGN KEY (`type_contract_id`) REFERENCES `types_contracts` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `employees`

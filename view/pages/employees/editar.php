@@ -38,6 +38,32 @@
         </div>
         <div class="col-lg-6">
             <div class="form-group">
+                <label class="control-label" for="country_id">
+                    <strong class="text-danger">*</strong>País
+                </label>
+                <div class="input-group">
+                    <select class="form-control" id="country_id" name="country_id" value="">
+                        <option value="">Seleccione un pais...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="city_id">
+                    <strong class="text-danger">*</strong>Ciudad
+                </label>
+                <div class="input-group">
+                    <select class="form-control" id="city_id" name="city_id" value="">
+                        <option value="">Seleccione una ciudad...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
                 <label class="control-label" for="seat_id">
                     <strong class="text-danger">*</strong>Sede
                 </label>

@@ -2,9 +2,9 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title">Listado de empleados</h2>
+                <h2 class="card-title">Listado de contratos</h2>
                 <div class="float-right">
-                    <button class="btn btn-info btn-sm nuevo" title="Nuevo empleado"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    <button class="btn btn-info btn-sm nuevo" title="Nuevo contrato"><i class="fa fa-plus" aria-hidden="true"></i></button>
                 </div>
             </div>
             <div class="card-body">
@@ -14,15 +14,12 @@
                         <thead>
                             <tr>
                                 <th>Acciones</th>
-                                <th>País</th>
-                                <th>Ciudad</th>
-                                <th>Sede</th>
+                                <th>Codigo</th>
+                                <th>Tipo de contrato</th>
                                 <th>No documento</th>
-                                <th>Nombres</th>
-                                <th>Apellidos</th>
-                                <th>Email</th>
-                                <th>Dirección</th>
-                                <th>Telefono</th>
+                                <th>Empleado</th>
+                                <th>Profesión</th>
+                                <th>Fecha de inicio</th>
                                 <th>Estado</th>
                                 <th>Creado en</th>
                                 <th>Modificado en</th>
@@ -37,7 +34,7 @@
         </div>
     </div>
 </div>
-<script src="./employees/employeesCtrl.js"></script>
+<script src="./contracts/contractsCtrl.js"></script>
 <script>
-    $(document).ready(employeesCtrl);
+    $(document).ready(contractsCtrl);
 </script>

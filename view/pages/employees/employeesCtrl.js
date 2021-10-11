@@ -22,6 +22,8 @@ function employeesCtrl() {
           );
         },
       },
+      { data: "country" },
+      { data: "city" },
       { data: "seat" },
       { data: "no_document" },
       { data: "name" },
@@ -55,7 +57,7 @@ function employeesCtrl() {
     $("#listado_wrapper").hide();
     $(".card-title").html("Crear empleado");
     $("#formSave").load("./employees/nuevo.php", function () {
-      getHeadquarters();
+      getCountries();
       confir_docu = false;
       $("#alert").hide();
       $("#alertDocu").hide();
@@ -65,6 +67,8 @@ function employeesCtrl() {
   $(".card").on("click", "#create", function () {
     var form = $("form");
     if (
+      !form[0].country_id.value ||
+      !form[0].city_id.value ||
       !form[0].seat_id.value ||
       !form[0].no_document.value ||
       !form[0].name.value ||
@@ -104,7 +108,9 @@ function employeesCtrl() {
     $("#listado_wrapper").hide();
     $(".card-title").html("Actualizar empleado");
     $("#formSave").load("./employees/editar.php", function () {
-      getHeadquarters(data.seat_id);
+      getCountries(data.country_id);
+      getCities(data.country_id, data.city_id);
+      getHeadquarters(data.city_id, data.seat_id);
       confir_docu = false;
       $("#alert").hide();
       $("#alertDocu").hide();
@@ -121,6 +127,8 @@ function employeesCtrl() {
   $(".card").on("click", "#update", function () {
     var form = $("form");
     if (
+      !form[0].country_id.value ||
+      !form[0].city_id.value ||
       !form[0].seat_id.value ||
       !form[0].no_document.value ||
       !form[0].name.value ||
@@ -206,6 +214,16 @@ function employeesCtrl() {
     });
   });
 
+  $(".card").on("change", "#country_id", function (e) {
+    e.preventDefault();
+    getCities($(this).val());
+  });
+
+  $(".card").on("change", "#city_id", function (e) {
+    e.preventDefault();
+    getHeadquarters($(this).val());
+  });
+
   $(".card").on("click", "#close", function () {
     volver();
   });
@@ -217,7 +235,64 @@ function employeesCtrl() {
     $("#formSave").html("");
   };
 
-  const getHeadquarters = (id) => {
+  const getCountries = (id) => {
+    $.ajax({
+      url: BASE_URL + "employe.php",
+      type: "GET",
+      headers: {
+        accion: "listarCountries",
+        token: createToken(getToken()),
+      },
+    }).done(function (response) {
+      $.each(JSON.parse(response)["data"], function (index, value) {
+        if (id && id == value.id)
+          $("#country_id").append(
+            "<option selected value='" +
+              value.id +
+              "'>" +
+              value.name +
+              "</option>"
+          );
+        else
+          $("#country_id").append(
+            "<option value='" + value.id + "'>" + value.name + "</option>"
+          );
+      });
+    });
+  };
+
+  const getCities = (country_id, id) => {
+    $.ajax({
+      url: BASE_URL + "employe.php",
+      type: "GET",
+      headers: {
+        accion: "listarCities",
+        token: createToken(getToken()),
+      },
+      data: { country_id: country_id },
+    }).done(function (response) {
+      $("#city_id").html("");
+      $("#city_id").append(
+        '<option value="">Seleccione una ciudad...</option>'
+      );
+      $.each(JSON.parse(response)["data"], function (index, value) {
+        if (id && id == value.id)
+          $("#city_id").append(
+            "<option selected value='" +
+              value.id +
+              "'>" +
+              value.name +
+              "</option>"
+          );
+        else
+          $("#city_id").append(
+            "<option value='" + value.id + "'>" + value.name + "</option>"
+          );
+      });
+    });
+  };
+
+  const getHeadquarters = (city_id, id) => {
     $.ajax({
       url: BASE_URL + "employe.php",
       type: "GET",
@@ -225,7 +300,10 @@ function employeesCtrl() {
         accion: "listarHeadquarters",
         token: createToken(getToken()),
       },
+      data: { city_id: city_id },
     }).done(function (response) {
+      $("#seat_id").html("");
+      $("#seat_id").append('<option value="">Seleccione una sede...</option>');
       $.each(JSON.parse(response)["data"], function (index, value) {
         if (id && id == value.id)
           $("#seat_id").append(
