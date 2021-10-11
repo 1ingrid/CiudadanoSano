@@ -3,12 +3,14 @@
     require_once '../model/country.php';
     require_once '../model/city.php';
     require_once '../model/seat.php';
+    require_once '../model/userxemploye.php';
     require_once '../middleware/jwtToken.php';
 
     $employe = new Employe();
     $country = new Country();
     $city = new City();
     $seat = new Seat();
+    $userxEmploye = new UserxEmploye();
     $jwt = new JwtToken();
 
     $token = !empty($_SERVER['HTTP_TOKEN']) ? $_SERVER['HTTP_TOKEN'] : '';
@@ -18,6 +20,9 @@
 
             case 'listar':
                 $listado = $employe->listar();
+                foreach ($listado as $key => $value) {
+                   $listado[$key]['user'] = !empty($userxEmploye->verificarUser($value['id'])) ? true : false;
+                }
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarCountries':

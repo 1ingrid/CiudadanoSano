@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2021 a las 06:07:03
+-- Tiempo de generación: 11-10-2021 a las 06:41:17
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -239,6 +239,18 @@ INSERT INTO `users` (`id`, `rol_id`, `name`, `last_name`, `email`, `password`, `
 (1, 1, 'Miguel Angel', 'Cerquera Rodriguez', 'cerquera199627@hotmail.com', '$2y$12$yA2Fjyw0EpMZk5WjB0.bT.Rlybx4uNzh1pnjrycTDpxWldgYmDL8W', 1, '2021-09-22 22:54:26', '2021-10-09 17:49:06'),
 (2, 1, 'Ingrid', 'Blanco', 'ingridbp1995@gmail.com', '$2y$12$aXTtOV3BC5oZb1RNS/hd9.BtnHgSuv6gM4KrJIHqIMciNsq8IoCqm', 1, '2021-09-25 12:20:59', '2021-09-25 12:23:53');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usersxemployees`
+--
+
+CREATE TABLE `usersxemployees` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `employe_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
 --
 -- Índices para tablas volcadas
 --
@@ -305,6 +317,14 @@ ALTER TABLE `users`
   ADD KEY `rol_id` (`rol_id`);
 
 --
+-- Indices de la tabla `usersxemployees`
+--
+ALTER TABLE `usersxemployees`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `employe_id` (`employe_id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -354,6 +374,11 @@ ALTER TABLE `types_contracts`
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT de la tabla `usersxemployees`
+--
+ALTER TABLE `usersxemployees`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -388,6 +413,13 @@ ALTER TABLE `headquarters`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `fk-users_roles` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `usersxemployees`
+--
+ALTER TABLE `usersxemployees`
+  ADD CONSTRAINT `fk-usersxemployees_employees` FOREIGN KEY (`employe_id`) REFERENCES `employees` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk-usersxemployees_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

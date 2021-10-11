@@ -13,12 +13,15 @@ function employeesCtrl() {
     columns: [
       {
         data: "status",
-        render: function (data) {
+        render: function (data, type, row) {
           return (
             (data == 1
               ? '<button class="btn btn-danger btn-xs mr-1 desactivar" title="Desactivar empleado"><i class="fas fa-trash"></i></button>'
               : '<button class="btn btn-info btn-xs mr-1 activar" title="Activar empleado"><i class="fas fa-redo-alt"></i></button>') +
-            '<button class="btn btn-success btn-xs editar" title="Editar empleado"><i class="far fa-edit"></i></button>'
+            '<button class="btn btn-success btn-xs mr-1 editar" title="Editar empleado"><i class="far fa-edit"></i></button>' +
+            (!row.user
+              ? '<button class="btn btn-info btn-xs user" title="Crear usuario"><i class="far fa-user"></i></button>'
+              : "")
           );
         },
       },
