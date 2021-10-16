@@ -4,6 +4,7 @@
     require_once '../model/city.php';
     require_once '../model/seat.php';
     require_once '../model/userxemploye.php';
+    require_once '../model/user.php';
     require_once '../middleware/jwtToken.php';
 
     $employe = new Employe();
@@ -11,6 +12,7 @@
     $city = new City();
     $seat = new Seat();
     $userxEmploye = new UserxEmploye();
+    $user = new User();
     $jwt = new JwtToken();
 
     $token = !empty($_SERVER['HTTP_TOKEN']) ? $_SERVER['HTTP_TOKEN'] : '';
@@ -43,6 +45,16 @@
             break;
             case 'registro':
                 $resultado = $employe->nuevo($_POST);
+                echo json_encode($resultado);
+            break;
+            case 'registroUserDoctor':
+                if(!empty($user->consultarEmail($_POST['email']))) $resultado = [ 'code' => 400, 'message' => 'El usuario ya existe' ];
+                $resultado = $user->nuevo($_POST);
+                if($resultado !== 1) $resultado = [ 'code' => 400, 'message' => 'Error al crear el usuario medico' ];
+                $user = $user->consultarEmail($_POST['email']);
+                $resultado = $userxEmploye->nuevo(['user_id' => $user[0]['id'], 'employe_id' => $_POST['id']]);
+                if($resultado !== 1) $resultado = [ 'code' => 400, 'message' => 'Error al crear el usuario medico' ];
+                else $resultado = [ 'code' => 200, 'message' => 'Usuario medico creado con exito' ];
                 echo json_encode($resultado);
             break;
             case 'modificar':

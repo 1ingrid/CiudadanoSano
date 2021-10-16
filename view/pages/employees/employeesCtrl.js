@@ -20,7 +20,7 @@ function employeesCtrl() {
               : '<button class="btn btn-info btn-xs mr-1 activar" title="Activar empleado"><i class="fas fa-redo-alt"></i></button>') +
             '<button class="btn btn-success btn-xs mr-1 editar" title="Editar empleado"><i class="far fa-edit"></i></button>' +
             (!row.user
-              ? '<button class="btn btn-info btn-xs user" title="Crear usuario"><i class="far fa-user"></i></button>'
+              ? '<button class="btn btn-info btn-xs createUser" title="Crear usuario tipo medico"><i class="far fa-user"></i></button>'
               : "")
           );
         },
@@ -212,6 +212,32 @@ function employeesCtrl() {
     }).done(function (response) {
       if (response == 1) toastr.success("Empleado activado con exito");
       else toastr.error("Error al activar el empleado");
+      dt.page("last").draw("page");
+      dt.ajax.reload(null, false);
+    });
+  });
+
+  $("#listado").on("click", ".createUser", function () {
+    var data = dt.row($(this).parents("tr")).data();
+    const form = {
+      id: data.id,
+      rol_id: 5,
+      name: data.name,
+      last_name: data.last_name,
+      email: data.email,
+      password: new Date().getTime()
+    };
+    $.ajax({
+      url: BASE_URL + "employe.php",
+      type: "POST",
+      headers: {
+        accion: "registroUserDoctor",
+        token: createToken(getToken()),
+      },
+      data: form,
+    }).done(function (response) {
+      if (JSON.parse(response).code === 200) toastr.success(JSON.parse(response).message);
+      else toastr.error(JSON.parse(response).message);
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
     });

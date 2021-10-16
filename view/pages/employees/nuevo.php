@@ -25,13 +25,13 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label class="control-label" for="no_document">
-                    <strong class="text-danger">*</strong>Cedula
+                    <strong class="text-danger">*</strong>No documento
                 </label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="no_document" name="no_document" placeholder="Cedula del empleado" value="">
+                    <input type="text" class="form-control" id="no_document" name="no_document" placeholder="No documento del empleado" value="">
                 </div>
                 <div id="alertDocu" class="input-group">
-                    <label class="text-danger" for="no_document">The cedula already exists</label>
+                    <label class="text-danger" for="no_document">The no document already exists</label>
                 </div>
             </div>
         </div>
