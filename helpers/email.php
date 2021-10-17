@@ -49,6 +49,23 @@
             }
         }
 
+        function sendEmailUser($data) {
+            $this->email->setFrom($data['email'], $data['name'].' '.$data['last_name']);
+            $this->email->addAddress($data['email']);
+            $this->email->Subject = 'Datos de usuario.';
+            $html = file_get_contents('../view/user.php');
+            $html = str_replace('$user', $data['email'], $html);
+            $html = str_replace('$pass', $data['password'], $html);
+            $html = utf8_decode($html);
+            $this->email->Body = $html;
+            try {
+                $this->email->send();
+                return [ 'send' => true ];
+            } catch (Exception $e) {
+                return [ 'send' => false ];
+            }
+        }
+
         function decodeKey($key) {
             try {
                 $id = JWT::decode(

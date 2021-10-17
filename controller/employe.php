@@ -6,6 +6,7 @@
     require_once '../model/userxemploye.php';
     require_once '../model/user.php';
     require_once '../middleware/jwtToken.php';
+    require_once '../helpers/email.php';
 
     $employe = new Employe();
     $country = new Country();
@@ -14,6 +15,7 @@
     $userxEmploye = new UserxEmploye();
     $user = new User();
     $jwt = new JwtToken();
+    $email = new Email();
 
     $token = !empty($_SERVER['HTTP_TOKEN']) ? $_SERVER['HTTP_TOKEN'] : '';
 
@@ -54,6 +56,8 @@
                 $user = $user->consultarEmail($_POST['email']);
                 $resultado = $userxEmploye->nuevo(['user_id' => $user[0]['id'], 'employe_id' => $_POST['id']]);
                 if($resultado !== 1) $resultado = [ 'code' => 400, 'message' => 'Error al crear el usuario medico' ];
+                $enviado = $email->sendEmailUser($_POST);
+                if(!$enviado['send']) $resultado = [ 'code' => 400, 'message' => 'Error al crear el usuario medico' ];
                 else $resultado = [ 'code' => 200, 'message' => 'Usuario medico creado con exito' ];
                 echo json_encode($resultado);
             break;
