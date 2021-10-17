@@ -30,7 +30,7 @@
             $this->query = '
             INSERT INTO employees 
             (seat_id, no_document, name, last_name, email, address, cell_phone) 
-            VALUES('.$datos['seat_id'].',"'.$datos['no_document'].'","'.utf8_decode($datos['name']).'","'.utf8_decode($datos['last_name']).'",
+            VALUES('.$datos['seat_id'].',"'.$datos['no_document'].'","'.utf8_decode($datos['name']).'","'.utf8_decode($datos['last_name']).'", 
             "'.$datos['email'].'","'.$datos['address'].'","'.$datos['cell_phone'].'")';
             return $this->ejecutar_query_simple();
         }
