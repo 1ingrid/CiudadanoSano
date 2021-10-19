@@ -49,16 +49,16 @@
                 $resultado = $employe->nuevo($_POST);
                 echo json_encode($resultado);
             break;
-            case 'registroUserDoctor':
-                if(!empty($user->consultarEmail($_POST['email']))) $resultado = [ 'code' => 400, 'message' => 'El usuario ya existe' ];
+            case 'registroUser':
+                if(!empty($user->consultarEmail($_POST['email']))) $resultado = 401;
                 $resultado = $user->nuevo($_POST);
-                if($resultado !== 1) $resultado = [ 'code' => 400, 'message' => 'Error al crear el usuario medico' ];
+                if($resultado !== 1) $resultado = 400;
                 $user = $user->consultarEmail($_POST['email']);
                 $resultado = $userxEmploye->nuevo(['user_id' => $user[0]['id'], 'employe_id' => $_POST['id']]);
-                if($resultado !== 1) $resultado = [ 'code' => 400, 'message' => 'Error al crear el usuario medico' ];
+                if($resultado !== 1) $resultado = 400;
                 $enviado = $email->sendEmailUser($_POST);
-                if(!$enviado['send']) $resultado = [ 'code' => 400, 'message' => 'Error al crear el usuario medico' ];
-                else $resultado = [ 'code' => 200, 'message' => 'Usuario medico creado con exito' ];
+                if(!$enviado['send']) $resultado = 400;
+                else $resultado = 200;
                 echo json_encode($resultado);
             break;
             case 'modificar':

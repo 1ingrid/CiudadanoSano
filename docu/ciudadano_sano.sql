@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2021 a las 06:41:17
+-- Tiempo de generación: 17-10-2021 a las 05:45:34
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -42,6 +42,32 @@ CREATE TABLE `cities` (
 INSERT INTO `cities` (`id`, `country_id`, `name`, `status`, `updated_at`, `created_at`) VALUES
 (1, 2, 'Cali', 1, '2021-09-30 22:38:41', '2021-09-30 22:21:23'),
 (2, 1, 'New York', 1, '2021-09-30 22:38:57', '2021-09-30 22:38:57');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `clients`
+--
+
+CREATE TABLE `clients` (
+  `id` int(11) NOT NULL,
+  `no_document` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `name` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `last_name` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `address` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `cell_phone` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `clients`
+--
+
+INSERT INTO `clients` (`id`, `no_document`, `name`, `last_name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
+(1, '31589654', 'Evelyn', 'Rodriguez Obando', 'evelyn60@hotmail.com', 'Cra96a # 45 - 106', '3115421110', 1, '2021-10-16 22:10:44', '2021-10-16 22:39:11');
 
 -- --------------------------------------------------------
 
@@ -117,7 +143,7 @@ CREATE TABLE `employees` (
 
 INSERT INTO `employees` (`id`, `seat_id`, `no_document`, `name`, `last_name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
 (1, 2, '1122489657', 'Paterson', 'Sinisterra', 'paterson@hotmail.com', 'Ave 12 # 45 - 105', '3113054896', 1, '2021-10-09 21:12:14', '2021-10-10 14:33:48'),
-(2, 1, '11447896523', 'Serafin', 'Cerquera', 'serafin@ciudadanosano.com', 'Ave 44 # 78 - 18', '3114562389', 1, '2021-10-09 21:40:17', '2021-10-09 21:40:17');
+(2, 1, '11447896523', 'Serafin', 'Cerquera', 'mcerquera@programarte.com.co', 'Ave 44 # 78 - 18', '3114562389', 1, '2021-10-09 21:40:17', '2021-10-16 19:29:21');
 
 -- --------------------------------------------------------
 
@@ -184,11 +210,11 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `description`, `permits`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Administrador', 'Super usuario con todos los permisos del sistema.', ',roles,users,countries,cities,headquarters,types_contracts,professions,employees,contracts', 1, '2021-09-19 16:07:10', '2021-09-24 17:56:15'),
+(1, 'Administrador', 'Super usuario con todos los permisos del sistema.', ',roles,users,countries,cities,headquarters,types_contracts,professions,employees,contracts,clients', 1, '2021-09-19 16:07:10', '2021-09-24 17:56:15'),
 (2, 'Paciente', 'Rol para el ingreso de pacientes al sistema', '', 1, '2021-09-19 17:47:54', '2021-09-19 17:47:54'),
 (3, 'Director de sedes', 'Rol asignado al director para la gestión de sedes', ',roles', 1, '2021-09-19 17:55:33', '2021-09-21 00:17:27'),
 (4, 'Asesor de afiliación', 'Rol asignado al asesor de afiliación para la gestión de pacientes', ',roles,users', 1, '2021-09-19 19:36:52', '2021-09-21 00:18:25'),
-(5, 'Empleado', 'Rol utilizado para los empleados', ',roles', 1, '2021-09-20 20:41:34', '2021-09-20 20:41:34'),
+(5, 'Medico', 'Rol utilizado para los médicos', ',roles', 1, '2021-09-20 20:41:34', '2021-10-16 10:01:36'),
 (6, 'Proveedor', '', ',users', 1, '2021-09-21 00:19:05', '2021-09-21 00:19:21');
 
 -- --------------------------------------------------------
@@ -237,7 +263,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `rol_id`, `name`, `last_name`, `email`, `password`, `status`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Miguel Angel', 'Cerquera Rodriguez', 'cerquera199627@hotmail.com', '$2y$12$yA2Fjyw0EpMZk5WjB0.bT.Rlybx4uNzh1pnjrycTDpxWldgYmDL8W', 1, '2021-09-22 22:54:26', '2021-10-09 17:49:06'),
-(2, 1, 'Ingrid', 'Blanco', 'ingridbp1995@gmail.com', '$2y$12$aXTtOV3BC5oZb1RNS/hd9.BtnHgSuv6gM4KrJIHqIMciNsq8IoCqm', 1, '2021-09-25 12:20:59', '2021-09-25 12:23:53');
+(2, 1, 'Ingrid', 'Blanco', 'ingridbp1995@gmail.com', '$2y$12$aXTtOV3BC5oZb1RNS/hd9.BtnHgSuv6gM4KrJIHqIMciNsq8IoCqm', 1, '2021-09-25 12:20:59', '2021-09-25 12:23:53'),
+(8, 5, 'Paterson', 'Sinisterra', 'paterson@hotmail.com', '$2y$12$CjWcjwo5ZP2e6zTyYqhnru11W6oFfpY0jpnf1zgr0rBvybhn2NfI.', 1, '2021-10-16 11:33:02', '2021-10-16 11:33:02'),
+(10, 5, 'Serafin', 'Cerquera', 'mcerquera@programarte.com.co', '$2y$12$rcPRCcv6Fsf1ywiPgF3.0etTiK3B.2zU6u1BP7DfgBT.U5/0Kh.7q', 1, '2021-10-16 19:54:07', '2021-10-16 19:54:07');
 
 -- --------------------------------------------------------
 
@@ -252,6 +280,14 @@ CREATE TABLE `usersxemployees` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
+-- Volcado de datos para la tabla `usersxemployees`
+--
+
+INSERT INTO `usersxemployees` (`id`, `user_id`, `employe_id`) VALUES
+(2, 8, 1),
+(4, 10, 2);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -261,6 +297,12 @@ CREATE TABLE `usersxemployees` (
 ALTER TABLE `cities`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk-cities_countries` (`country_id`);
+
+--
+-- Indices de la tabla `clients`
+--
+ALTER TABLE `clients`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `contracts`
@@ -334,6 +376,11 @@ ALTER TABLE `usersxemployees`
 ALTER TABLE `cities`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT de la tabla `clients`
+--
+ALTER TABLE `clients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT de la tabla `contracts`
 --
 ALTER TABLE `contracts`
@@ -372,12 +419,12 @@ ALTER TABLE `types_contracts`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `usersxemployees`
 --
 ALTER TABLE `usersxemployees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Restricciones para tablas volcadas
 --

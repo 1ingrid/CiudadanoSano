@@ -87,7 +87,7 @@ function contractsCtrl() {
         data: form.serialize(),
       }).done(function (response) {
         if (response == 1) toastr.success("Contrato agregado con exito");
-        if (response == 2) toastr.info("Empleado ya con un contrato vigente");
+        else if (response == 2) toastr.info("Empleado ya con un contrato vigente");
         else toastr.error("Error al agregar el contrato");
         volver();
         dt.page("last").draw("page");

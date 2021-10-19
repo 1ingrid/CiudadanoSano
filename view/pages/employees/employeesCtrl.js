@@ -20,7 +20,8 @@ function employeesCtrl() {
               : '<button class="btn btn-info btn-xs mr-1 activar" title="Activar empleado"><i class="fas fa-redo-alt"></i></button>') +
             '<button class="btn btn-success btn-xs mr-1 editar" title="Editar empleado"><i class="far fa-edit"></i></button>' +
             (!row.user
-              ? '<button class="btn btn-info btn-xs createUser" title="Crear usuario tipo medico"><i class="far fa-user"></i></button>'
+              ? '<button class="btn btn-info btn-xs createUserDoctor" title="Crear usuario medico"><i class="fas fa-user-md"></i></button>' +
+                '<button class="btn btn-dark btn-xs createUserDirector" title="Crear usuario director de sede"><i class="fas fa-user-tie"></i></button>'
               : "")
           );
         },
@@ -217,7 +218,7 @@ function employeesCtrl() {
     });
   });
 
-  $("#listado").on("click", ".createUser", function () {
+  $("#listado").on("click", ".createUserDoctor", function () {
     var data = dt.row($(this).parents("tr")).data();
     const form = {
       id: data.id,
@@ -231,13 +232,41 @@ function employeesCtrl() {
       url: BASE_URL + "employe.php",
       type: "POST",
       headers: {
-        accion: "registroUserDoctor",
+        accion: "registroUser",
         token: createToken(getToken()),
       },
       data: form,
     }).done(function (response) {
-      if (JSON.parse(response).code === 200) toastr.success(JSON.parse(response).message);
-      else toastr.error(JSON.parse(response).message);
+      if (response === 200) toastr.success("Usuario medico creado con exito");
+      else if (response === 400) toastr.error("Error al crear el usuario medico");
+      else toastr.error("El usuario ya existe");
+      dt.page("last").draw("page");
+      dt.ajax.reload(null, false);
+    });
+  });
+
+  $("#listado").on("click", ".createUserDirector", function () {
+    var data = dt.row($(this).parents("tr")).data();
+    const form = {
+      id: data.id,
+      rol_id: 3,
+      name: data.name,
+      last_name: data.last_name,
+      email: data.email,
+      password: new Date().getTime()
+    };
+    $.ajax({
+      url: BASE_URL + "employe.php",
+      type: "POST",
+      headers: {
+        accion: "registroUser",
+        token: createToken(getToken()),
+      },
+      data: form,
+    }).done(function (response) {
+      if (response === 200) toastr.success("Usuario director de sede creado con exito");
+      else if (response === 400) toastr.error("Error al crear el usuario director de sede");
+      else toastr.error("El usuario ya existe");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
     });

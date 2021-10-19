@@ -1,4 +1,6 @@
 function clientsCtrl() {
+  var confir_docu = false;
+
   var dt = $("#listado").DataTable({
     ajax: {
       url: BASE_URL + "client.php",
@@ -69,21 +71,26 @@ function clientsCtrl() {
     ) {
       $("#alert").show();
     } else {
-      $.ajax({
-        url: BASE_URL + "client.php",
-        type: "POST",
-        headers: {
-          accion: "registro",
-          token: createToken(getToken()),
-        },
-        data: form.serialize(),
-      }).done(function (response) {
-        if (response == 1) toastr.success("Cliente agregado con exito");
-        else toastr.error("Error al agregar el cliente");
-        volver();
-        dt.page("last").draw("page");
-        dt.ajax.reload(null, false);
-      });
+      $("#alert").hide();
+      if (confir_docu) {
+        $("#alertDocu").show();
+      } else {
+        $.ajax({
+          url: BASE_URL + "client.php",
+          type: "POST",
+          headers: {
+            accion: "registro",
+            token: createToken(getToken()),
+          },
+          data: form.serialize(),
+        }).done(function (response) {
+          if (response == 1) toastr.success("Cliente agregado con exito");
+          else toastr.error("Error al agregar el cliente");
+          volver();
+          dt.page("last").draw("page");
+          dt.ajax.reload(null, false);
+        });
+      }
     }
   });
 
@@ -117,23 +124,43 @@ function clientsCtrl() {
     ) {
       $("#alert").show();
     } else {
-      $.ajax({
-        url: BASE_URL + "client.php",
-        type: "PUT",
-        headers: {
-          accion: "modificar",
-          token: createToken(getToken()),
-        },
-        data: JSON.stringify(getFormData(form)),
-        contentType: "application/json",
-      }).done(function (response) {
-        if (response == 1) toastr.success("Cliente actualizado con exito");
-        else toastr.error("Error al actualizar el cliente");
-        volver();
-        dt.page("last").draw("page");
-        dt.ajax.reload(null, false);
-      });
+      $("#alert").hide();
+      if (confir_docu) {
+        $("#alertDocu").show();
+      } else {
+        $.ajax({
+          url: BASE_URL + "client.php",
+          type: "PUT",
+          headers: {
+            accion: "modificar",
+            token: createToken(getToken()),
+          },
+          data: JSON.stringify(getFormData(form)),
+          contentType: "application/json",
+        }).done(function (response) {
+          if (response == 1) toastr.success("Cliente actualizado con exito");
+          else toastr.error("Error al actualizar el cliente");
+          volver();
+          dt.page("last").draw("page");
+          dt.ajax.reload(null, false);
+        });
+      }
     }
+  });
+
+  $(".card").on("keyup", "#no_document", function (e) {
+    e.preventDefault();
+    $.ajax({
+      url: BASE_URL + "client.php",
+      type: "GET",
+      headers: {
+        accion: "verificarDocument",
+        token: createToken(getToken()),
+      },
+      data: { no_document: $(this).val() },
+    }).done(function (response) {
+      confir_docu = JSON.parse(response).exists;
+    });
   });
 
   $("#listado").on("click", ".desactivar", function () {

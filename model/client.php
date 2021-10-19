@@ -8,6 +8,12 @@
 			return $this->rows;
 		}
 
+        public function consultarDocument($no_document) {
+            $this->query = 'SELECT * FROM clients WHERE no_document = "'.$no_document.'"';
+            $this->obtener_resultados_query();
+            return $this->rows;
+        }
+
         public function nuevo($datos) {
             $this->query = '
                 INSERT INTO clients 

@@ -14,6 +14,10 @@
                 $listado = $client->listar();
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
+            case 'verificarDocument':
+                $result = $client->consultarDocument($_GET['no_document']);
+                echo json_encode([ 'exists' => !empty($result) ? true : false ]);
+            break;
             case 'registro':
                 $resultado = $client->nuevo($_POST);
                 echo json_encode($resultado);
