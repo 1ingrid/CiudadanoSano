@@ -1,17 +1,11 @@
 <?php
-    require_once '../model/employe.php';
-    require_once '../model/country.php';
-    require_once '../model/city.php';
-    require_once '../model/seat.php';
+    require_once '../model/my_employe.php';
     require_once '../model/userxemploye.php';
     require_once '../model/user.php';
     require_once '../middleware/jwtToken.php';
     require_once '../helpers/email.php';
 
-    $employe = new Employe();
-    $country = new Country();
-    $city = new City();
-    $seat = new Seat();
+    $myEmploye = new MyEmploye();
     $userxEmploye = new UserxEmploye();
     $user = new User();
     $jwt = new JwtToken();
@@ -19,34 +13,25 @@
 
     $token = !empty($_SERVER['HTTP_TOKEN']) ? $_SERVER['HTTP_TOKEN'] : '';
 
-    if($jwt->verificar($token, 'employees')) {
+    if($jwt->verificar($token, 'my_employees')) {
+
+        $dataUser = $userxEmploye->dataUser($jwt->id)[0];
+
         switch ($_SERVER['HTTP_ACCION']) {
 
             case 'listar':
-                $listado = $employe->listar();
+                $listado = $myEmploye->listarMyEmployees($dataUser);
                 foreach ($listado as $key => $value) {
                    $listado[$key]['user'] = !empty($userxEmploye->verificarUser($value['id'])) ? true : false;
                 }
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
-            case 'listarCountries':
-                $listado = $country->listar();
-                echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
-            break;
-            case 'listarCities':
-                $listado = $city->listarxCountry($_GET['country_id']);
-                echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
-            break;
-            case 'listarHeadquarters':
-                $listado = $seat->listarxCity($_GET['city_id']);
-                echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
-            break;
             case 'verificarDocument':
-                $result = $employe->consultarDocument($_GET['no_document']);
+                $result = $myEmploye->consultarDocument($_GET['no_document']);
                 echo json_encode([ 'exists' => !empty($result) ? true : false ]);
             break;
             case 'registro':
-                $resultado = $employe->nuevo($_POST);
+                $resultado = $myEmploye->nuevoMyEmploye($_POST, $dataUser['seat_id']);
                 echo json_encode($resultado);
             break;
             case 'registroUser':
@@ -60,15 +45,15 @@
                 else echo json_encode(200);
             break;
             case 'modificar':
-                $resultado = $employe->actualizar(file_get_contents("php://input"));
+                $resultado = $myEmploye->actualizar(file_get_contents("php://input"));
                 echo json_encode($resultado);
             break;
             case 'desactivar':
-                $resultado = $employe->desactivar(file_get_contents("php://input"));
+                $resultado = $myEmploye->desactivar(file_get_contents("php://input"));
                 echo json_encode($resultado);
             break;
             case 'activar':
-                $resultado = $employe->activar(file_get_contents("php://input"));
+                $resultado = $myEmploye->activar(file_get_contents("php://input"));
                 echo json_encode($resultado);
             break;
             

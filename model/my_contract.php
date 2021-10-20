@@ -4,13 +4,13 @@
 
         public function listar() {}
 
-        public function listarMyContracts($seat_id) {
+        public function listarMyContracts($employe) {
             $this->query = 'SELECT contracts.id, types_contracts.name as type_contract, no_document, CONCAT(employees.name," ",employees.last_name) as employe, 
             professions.name as profession, type_contract_id, employe_id, profession_id, date_init, date_end, duration, contracts.status, contracts.created_at, 
             contracts.updated_at 
             FROM contracts INNER JOIN types_contracts ON types_contracts.id = contracts.type_contract_id 
             INNER JOIN employees ON employees.id = contracts.employe_id INNER JOIN professions ON professions.id = contracts.profession_id 
-            WHERE seat_id = '.$seat_id;
+            WHERE seat_id = '.$employe['seat_id'].' AND employe_id != '.$employe['id'];
 			$this->obtener_resultados_query();
 			return $this->rows;
         }
