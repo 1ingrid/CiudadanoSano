@@ -64,6 +64,118 @@ function my_contractsCtrl() {
     });
   });
 
+  $(".card").on("click", "#create", function () {
+    var form = $("form");
+    if (
+      !form[0].type_contract_id.value ||
+      !form[0].employe_id.value ||
+      !form[0].profession_id.value ||
+      !form[0].date_init.value
+    ) {
+      $("#alert").show();
+    } else {
+      $.ajax({
+        url: BASE_URL + "my_contract.php",
+        type: "POST",
+        headers: {
+          accion: "registro",
+          token: createToken(getToken()),
+        },
+        data: form.serialize(),
+      }).done(function (response) {
+        if (response == 1) toastr.success("Contrato agregado con exito");
+        else if (response == 2)
+          toastr.info("Empleado ya con un contrato vigente");
+        else toastr.error("Error al agregar el contrato");
+        volver();
+        dt.page("last").draw("page");
+        dt.ajax.reload(null, false);
+      });
+    }
+  });
+
+  $("#listado").on("click", ".editar", function () {
+    var data = dt.row($(this).parents("tr")).data();
+    $(".nuevo").hide();
+    $("#listado_wrapper").hide();
+    $(".card-title").html("Actualizar contrato");
+    $("#formSave").load("./my_contracts/editar.php", function () {
+      getTypesContracts(data.type_contract_id);
+      getEmployees(data.employe_id);
+      getProfessions(data.profession_id);
+      $("#alert").hide();
+      $("#id").val(data.id);
+      $("#date_init").val(data.date_init);
+      $("#date_end").val(data.date_end);
+      $("#duration").val(data.duration);
+    });
+  });
+
+  $(".card").on("click", "#update", function () {
+    var form = $("form");
+    if (
+      !form[0].type_contract_id.value ||
+      !form[0].employe_id.value ||
+      !form[0].profession_id.value ||
+      !form[0].date_init.value
+    ) {
+      $("#alert").show();
+    } else {
+      $.ajax({
+        url: BASE_URL + "my_contract.php",
+        type: "PUT",
+        headers: {
+          accion: "modificar",
+          token: createToken(getToken()),
+        },
+        data: JSON.stringify(getFormData(form)),
+        contentType: "application/json",
+      }).done(function (response) {
+        if (response == 1) toastr.success("Contrato actualizado con exito");
+        else toastr.error("Error al actualizar el contrato");
+        volver();
+        dt.page("last").draw("page");
+        dt.ajax.reload(null, false);
+      });
+    }
+  });
+
+  $("#listado").on("click", ".desactivar", function () {
+    var data = dt.row($(this).parents("tr")).data();
+    $.ajax({
+      url: BASE_URL + "my_contract.php",
+      type: "DELETE",
+      headers: {
+        accion: "desactivar",
+        token: createToken(getToken()),
+      },
+      data: { id: data.id },
+    }).done(function (response) {
+      if (response == 1) toastr.success("Contrato desactivado con exito");
+      else toastr.error("Error al desactivar el contrato");
+      dt.page("last").draw("page");
+      dt.ajax.reload(null, false);
+    });
+  });
+
+  $("#listado").on("click", ".activar", function () {
+    var data = dt.row($(this).parents("tr")).data();
+    $.ajax({
+      url: BASE_URL + "my_contract.php",
+      type: "DELETE",
+      headers: {
+        accion: "activar",
+        token: createToken(getToken()),
+      },
+      data: { id: data.id },
+    }).done(function (response) {
+      if (response == 1) toastr.success("Contrato activado con exito");
+      else toastr.error("Error al activar el contrato");
+      dt.page("last").draw("page");
+      dt.ajax.reload(null, false);
+    });
+  });
+
   $(".card").on("click", "#close", function () {
     volver();
   });

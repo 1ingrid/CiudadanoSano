@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2021 a las 05:45:34
+-- Tiempo de generación: 21-10-2021 a las 05:19:03
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -40,8 +40,7 @@ CREATE TABLE `cities` (
 --
 
 INSERT INTO `cities` (`id`, `country_id`, `name`, `status`, `updated_at`, `created_at`) VALUES
-(1, 2, 'Cali', 1, '2021-09-30 22:38:41', '2021-09-30 22:21:23'),
-(2, 1, 'New York', 1, '2021-09-30 22:38:57', '2021-09-30 22:38:57');
+(1, 2, 'Cali', 1, '2021-09-30 22:38:41', '2021-09-30 22:21:23');
 
 -- --------------------------------------------------------
 
@@ -61,13 +60,6 @@ CREATE TABLE `clients` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `clients`
---
-
-INSERT INTO `clients` (`id`, `no_document`, `name`, `last_name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
-(1, '31589654', 'Evelyn', 'Rodriguez Obando', 'evelyn60@hotmail.com', 'Cra96a # 45 - 106', '3115421110', 1, '2021-10-16 22:10:44', '2021-10-16 22:39:11');
 
 -- --------------------------------------------------------
 
@@ -93,7 +85,8 @@ CREATE TABLE `contracts` (
 --
 
 INSERT INTO `contracts` (`id`, `type_contract_id`, `employe_id`, `profession_id`, `date_init`, `date_end`, `duration`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 1, '2021-10-11', '2022-10-11', '1 año', 1, '2021-10-10 17:29:53', '2021-10-10 23:05:13');
+(2, 2, 3, 2, '2021-10-19', '2022-01-19', '4 meses', 1, '2021-10-19 00:09:28', '2021-10-19 00:09:28'),
+(3, 1, 4, 2, '2021-10-20', '2021-12-20', '2 años', 1, '2021-10-20 21:52:10', '2021-10-20 21:56:03');
 
 -- --------------------------------------------------------
 
@@ -114,7 +107,6 @@ CREATE TABLE `countries` (
 --
 
 INSERT INTO `countries` (`id`, `name`, `status`, `updated_at`, `created_at`) VALUES
-(1, 'Estados Unidos', 1, '2021-09-26 19:30:43', '2021-09-26 19:03:37'),
 (2, 'Colombia', 1, '2021-09-27 08:06:49', '2021-09-27 08:06:39');
 
 -- --------------------------------------------------------
@@ -142,8 +134,9 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `seat_id`, `no_document`, `name`, `last_name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, '1122489657', 'Paterson', 'Sinisterra', 'paterson@hotmail.com', 'Ave 12 # 45 - 105', '3113054896', 1, '2021-10-09 21:12:14', '2021-10-10 14:33:48'),
-(2, 1, '11447896523', 'Serafin', 'Cerquera', 'mcerquera@programarte.com.co', 'Ave 44 # 78 - 18', '3114562389', 1, '2021-10-09 21:40:17', '2021-10-16 19:29:21');
+(3, 3, '31456789', 'Serafin', 'Cerquera', 'mcerquera@programarte.com.co', 'Cra 96a # 45 - 106', '3114567898', 1, '2021-10-19 00:07:51', '2021-10-19 12:41:49'),
+(4, 3, '31258963', 'Ingrid Andrea', 'Blanco Rodriguez', 'ingrid.blanco@ciudadanosano.com.co', 'cra 85a # 45 - 101', '3114568985', 1, '2021-10-19 00:14:27', '2021-10-19 22:01:36'),
+(6, 3, '31862723', 'Evelyn', 'Rodriguez Obando', 'miguelangelcerquerarodriguez@gmail.com', 'Cra 96a # 45 - 106', '3137030828', 1, '2021-10-19 21:46:02', '2021-10-19 21:46:02');
 
 -- --------------------------------------------------------
 
@@ -165,8 +158,7 @@ CREATE TABLE `headquarters` (
 --
 
 INSERT INTO `headquarters` (`id`, `city_id`, `name`, `status`, `updated_at`, `created_at`) VALUES
-(1, 1, 'San Fernando', 1, '2021-10-03 12:18:47', '2021-10-03 12:18:47'),
-(2, 2, 'Liberty', 1, '2021-10-03 12:58:04', '2021-10-03 12:20:21');
+(3, 1, 'Red Sur Calicanto', 1, '2021-10-19 00:05:45', '2021-10-19 00:05:10');
 
 -- --------------------------------------------------------
 
@@ -187,7 +179,8 @@ CREATE TABLE `professions` (
 --
 
 INSERT INTO `professions` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Dentista', 1, '2021-10-09 17:52:09', '2021-10-09 17:55:27');
+(1, 'Dentista', 1, '2021-10-09 17:52:09', '2021-10-09 17:55:27'),
+(2, 'Administrador de empresas', 1, '2021-10-19 00:08:31', '2021-10-19 00:08:31');
 
 -- --------------------------------------------------------
 
@@ -212,10 +205,9 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `name`, `description`, `permits`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Administrador', 'Super usuario con todos los permisos del sistema.', ',roles,users,countries,cities,headquarters,types_contracts,professions,employees,contracts,clients', 1, '2021-09-19 16:07:10', '2021-09-24 17:56:15'),
 (2, 'Paciente', 'Rol para el ingreso de pacientes al sistema', '', 1, '2021-09-19 17:47:54', '2021-09-19 17:47:54'),
-(3, 'Director de sedes', 'Rol asignado al director para la gestión de sedes', ',roles', 1, '2021-09-19 17:55:33', '2021-09-21 00:17:27'),
+(3, 'Director de sedes', 'Rol asignado al director para la gestión de sedes', ',my_contracts,my_employees', 1, '2021-09-19 17:55:33', '2021-09-21 00:17:27'),
 (4, 'Asesor de afiliación', 'Rol asignado al asesor de afiliación para la gestión de pacientes', ',roles,users', 1, '2021-09-19 19:36:52', '2021-09-21 00:18:25'),
-(5, 'Medico', 'Rol utilizado para los médicos', ',roles', 1, '2021-09-20 20:41:34', '2021-10-16 10:01:36'),
-(6, 'Proveedor', '', ',users', 1, '2021-09-21 00:19:05', '2021-09-21 00:19:21');
+(5, 'Medico', 'Rol utilizado para los médicos', ',roles', 1, '2021-09-20 20:41:34', '2021-10-16 10:01:36');
 
 -- --------------------------------------------------------
 
@@ -263,9 +255,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `rol_id`, `name`, `last_name`, `email`, `password`, `status`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Miguel Angel', 'Cerquera Rodriguez', 'cerquera199627@hotmail.com', '$2y$12$yA2Fjyw0EpMZk5WjB0.bT.Rlybx4uNzh1pnjrycTDpxWldgYmDL8W', 1, '2021-09-22 22:54:26', '2021-10-09 17:49:06'),
-(2, 1, 'Ingrid', 'Blanco', 'ingridbp1995@gmail.com', '$2y$12$aXTtOV3BC5oZb1RNS/hd9.BtnHgSuv6gM4KrJIHqIMciNsq8IoCqm', 1, '2021-09-25 12:20:59', '2021-09-25 12:23:53'),
-(8, 5, 'Paterson', 'Sinisterra', 'paterson@hotmail.com', '$2y$12$CjWcjwo5ZP2e6zTyYqhnru11W6oFfpY0jpnf1zgr0rBvybhn2NfI.', 1, '2021-10-16 11:33:02', '2021-10-16 11:33:02'),
-(10, 5, 'Serafin', 'Cerquera', 'mcerquera@programarte.com.co', '$2y$12$rcPRCcv6Fsf1ywiPgF3.0etTiK3B.2zU6u1BP7DfgBT.U5/0Kh.7q', 1, '2021-10-16 19:54:07', '2021-10-16 19:54:07');
+(12, 3, 'Serafin', 'Cerquera', 'mcerquera@programarte.com.co', '$2y$12$HACNteG1qC9/k0Vm494/Sugv1QZcfmDxNp1//zEtIcAK37ErFYzxq', 1, '2021-10-19 12:42:23', '2021-10-19 19:06:27'),
+(15, 5, 'Evelyn', 'Rodriguez Obando', 'miguelangelcerquerarodriguez@gmail.com', '$2y$12$I8v8foQ26RCl7S0wwGuvyeNu5w5bPL.noPJNTeLEt5biXd8eee3BO', 1, '2021-10-19 21:50:22', '2021-10-19 21:50:22');
 
 -- --------------------------------------------------------
 
@@ -284,8 +275,8 @@ CREATE TABLE `usersxemployees` (
 --
 
 INSERT INTO `usersxemployees` (`id`, `user_id`, `employe_id`) VALUES
-(2, 8, 1),
-(4, 10, 2);
+(1, 12, 3),
+(4, 15, 6);
 
 --
 -- Índices para tablas volcadas
@@ -374,17 +365,17 @@ ALTER TABLE `usersxemployees`
 -- AUTO_INCREMENT de la tabla `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `contracts`
 --
 ALTER TABLE `contracts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `countries`
 --
@@ -394,22 +385,22 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT de la tabla `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `headquarters`
 --
 ALTER TABLE `headquarters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `professions`
 --
 ALTER TABLE `professions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `types_contracts`
 --
@@ -419,7 +410,7 @@ ALTER TABLE `types_contracts`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `usersxemployees`
 --

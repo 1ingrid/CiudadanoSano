@@ -31,10 +31,9 @@
             break;
             case 'listarEmployees':
                 $listado = $employe->listarxSeat($dataUser['seat_id']);
-                foreach ($listado as $key => $value) {
-                    # code...
-                }
-                echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
+                foreach ($listado as $key => $value) if($value['id'] === $dataUser['id']) $position = $key;
+                unset($listado[$position]);
+                echo json_encode([ 'data' => array_values($listado) ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarProfessions':
                 $listado = $profession->listar();
