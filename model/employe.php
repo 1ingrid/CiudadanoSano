@@ -40,6 +40,7 @@
             $this->query = '
                 UPDATE employees SET 
                 seat_id = '.$put->seat_id.',
+                no_document = '.$put->no_document.',
                 name = "'.utf8_decode($put->name).'",
                 last_name = "'.utf8_decode($put->last_name).'",
                 email = "'.$put->email.'",
