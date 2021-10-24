@@ -4,12 +4,14 @@
     require_once '../model/user.php';
     require_once '../middleware/jwtToken.php';
     require_once '../helpers/email.php';
+    require_once '../helpers/tools.php';
 
     $myEmploye = new MyEmploye();
     $userxEmploye = new UserxEmploye();
     $user = new User();
     $jwt = new JwtToken();
     $email = new Email();
+    $tools = new Tools();
 
     $token = !empty($_SERVER['HTTP_TOKEN']) ? $_SERVER['HTTP_TOKEN'] : '';
 
@@ -35,14 +37,8 @@
                 echo json_encode($resultado);
             break;
             case 'registroUser':
-                if(!empty($user->consultarEmail($_POST['email']))) echo json_encode(401);
-                $res = $user->nuevo($_POST);
-                if($res !== 1) echo json_encode(400);
-                $user = $user->consultarEmail($_POST['email']);
-                $res = $userxEmploye->nuevo(['user_id' => $user[0]['id'], 'employe_id' => $_POST['id']]);
-                if($res !== 1) echo json_encode(400);
-                if(!$email->sendEmailUser($_POST)['send']) echo json_encode(400);
-                else echo json_encode(200);
+                $resultado = $tools->createUser($_POST);
+                echo json_encode($resultado);
             break;
             case 'modificar':
                 $resultado = $myEmploye->actualizar(file_get_contents("php://input"));

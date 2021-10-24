@@ -237,8 +237,8 @@ function employeesCtrl() {
       },
       data: form,
     }).done(function (response) {
-      if (response === 200) toastr.success("Usuario medico creado con exito");
-      else if (response === 400) toastr.error("Error al crear el usuario medico");
+      if (response == 200) toastr.success("Usuario medico creado con exito");
+      else if (response == 400) toastr.error("Error al crear el usuario medico");
       else toastr.error("El usuario ya existe");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -264,8 +264,8 @@ function employeesCtrl() {
       },
       data: form,
     }).done(function (response) {
-      if (response === 200) toastr.success("Usuario director de sede creado con exito");
-      else if (response === 400) toastr.error("Error al crear el usuario director de sede");
+      if (response == 200) toastr.success("Usuario director de sede creado con exito");
+      else if (response == 400) toastr.error("Error al crear el usuario director de sede");
       else toastr.error("El usuario ya existe");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

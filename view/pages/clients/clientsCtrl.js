@@ -84,7 +84,7 @@ function clientsCtrl() {
           },
           data: form.serialize(),
         }).done(function (response) {
-          if (response == 1) toastr.success("Cliente agregado con exito");
+          if (response == 200) toastr.success("Cliente agregado con exito");
           else toastr.error("Error al agregar el cliente");
           volver();
           dt.page("last").draw("page");

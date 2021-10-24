@@ -1,9 +1,11 @@
 <?php
     require_once '../model/client.php';
     require_once '../middleware/jwtToken.php';
+    require_once '../helpers/tools.php';
 
     $client = new Client();
     $jwt = new JwtToken();
+    $tools = new Tools();
 
     $token = !empty($_SERVER['HTTP_TOKEN']) ? $_SERVER['HTTP_TOKEN'] : '';
 
@@ -20,6 +22,17 @@
             break;
             case 'registro':
                 $resultado = $client->nuevo($_POST);
+                if($resultado == 1) {
+                    $result = $client->consultarDocument($_POST['no_document']);
+                    $form = [
+                        'rol_id' => 2,
+                        'name' => $_POST['name'],
+                        'last_name' => $_POST['last_name'],
+                        'email' => $_POST['email'],
+                        'password' => substr(md5(uniqid(rand())),0,6)
+                    ];
+                    $resultado = $tools->createUserCli($form, $result[0]['id']);
+                }
                 echo json_encode($resultado);
             break;
             case 'modificar':
