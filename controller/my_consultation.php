@@ -25,6 +25,10 @@
                 $listado = $client->listar();
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
+            case 'printFormula':
+                $resultado = $myConsultation->printFormula($_GET['id']);
+                echo json_encode([ 'pdf' => base64_encode($resultado) ]);
+            break;
             case 'registro':
                 $resultado = $myConsultation->nuevoMyConsultation($_POST, $dataUser['id']);
                 echo json_encode($resultado);

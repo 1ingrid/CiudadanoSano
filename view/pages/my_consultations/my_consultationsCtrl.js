@@ -12,7 +12,10 @@ function my_consultationsCtrl() {
       {
         data: "status",
         render: function () {
-          return '<button class="btn btn-success btn-xs editar" title="Editar consulta"><i class="far fa-edit"></i></button>';
+          return (
+            '<button class="btn btn-success btn-xs mr-1 editar" title="Editar consulta"><i class="far fa-edit"></i></button>' +
+            '<button class="btn btn-info btn-xs formula" title="Generar formula"><i class="fas fa-clipboard-list"></i></button>'
+          );
         },
       },
       { data: "no_document" },
@@ -118,6 +121,27 @@ function my_consultationsCtrl() {
         dt.ajax.reload(null, false);
       });
     }
+  });
+
+  $("#listado").on("click", ".formula", function () {
+    var data = dt.row($(this).parents("tr")).data();
+    $.ajax({
+      url: BASE_URL + "my_consultation.php",
+      type: "GET",
+      headers: {
+        accion: "printFormula",
+        token: createToken(getToken()),
+      },
+      data: { id: data.id },
+      contentType: "application/json",
+    }).done(function (response) {
+      var linkSource = 'data:application/pdf;base64,'+JSON.parse(response).pdf;
+      var downloadLink = document.createElement("a");
+      var fileName = 'formula.pdf';
+      downloadLink.href = linkSource;
+      downloadLink.download = fileName;
+      downloadLink.click();
+    });
   });
 
   $(".card").on("click", "#close", function () {
