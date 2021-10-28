@@ -24,18 +24,20 @@
             $options->setIsRemoteEnabled(true);
             $dompdf = new Dompdf($options);
             $this->query = 'SELECT formula, CONCAT(clients.name," ",clients.last_name) as client, CONCAT(employees.name," ",employees.last_name) as employe, 
-            clients.no_document, headquarters.name as seat FROM consultations INNER JOIN clients ON clients.id = consultations.client_id 
-            INNER JOIN employees ON employees.id = consultations.employe_id INNER JOIN headquarters ON headquarters.id = employees.seat_id 
-            WHERE consultations.id = '.$id;
+            clients.no_document, headquarters.name as seat, headquarters.address, headquarters.cell_phone FROM consultations 
+            INNER JOIN clients ON clients.id = consultations.client_id INNER JOIN employees ON employees.id = consultations.employe_id 
+            INNER JOIN headquarters ON headquarters.id = employees.seat_id WHERE consultations.id = '.$id;
 			$this->obtener_resultados_query();
 			$result = $this->rows[0];
             $html = file_get_contents('../view/formula.php');
-            $formula = str_replace(array("\r\n", "\n\r", "\r", "\n"), '<br><br>', $result['formula']);
+            $formula = str_replace(array("\r\n", "\n\r", "\r", "\n"), '<br><br><hr>', $result['formula']);
             $html = str_replace('$formula', $formula, $html);
             $html = str_replace('$client', $result['client'], $html);
             $html = str_replace('$no_document', $result['no_document'], $html);
             $html = str_replace('$employe', $result['employe'], $html);
             $html = str_replace('$seat', $result['seat'], $html);
+            $html = str_replace('$cell_phone', $result['cell_phone'], $html);
+            $html = str_replace('$address', $result['address'], $html);
             $dompdf->loadHtml($html);
             $dompdf->setPaper('A4', 'landscape');
             $dompdf->render();

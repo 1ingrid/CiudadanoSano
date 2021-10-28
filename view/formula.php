@@ -29,19 +29,16 @@
             .logo-block {
                 text-align: center;
                 min-width: 100px;
-                background-color: #92a8d1;
             }
 
             .info_empresa {
                 width: 50%;
                 text-align: center;
-                background-color: #92a8d1;
                 font-family: 'Zen Kurenaido', sans-serif;
                 padding-bottom: 10px;
             }
 
             .info_paci {
-                background-color: #92a8d1;
                 text-align: center;
             }
 
@@ -54,8 +51,7 @@
             }
 
             .title_paci {
-                font-size: 15pt;
-                font-weight: 'bold';
+                font-size: 13pt;
             }
 
             .name_paci {
@@ -78,7 +74,6 @@
                 left: 0px; 
                 right: 0px;
                 height: 50px;
-                background-color: #92a8d1;
                 color: #000;
                 line-height: 35px;
             }
@@ -94,15 +89,17 @@
                     </td>
                     <td class="info_empresa">
                         <p class="title"><strong>Ciudadano</strong>Sano </p>
-                        <p class="title_formula"> <strong>Formula medica</strong> </p>
-                        <p> <strong>NIT:</strong> 2510202127-1 </p>
-                        <p> <strong>Teléfono:</strong> 322 8647766 </p>
-                        <p> <strong>Email:</strong> info@ciudadanosano.com </p>
+                        <p class="title_formula"> Formula medica </p>
+                        <p> <strong>Sede:</strong> $seat </p>
+                        <p> <strong>Teléfono:</strong> $cell_phone </p>
+                        <p> <strong>Dirección:</strong> $address </p>
                     </td>
-                    <td style="width: 25%; padding: 3px;" class="info_paci">
-                        <span class="title_paci">Paciente</span>
-                        <p class="name_paci"><strong>Nombre</strong> <br> $client</p>
-                        <p class="no_docu"><strong>No documento</strong> <br> $no_document</p>
+                    <td style="width: 25%; padding: 3px; text-align: left;" class="info_paci">
+                        <strong class="title_paci">Paciente</strong> <hr>
+                        <p class="name_paci">$client</p>
+                        <p class="no_docu">$no_document</p>
+                        <strong class="title_paci">Medico</strong> <hr>
+                        <p class="name_paci">$employe</p>
                     </td>
                 </tr>
             </table>
@@ -113,19 +110,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align: center; width: 100%; padding-top: 150pt;">
+                    <td style="text-align: center; width: 100%; padding-top: 50pt;">
                         $formula
                     </td>
                 </tr>
             </table>
         </div>
         <footer>
-            <div style="float: left; margin-left: 10pt;">
-                <strong>Sede:</strong> $seat
-            </div>
-            <div style="float: right; margin-right: 10pt;">
-                <strong>Medico:</strong> $employe
-            </div>
+            
         </footer>
     </body>
 </html>

@@ -38,6 +38,28 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="address">
+                    <strong class="text-danger">*</strong>Dirección
+                </label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Dirección de la sede" value="">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="cell_phone">
+                    <strong class="text-danger">*</strong>Telefono
+                </label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="cell_phone" name="cell_phone" placeholder="Telefono de la sede" value="">
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="alert" class="alert alert-danger text-center" role="alert">
         Unfilled fields please, place them.
     </div>

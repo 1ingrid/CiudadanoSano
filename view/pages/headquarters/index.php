@@ -16,6 +16,7 @@
                                 <th>Acciones</th>
                                 <th>País</th>
                                 <th>Ciudad</th>
+                                <th>Dirección</th>
                                 <th>Nombre</th>
                                 <th>Estado</th>
                                 <th>Creado en</th>

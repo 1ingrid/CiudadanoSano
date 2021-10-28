@@ -5627,6 +5627,23 @@
 										},
 										{
 											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF8xP9k8jEMPcw=",
+											"_parent": {
+												"$ref": "AAAAAAF8tQDX0bM35ss="
+											},
+											"model": {
+												"$ref": "AAAAAAF8xP9k1TD0tPM="
+											},
+											"font": "Arial;13;0",
+											"left": 821,
+											"top": 679,
+											"width": 92.853515625,
+											"height": 13,
+											"text": "+formula_date",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
 											"_id": "AAAAAAF8tQ0o2L7Aa74=",
 											"_parent": {
 												"$ref": "AAAAAAF8tQDX0bM35ss="
@@ -5636,7 +5653,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 821,
-											"top": 679,
+											"top": 694,
 											"width": 92.853515625,
 											"height": 13,
 											"text": "+status",
@@ -5653,7 +5670,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 821,
-											"top": 694,
+											"top": 709,
 											"width": 92.853515625,
 											"height": 13,
 											"text": "+created_at",
@@ -5670,7 +5687,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 821,
-											"top": 709,
+											"top": 724,
 											"width": 92.853515625,
 											"height": 13,
 											"text": "+updated_at",
@@ -5681,7 +5698,7 @@
 									"left": 816,
 									"top": 569,
 									"width": 102.853515625,
-									"height": 158
+									"height": 173
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -5694,7 +5711,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 816,
-									"top": 727,
+									"top": 742,
 									"width": 102.853515625,
 									"height": 10
 								},
@@ -5736,7 +5753,7 @@
 							"left": 816,
 							"top": 544,
 							"width": 102.853515625,
-							"height": 193,
+							"height": 208,
 							"nameCompartment": {
 								"$ref": "AAAAAAF8tQDX0bMygf0="
 							},
@@ -6810,7 +6827,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF8tQDX0LMvrdY="
 							},
-							"name": "id"
+							"name": "id",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6818,7 +6836,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF8tQDX0LMvrdY="
 							},
-							"name": "client_id"
+							"name": "client_id",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6826,7 +6845,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF8tQDX0LMvrdY="
 							},
-							"name": "employe_id"
+							"name": "employe_id",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6834,7 +6854,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF8tQDX0LMvrdY="
 							},
-							"name": "reason"
+							"name": "reason",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6842,7 +6863,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF8tQDX0LMvrdY="
 							},
-							"name": "detail"
+							"name": "detail",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6850,7 +6872,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF8tQDX0LMvrdY="
 							},
-							"name": "formula"
+							"name": "formula",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6858,7 +6881,16 @@
 							"_parent": {
 								"$ref": "AAAAAAF8tQDX0LMvrdY="
 							},
-							"name": "formula_status"
+							"name": "formula_status",
+							"type": ""
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF8xP9k1TD0tPM=",
+							"_parent": {
+								"$ref": "AAAAAAF8tQDX0LMvrdY="
+							},
+							"name": "formula_date"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6866,7 +6898,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF8tQDX0LMvrdY="
 							},
-							"name": "status"
+							"name": "status",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6874,7 +6907,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF8tQDX0LMvrdY="
 							},
-							"name": "created_at"
+							"name": "created_at",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6882,7 +6916,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF8tQDX0LMvrdY="
 							},
-							"name": "updated_at"
+							"name": "updated_at",
+							"type": ""
 						}
 					]
 				}

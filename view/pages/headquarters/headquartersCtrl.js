@@ -22,6 +22,7 @@ function headquartersCtrl() {
       },
       { data: "country" },
       { data: "city" },
+      { data: "address" },
       { data: "name" },
       {
         data: "status",
