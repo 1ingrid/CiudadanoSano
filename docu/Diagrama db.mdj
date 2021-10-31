@@ -6890,7 +6890,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF8tQDX0LMvrdY="
 							},
-							"name": "formula_date"
+							"name": "formula_date",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",

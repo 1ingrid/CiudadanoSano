@@ -29,6 +29,10 @@
                 $resultado = $myConsultation->printFormula($_GET['id']);
                 echo json_encode([ 'pdf' => base64_encode($resultado) ]);
             break;
+            case 'printHistoria':
+                $resultado = $myConsultation->printHistoria($_GET['id']);
+                echo json_encode([ 'pdf' => base64_encode($resultado) ]);
+            break;
             case 'registro':
                 $resultado = $myConsultation->nuevoMyConsultation($_POST, $dataUser['id']);
                 echo json_encode($resultado);

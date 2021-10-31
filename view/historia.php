@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Formula medica</title>
+        <title>Historia medica</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap" rel="stylesheet">
@@ -72,8 +72,7 @@
             }
 
             footer {
-                position: fixed;
-                text-align: center;
+                position: fixed; 
                 bottom: 0px; 
                 left: 0px; 
                 right: 0px;
@@ -93,7 +92,7 @@
                     </td>
                     <td class="info_empresa">
                         <p class="title"><strong>Ciudadano</strong>Sano </p>
-                        <p class="title_formula"> Formula medica </p>
+                        <p class="title_formula"> Historia medica </p>
                         <p> <strong>Sede:</strong> $seat </p>
                         <p> <strong>Teléfono:</strong> $cell_phone </p>
                         <p> <strong>Dirección:</strong> $address </p>
@@ -104,27 +103,34 @@
                         <p class="no_docu"> <strong>CC:</strong> $no_document</p>
                         <strong class="title_paci">Medico</strong> <hr>
                         <p class="name_paci"> <strong>Nombre:</strong> $employe</p>
-                        <strong class="title_paci">Formula</strong> <hr>
-                        <p class="name_paci"> <strong>Estado:</strong> $status</p>
-                        <p class="name_paci"> <strong>Codigo:</strong> $code</p>
                     </td>
                 </tr>
             </table>
             <table id="body-formula">
                 <tr>
                     <td style="text-align: center; width: 100%;">
-                        <h3 style="padding-top: 10pt;">Medicamentos</h3>
+                        <h3 style="padding-top: 10pt;">Motivo</h3>
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align: center; width: 100%; padding-top: 50pt;">
-                        $formula
+                    <td style="text-align: center; width: 100%;">
+                        $reason
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; width: 100%;">
+                        <h3 style="padding-top: 10pt;">Detalle</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: justify; width: 100%;">
+                        $detail
                     </td>
                 </tr>
             </table>
         </div>
         <footer>
-            Fecha de vencimiento: $expiration_date
+            
         </footer>
     </body>
 </html>

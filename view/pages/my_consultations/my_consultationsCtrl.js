@@ -14,7 +14,8 @@ function my_consultationsCtrl() {
         render: function () {
           return (
             '<button class="btn btn-success btn-xs mr-1 editar" title="Editar consulta"><i class="far fa-edit"></i></button>' +
-            '<button class="btn btn-info btn-xs formula" title="Generar formula"><i class="fas fa-clipboard-list"></i></button>'
+            '<button class="btn btn-dark btn-xs mr-1 formula" title="Generar formula"><i class="fas fa-clipboard"></i></button>' +
+            '<button class="btn btn-warning btn-xs historia" title="Generar historia"><i class="far fa-clipboard"></i></button>'
           );
         },
       },
@@ -135,12 +136,23 @@ function my_consultationsCtrl() {
       data: { id: data.id },
       contentType: "application/json",
     }).done(function (response) {
-      var linkSource = 'data:application/pdf;base64,'+JSON.parse(response).pdf;
-      var downloadLink = document.createElement("a");
-      var fileName = 'formula.pdf';
-      downloadLink.href = linkSource;
-      downloadLink.download = fileName;
-      downloadLink.click();
+      debugBase64("data:application/pdf;base64," + JSON.parse(response).pdf);
+    });
+  });
+
+  $("#listado").on("click", ".historia", function () {
+    var data = dt.row($(this).parents("tr")).data();
+    $.ajax({
+      url: BASE_URL + "my_consultation.php",
+      type: "GET",
+      headers: {
+        accion: "printHistoria",
+        token: createToken(getToken()),
+      },
+      data: { id: data.id },
+      contentType: "application/json",
+    }).done(function (response) {
+      debugBase64("data:application/pdf;base64," + JSON.parse(response).pdf);
     });
   });
 
@@ -154,6 +166,16 @@ function my_consultationsCtrl() {
     $(".card-title").html("Listado de consultas");
     $("#formSave").html("");
   };
+
+  function debugBase64(base64URL) {
+    window
+      .open()
+      .document.write(
+        '<iframe src="' +
+          base64URL +
+          '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>'
+      );
+  }
 
   const getClients = (id) => {
     $.ajax({
