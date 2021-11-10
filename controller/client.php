@@ -1,9 +1,13 @@
 <?php
     require_once '../model/client.php';
+    require_once '../model/country.php';
+    require_once '../model/city.php';
     require_once '../middleware/jwtToken.php';
     require_once '../helpers/tools.php';
 
     $client = new Client();
+    $country = new Country();
+    $city = new City();
     $jwt = new JwtToken();
     $tools = new Tools();
 
@@ -14,6 +18,14 @@
 
             case 'listar':
                 $listado = $client->listar();
+                echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
+            break;
+            case 'listarCountries':
+                $listado = $country->listar();
+                echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
+            break;
+            case 'listarCities':
+                $listado = $city->listarxCountry($_GET['country_id']);
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'verificarDocument':

@@ -2,9 +2,9 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title">Listado de clientes</h2>
+                <h2 class="card-title">Listado de citas medicas</h2>
                 <div class="float-right">
-                    <button class="btn btn-info btn-sm nuevo" title="Nuevo cliente"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    <button class="btn btn-info btn-sm nuevo" title="Nueva cita medica"><i class="fa fa-plus" aria-hidden="true"></i></button>
                 </div>
             </div>
             <div class="card-body">
@@ -14,14 +14,9 @@
                         <thead>
                             <tr>
                                 <th>Acciones</th>
-                                <th>País</th>
-                                <th>Ciudad</th>
-                                <th>No documento</th>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Email</th>
-                                <th>Dirección</th>
-                                <th>Telefono</th>
+                                <th>Medico</th>
+                                <th>Tipo de consulta</th>
+                                <th>Fecha y hora</th>
                                 <th>Estado</th>
                                 <th>Creado en</th>
                                 <th>Modificado en</th>
@@ -36,7 +31,7 @@
         </div>
     </div>
 </div>
-<script src="./clients/clientsCtrl.js"></script>
+<script src="./my_quotes/my_quotesCtrl.js"></script>
 <script>
-    $(document).ready(clientsCtrl);
+    $(document).ready(my_quotesCtrl);
 </script>

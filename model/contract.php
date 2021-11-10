@@ -14,6 +14,14 @@
 			return $this->rows;
 		}
 
+        public function listarxProfession($type_quote) {
+			$this->query = 'SELECT employees.id, employees.name, employees.last_name FROM contracts 
+            INNER JOIN professions ON professions.id = contracts.profession_id INNER JOIN employees ON employees.id = contracts.employe_id 
+            WHERE profession_id = '.$type_quote.' GROUP BY employees.id, employees.name, employees.last_name';
+			$this->obtener_resultados_query();
+			return $this->rows;
+		}
+
         public function nuevo($datos) {
             if(!empty($this->verificarContract($datos['employe_id']))) return 2;
             $this->query = '

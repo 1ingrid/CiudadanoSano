@@ -22,6 +22,8 @@ function clientsCtrl() {
           );
         },
       },
+      { data: "country" },
+      { data: "city" },
       { data: "no_document" },
       { data: "name" },
       { data: "last_name" },
@@ -54,6 +56,7 @@ function clientsCtrl() {
     $("#listado_wrapper").hide();
     $(".card-title").html("Crear cliente");
     $("#formSave").load("./clients/nuevo.php", function () {
+      getCountries();
       $("#alert").hide();
       $("#alertDocu").hide();
     });
@@ -100,6 +103,8 @@ function clientsCtrl() {
     $("#listado_wrapper").hide();
     $(".card-title").html("Actualizar cliente");
     $("#formSave").load("./clients/editar.php", function () {
+      getCountries(data.country_id);
+      getCities(data.country_id, data.city_id);
       $("#alert").hide();
       $("#alertDocu").hide();
       $("#id").val(data.id);
@@ -199,6 +204,11 @@ function clientsCtrl() {
     });
   });
 
+  $(".card").on("change", "#country_id", function (e) {
+    e.preventDefault();
+    getCities($(this).val());
+  });
+
   $(".card").on("click", "#close", function () {
     volver();
   });
@@ -208,5 +218,60 @@ function clientsCtrl() {
     $("#listado_wrapper").show();
     $(".card-title").html("Listado de clientes");
     $("#formSave").html("");
+  };
+
+  const getCountries = (id) => {
+    $.ajax({
+      url: BASE_URL + "client.php",
+      type: "GET",
+      headers: {
+        accion: "listarCountries",
+        token: createToken(getToken()),
+      },
+    }).done(function (response) {
+      $.each(JSON.parse(response)["data"], function (index, value) {
+        if (id && id == value.id)
+          $("#country_id").append(
+            "<option selected value='" +
+              value.id +
+              "'>" +
+              value.name +
+              "</option>"
+          );
+        else
+          $("#country_id").append(
+            "<option value='" + value.id + "'>" + value.name + "</option>"
+          );
+      });
+    });
+  };
+
+  const getCities = (country_id, id) => {
+    $.ajax({
+      url: BASE_URL + "client.php",
+      type: "GET",
+      headers: {
+        accion: "listarCities",
+        token: createToken(getToken()),
+      },
+      data: { country_id: country_id },
+    }).done(function (response) {
+      $("#city_id").html("");
+      $("#city_id").append('<option value="">Seleccione una ciudad...</option>');
+      $.each(JSON.parse(response)["data"], function (index, value) {
+        if (id && id == value.id)
+          $("#city_id").append(
+            "<option selected value='" +
+              value.id +
+              "'>" +
+              value.name +
+              "</option>"
+          );
+        else
+          $("#city_id").append(
+            "<option value='" + value.id + "'>" + value.name + "</option>"
+          );
+      });
+    });
   };
 }

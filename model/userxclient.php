@@ -12,7 +12,7 @@
 		}
 
         public function dataUser($user_id) {
-            $this->query = 'SELECT clients.id FROM usersxclients INNER JOIN clients ON clients.id = usersxclients.client_id 
+            $this->query = 'SELECT clients.id, city_id FROM usersxclients INNER JOIN clients ON clients.id = usersxclients.client_id 
             WHERE user_id = '.$user_id;
 			$this->obtener_resultados_query();
 			return $this->rows;

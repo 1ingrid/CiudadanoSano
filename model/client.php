@@ -3,7 +3,9 @@
     class Client extends ModeloAbstractoDB {
 
         public function listar() {
-			$this->query = 'SELECT * FROM clients';
+			$this->query = 'SELECT clients.id, no_document, clients.name, last_name, email, address, cell_phone, clients.status, clients.created_at, 
+            clients.updated_at, city_id, country_id, cities.name as city, countries.name as country 
+            FROM clients INNER JOIN cities ON cities.id = clients.city_id INNER JOIN countries ON countries.id = cities.country_id';
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}
@@ -17,8 +19,8 @@
         public function nuevo($datos) {
             $this->query = '
                 INSERT INTO clients 
-                (no_document, name, last_name, email, address, cell_phone) 
-                VALUES("'.$datos['no_document'].'","'.utf8_decode($datos['name']).'","'.utf8_decode($datos['last_name']).'", 
+                (city_id, no_document, name, last_name, email, address, cell_phone) 
+                VALUES('.$datos['city_id'].',"'.$datos['no_document'].'","'.utf8_decode($datos['name']).'","'.utf8_decode($datos['last_name']).'", 
                 "'.$datos['email'].'","'.$datos['address'].'","'.$datos['cell_phone'].'")';
             return $this->ejecutar_query_simple();
         }
@@ -27,7 +29,8 @@
             $put = json_decode($datos);
             $this->query = '
                 UPDATE clients SET 
-                no_document = '.$put->no_document.',
+                city_id = '.$put->city_id.',
+                no_document = "'.$put->no_document.'",
                 name = "'.utf8_decode($put->name).'",
                 last_name = "'.utf8_decode($put->last_name).'",
                 email = "'.$put->email.'",
