@@ -39,16 +39,8 @@
                 $resultado = $myQuote->nuevaQuote($_POST, $dataUser['id']);
                 echo json_encode($resultado);
             break;
-            case 'modificar':
-                $resultado = $myQuote->actualizar(file_get_contents("php://input"));
-                echo json_encode($resultado);
-            break;
-            case 'desactivar':
-                $resultado = $myQuote->desactivar(file_get_contents("php://input"));
-                echo json_encode($resultado);
-            break;
-            case 'activar':
-                $resultado = $myQuote->activar(file_get_contents("php://input"));
+            case 'cancel':
+                $resultado = $myQuote->cancel(file_get_contents("php://input"));
                 echo json_encode($resultado);
             break;
             

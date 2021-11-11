@@ -5,7 +5,8 @@
         public function listar() {
 			$this->query = 'SELECT quotes.id, CONCAT(employees.name," ",employees.last_name) as employe, professions.name as profession, 
             date, quotes.status, quotes.created_at, quotes.updated_at FROM quotes INNER JOIN employees ON employees.id = quotes.employe_id 
-            INNER JOIN contracts ON employees.id = contracts.employe_id INNER JOIN professions ON professions.id = contracts.profession_id';
+            INNER JOIN contracts ON employees.id = contracts.employe_id INNER JOIN professions ON professions.id = contracts.profession_id 
+            WHERE date > NOW()';
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}
@@ -57,25 +58,15 @@
             return $this->ejecutar_query_simple();
         }
 
-        public function actualizar($datos) {
-            $put = json_decode($datos);
-            $this->query = '
-                UPDATE countries SET 
-                name = "'.utf8_decode($put->name).'",
-                updated_at = NOW() WHERE id = '.$put->id;
-            return $this->ejecutar_query_simple();
-        }
+        public function actualizar($datos) {}
 
-        public function desactivar($id) {
+        public function cancel($id) {
             $delete = explode('=', $id);
-            $this->query = 'UPDATE countries SET status = "0" WHERE id = '.$delete[1];
+            $this->query = 'UPDATE quotes SET status = "0" WHERE id = '.$delete[1];
             return $this->ejecutar_query_simple();
         }
 
-        public function activar($id) {
-            $delete = explode('=', $id);
-            $this->query = 'UPDATE countries SET status = "1" WHERE id = '.$delete[1];
-            return $this->ejecutar_query_simple();
-        }
+        public function desactivar($id) {}
 
+        public function activar($id) {}
     }

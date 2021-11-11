@@ -61,6 +61,12 @@
                 <div class="input-group">
                     <select class="form-control" id="hour" name="hour"></select>
                 </div>
+                <div id="alertNone" class="input-group">
+                    <label class="text-danger" for="hour">No existen citas para este día, seleccione otro</label>
+                </div>
+                <div id="alertDis" class="input-group">
+                    <label class="text-danger" for="hour">Solo existe esta lista de horas diponibles para el día seleccionado</label>
+                </div>
             </div>
         </div>
     </div>

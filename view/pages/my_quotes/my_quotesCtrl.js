@@ -41,14 +41,17 @@ function my_quotesCtrl() {
         render: function (data) {
           return (
             (data == 1
-              ? '<button class="btn btn-danger btn-xs mr-1 desactivar" title="Desactivar pais"><i class="fas fa-trash"></i></button>'
-              : '<button class="btn btn-info btn-xs mr-1 activar" title="Activar pais"><i class="fas fa-redo-alt"></i></button>') +
-            '<button class="btn btn-success btn-xs editar" title="Editar pais"><i class="far fa-edit"></i></button>'
+              ? '<button class="btn btn-danger btn-xs mr-1 cancelQuote" title="Cancelar cita medica"><i class="fas fa-ban"></i></button>'
+              : '')
           );
         },
       },
       { data: "employe" },
-      { data: "profession" },
+      { data: "profession",
+        render: function (data) {
+          if(data === 'Medico') return 'Consulta General';
+        }
+      },
       {
         data: "date",
         render: function (data) {
@@ -58,7 +61,7 @@ function my_quotesCtrl() {
       {
         data: "status",
         render: function (data) {
-          return data == 1 ? "Activo" : "Inactivo";
+          return data == 1 ? "Activa" : "Cancelada";
         },
       },
       {
@@ -83,7 +86,9 @@ function my_quotesCtrl() {
     $("#formSave").load("./my_quotes/nuevo.php", function () {
       getHeadquarters();
       $("#alert").hide();
-      $("#date").datepicker({ minDate: 0, maxDate: "+6D" });
+      $("#alertDis").hide();
+      $("#alertNone").hide();
+      $("#date").datepicker({ minDate: 1, maxDate: "+7D" });
     });
   });
 
@@ -114,6 +119,24 @@ function my_quotesCtrl() {
         dt.ajax.reload(null, false);
       });
     }
+  });
+
+  $("#listado").on("click", ".cancelQuote", function () {
+    var data = dt.row($(this).parents("tr")).data();
+    $.ajax({
+      url: BASE_URL + "my_quote.php",
+      type: "DELETE",
+      headers: {
+        accion: "cancel",
+        token: createToken(getToken()),
+      },
+      data: { id: data.id },
+    }).done(function (response) {
+      if (response == 1) toastr.success("Cita cancelada con exito");
+      else toastr.error("Error al cancelar la cita");
+      dt.page("last").draw("page");
+      dt.ajax.reload(null, false);
+    });
   });
 
   $(".card").on("click", "#close", function () {
@@ -224,16 +247,22 @@ function my_quotesCtrl() {
     }).done(function (response) {
       if (JSON.parse(response)["data"].available == 1) {
         $("#hour").html("");
-        console.log(JSON.parse(response));
+        $("#alertDis").show();
+        $("#alertNone").hide();
         $.each(JSON.parse(response)["data"]["hours"], function (index, item) {
           $("#hour").append(
             "<option value='" + item.value + "'>" + item.index + "</option>"
           );
         });
       } else if (JSON.parse(response)["data"].available == 2) {
+        $("#alertDis").hide();
+        $("#alertNone").show();
         $("#hour").append(
           "<option value=''>No existen citas, mejor seleccione otro día</option>"
         );
+      } else {
+        $("#alertDis").hide();
+        $("#alertNone").hide();
       }
     });
   };
