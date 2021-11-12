@@ -112,7 +112,7 @@ function my_quotesCtrl() {
         },
         data: form.serialize(),
       }).done(function (response) {
-        if (response == 1) toastr.success("Cita agendada con exito");
+        if (response == 200) toastr.success("Cita agendada con exito");
         else toastr.error("Error al agendar la cita");
         volver();
         dt.page("last").draw("page");

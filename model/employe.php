@@ -4,18 +4,18 @@
 
         public function listar() {
 			$this->query = 'SELECT employees.id, headquarters.name as seat, cities.name as city, countries.name as country, seat_id, city_id, country_id, 
-            no_document, employees.name, last_name, email, employees.address, cell_phone, employees.status, employees.created_at, employees.updated_at 
-            FROM employees INNER JOIN headquarters ON headquarters.id = employees.seat_id INNER JOIN cities ON cities.id = headquarters.city_id 
-            INNER JOIN countries ON countries.id = cities.country_id';
+            no_document, employees.name, last_name, email, employees.address, employees.cell_phone, employees.status, 
+            employees.created_at, employees.updated_at FROM employees INNER JOIN headquarters ON headquarters.id = employees.seat_id 
+            INNER JOIN cities ON cities.id = headquarters.city_id INNER JOIN countries ON countries.id = cities.country_id';
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}
 
         public function listarxSeat($seat_id) {
 			$this->query = 'SELECT employees.id, headquarters.name as seat, cities.name as city, countries.name as country, seat_id, city_id, country_id, 
-            no_document, employees.name, last_name, email, employees.address, cell_phone, employees.status, employees.created_at, employees.updated_at 
-            FROM employees INNER JOIN headquarters ON headquarters.id = employees.seat_id INNER JOIN cities ON cities.id = headquarters.city_id 
-            INNER JOIN countries ON countries.id = cities.country_id WHERE seat_id = '.$seat_id;
+            no_document, employees.name, last_name, email, employees.address, employees.cell_phone, employees.status, employees.created_at, 
+            employees.updated_at FROM employees INNER JOIN headquarters ON headquarters.id = employees.seat_id 
+            INNER JOIN cities ON cities.id = headquarters.city_id INNER JOIN countries ON countries.id = cities.country_id WHERE seat_id = '.$seat_id;
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}

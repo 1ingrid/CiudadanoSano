@@ -11,6 +11,18 @@
 			return $this->rows;
 		}
 
+        public function consultar($datos, $client_id) {
+            $date = new DateTime($datos['date'].' '.$datos['hour']);
+            $this->query = 'SELECT quotes.id, CONCAT(employees.name," ",employees.last_name) as employe, professions.name as profession, 
+            date, CONCAT(clients.name," ",clients.last_name) as client, clients.email, headquarters.name as seat, headquarters.address, 
+            headquarters.cell_phone FROM quotes INNER JOIN employees ON employees.id = quotes.employe_id 
+            INNER JOIN contracts ON employees.id = contracts.employe_id INNER JOIN professions ON professions.id = contracts.profession_id 
+            INNER JOIN headquarters ON headquarters.id = employees.seat_id INNER JOIN clients ON clients.id = quotes.client_id 
+            WHERE client_id = '.$client_id.' AND quotes.employe_id = '.$datos['employe_id'].' AND date = "'.$date->format('Y-m-d H:i:s').'"';
+			$this->obtener_resultados_query();
+			return $this->rows;
+        }
+
         public function verifyHour($date, $hour, $doctor) {
             $dateTime = new DateTime($date.' '.$hour.':00');
             $this->query = 'SELECT * FROM quotes WHERE date = "'.$dateTime->format('Y-m-d H:i:s').'" AND employe_id = '.$doctor;

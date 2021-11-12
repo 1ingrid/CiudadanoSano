@@ -4,12 +4,14 @@
     require_once '../model/seat.php';
     require_once '../model/contract.php';
     require_once '../middleware/jwtToken.php';
+    require_once '../helpers/tools.php';
 
     $myQuote = new MyQuote();
     $userxClient = new UserxClient();
     $seat = new Seat();
     $contract = new Contract();
     $jwt = new JwtToken();
+    $tools = new Tools();
 
     $token = !empty($_SERVER['HTTP_TOKEN']) ? $_SERVER['HTTP_TOKEN'] : '';
 
@@ -36,7 +38,7 @@
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'registro':
-                $resultado = $myQuote->nuevaQuote($_POST, $dataUser['id']);
+                $resultado = $tools->createQuote($_POST, $dataUser['id']);
                 echo json_encode($resultado);
             break;
             case 'cancel':
