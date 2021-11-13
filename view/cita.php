@@ -86,7 +86,7 @@
 
           Señor. usuario, <strong>$client</strong> su cita medica en <strong>Ciudadano Sano</strong> <br><br>
 
-          fue programada con éxito para el dia: $date <br><br>
+          fue programada con éxito para el día: $date <br><br>
 
           <strong>Sede:</strong> $seat <br><br>
 

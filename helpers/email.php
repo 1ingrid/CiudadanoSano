@@ -72,7 +72,8 @@
             $this->email->Subject = 'Datos de la cita programada.';
             $html = file_get_contents('../view/cita.php');
             $html = str_replace('$client', $data['client'], $html);
-            $html = str_replace('$date', $data['date'], $html);
+            $date = new DateTime($data['date']);
+            $html = str_replace('$date', $date->format('d M Y h:i A'), $html);
             $html = str_replace('$seat', $data['seat'], $html);
             $html = str_replace('$address', $data['address'], $html);
             $html = str_replace('$cell_phone', $data['cell_phone'], $html);

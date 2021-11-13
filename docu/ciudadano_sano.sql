@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-10-2021 a las 05:56:23
+-- Tiempo de generación: 13-11-2021 a las 16:50:12
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -51,6 +51,7 @@ INSERT INTO `cities` (`id`, `country_id`, `name`, `status`, `updated_at`, `creat
 
 CREATE TABLE `clients` (
   `id` int(11) NOT NULL,
+  `city_id` int(11) NOT NULL,
   `no_document` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `name` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `last_name` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
@@ -66,8 +67,8 @@ CREATE TABLE `clients` (
 -- Volcado de datos para la tabla `clients`
 --
 
-INSERT INTO `clients` (`id`, `no_document`, `name`, `last_name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
-(4, '1144159789', 'Evelyn', 'Rodriguez', 'dofustime27@gmail.com', 'cra 96a # 45 - 106', '3114563289', 1, '2021-10-23 23:26:23', '2021-10-23 23:26:23');
+INSERT INTO `clients` (`id`, `city_id`, `no_document`, `name`, `last_name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
+(5, 1, '31862723', 'Evelyn', 'Rodriguez Obando', 'dofustime27@gmail.com', 'Cra 96a # 45 - 106', '3137030828', 1, '2021-11-01 20:03:47', '2021-11-01 20:03:47');
 
 -- --------------------------------------------------------
 
@@ -88,13 +89,6 @@ CREATE TABLE `consultations` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `consultations`
---
-
-INSERT INTO `consultations` (`id`, `client_id`, `employe_id`, `reason`, `detail`, `formula`, `formula_status`, `formula_date`, `status`, `created_at`, `updated_at`) VALUES
-(1, 4, 8, 'Dolor muscular', 'La paciente presenta un dolor muscular leve el cual provoca adormecimiento de sus piernas, se examina su presión y corazón esta bien por ende se le manda medicamentos con el fin de mejorar su salud y se le programa un control dentro de dos meses.', 'Loratadina en tabletas por 2 meses 1 en el día\r\nDolex forte uno cada 8 horas por 1 mes\r\nComplejo B en tabletas una cada 6 horas por 2 meses', 1, '0000-00-00 00:00:00', 1, '2021-10-24 23:42:56', '2021-10-25 00:01:25');
 
 -- --------------------------------------------------------
 
@@ -216,7 +210,7 @@ CREATE TABLE `mepas` (
 --
 
 INSERT INTO `mepas` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Plastica', 1, '2021-10-24 12:47:28', '2021-10-24 12:53:57');
+(1, 'Cirugía plástica', 1, '2021-10-24 12:47:28', '2021-10-31 14:45:40');
 
 -- --------------------------------------------------------
 
@@ -276,6 +270,44 @@ INSERT INTO `providers` (`id`, `nit`, `name`, `email`, `address`, `cell_phone`, 
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `quotes`
+--
+
+CREATE TABLE `quotes` (
+  `id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `employe_id` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `quotes`
+--
+
+INSERT INTO `quotes` (`id`, `client_id`, `employe_id`, `date`, `status`, `created_at`, `updated_at`) VALUES
+(3, 5, 8, '2021-11-10 14:00:00', 1, '2021-11-09 23:02:21', '2021-11-09 23:02:21'),
+(4, 5, 8, '2021-11-10 08:00:00', 1, '2021-11-10 00:03:35', '2021-11-10 00:03:35'),
+(5, 5, 8, '2021-11-11 09:20:00', 0, '2021-11-10 22:50:37', '2021-11-10 22:50:37'),
+(6, 5, 8, '2021-11-12 11:00:00', 0, '2021-11-11 23:49:54', '2021-11-11 23:49:54'),
+(7, 5, 8, '2021-11-12 15:00:00', 0, '2021-11-11 23:51:03', '2021-11-11 23:51:03'),
+(8, 5, 8, '2021-11-12 14:40:00', 0, '2021-11-11 23:52:27', '2021-11-11 23:52:27'),
+(9, 5, 8, '2021-11-12 09:20:00', 0, '2021-11-11 23:53:35', '2021-11-11 23:53:35'),
+(10, 5, 8, '2021-11-12 15:20:00', 0, '2021-11-11 23:54:42', '2021-11-11 23:54:42'),
+(11, 5, 8, '2021-11-13 16:00:00', 1, '2021-11-12 00:00:11', '2021-11-12 00:00:11'),
+(12, 5, 8, '2021-11-13 14:00:00', 1, '2021-11-12 21:31:35', '2021-11-12 21:31:35'),
+(13, 5, 8, '2021-11-15 14:40:00', 1, '2021-11-12 21:37:01', '2021-11-12 21:37:01'),
+(14, 5, 8, '2021-11-13 11:00:00', 1, '2021-11-12 21:37:50', '2021-11-12 21:37:50'),
+(15, 5, 8, '2021-11-13 14:40:00', 1, '2021-11-12 21:39:09', '2021-11-12 21:39:09'),
+(16, 5, 8, '2021-11-13 15:40:00', 1, '2021-11-12 22:46:03', '2021-11-12 22:46:03'),
+(17, 5, 8, '2021-11-14 14:40:00', 2, '2021-11-12 22:48:10', '2021-11-12 22:48:10'),
+(18, 5, 8, '2021-11-14 16:20:00', 0, '2021-11-13 10:47:23', '2021-11-13 10:47:23');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `roles`
 --
 
@@ -295,10 +327,10 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `name`, `description`, `permits`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Administrador', 'Super usuario con todos los permisos del sistema.', ',roles,users,countries,cities,headquarters,types_contracts,professions,employees,contracts,clients,providers,mepas', 1, '2021-09-19 16:07:10', '2021-09-24 17:56:15'),
-(2, 'Paciente', 'Rol para el ingreso de pacientes al sistema', '', 1, '2021-09-19 17:47:54', '2021-09-19 17:47:54'),
+(2, 'Paciente', 'Rol para el ingreso de pacientes al sistema', ',my_quotes', 1, '2021-09-19 17:47:54', '2021-09-19 17:47:54'),
 (3, 'Director de sedes', 'Rol asignado al director para la gestión de sedes', ',my_contracts,my_employees', 1, '2021-09-19 17:55:33', '2021-09-21 00:17:27'),
 (4, 'Asesor de afiliación', 'Rol asignado al asesor de afiliación para la gestión de pacientes', ',clients', 1, '2021-09-19 19:36:52', '2021-09-21 00:18:25'),
-(5, 'Medico', 'Rol utilizado para los médicos', ',my_consultations', 1, '2021-09-20 20:41:34', '2021-10-16 10:01:36');
+(5, 'Medico', 'Rol utilizado para los médicos', ',my_consultations,my_assignments', 1, '2021-09-20 20:41:34', '2021-10-16 10:01:36');
 
 -- --------------------------------------------------------
 
@@ -347,8 +379,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `rol_id`, `name`, `last_name`, `email`, `password`, `status`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Miguel Angel', 'Cerquera Rodriguez', 'cerquera199627@hotmail.com', '$2y$12$yA2Fjyw0EpMZk5WjB0.bT.Rlybx4uNzh1pnjrycTDpxWldgYmDL8W', 1, '2021-09-22 22:54:26', '2021-10-09 17:49:06'),
 (19, 3, 'Miguel Angel', 'Cerquera Rodriguez', 'mcerquera@programarte.com.co', '$2y$12$nt0svoGZE0x7kHQTDTUTYe0QkzRmXeuGFBs.4Ok/DZ3MGTx0i/nxC', 1, '2021-10-23 19:19:41', '2021-10-23 19:19:41'),
-(20, 5, 'Ingrid', 'Blanco', 'miguelangelcerquerarodriguez@gmail.com', '$2y$12$n4Xj7i4AksJOvguzxngrOudC.8WadaxfLMP0rsydFURNASzqvvO.O', 1, '2021-10-23 19:37:54', '2021-10-25 22:27:56'),
-(24, 2, 'Evelyn', 'Rodriguez', 'dofustime27@gmail.com', '$2y$12$jX8e6RMyjeWvSqRMgk1GNenYmf5VpjnjmxnErqo56UIhSUp98oXsW', 1, '2021-10-23 23:26:23', '2021-10-23 23:26:23');
+(20, 5, 'Ingrid', 'Blanco', 'miguelangelcerquerarodriguez@gmail.com', '$2y$12$tn.YRHFs.qjRkF0uak1atOSRt5TYBqX5Xi8Pv.IwglulPzlNSfYiq', 1, '2021-10-23 19:37:54', '2021-11-12 21:50:56'),
+(25, 2, 'Evelyn', 'Rodriguez Obando', 'dofustime27@gmail.com', '$2y$12$bVoeWzpBiSJCSRLVevkoH.DvV51d7V16FcmbCtruzCNiz2jfWqGTS', 1, '2021-11-01 20:03:47', '2021-11-01 20:05:43');
 
 -- --------------------------------------------------------
 
@@ -367,7 +399,7 @@ CREATE TABLE `usersxclients` (
 --
 
 INSERT INTO `usersxclients` (`id`, `user_id`, `client_id`) VALUES
-(2, 24, 4);
+(3, 25, 5);
 
 -- --------------------------------------------------------
 
@@ -404,7 +436,8 @@ ALTER TABLE `cities`
 -- Indices de la tabla `clients`
 --
 ALTER TABLE `clients`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `city_id` (`city_id`);
 
 --
 -- Indices de la tabla `consultations`
@@ -462,6 +495,14 @@ ALTER TABLE `providers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `quotes`
+--
+ALTER TABLE `quotes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `client_id` (`client_id`),
+  ADD KEY `employe_id` (`employe_id`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -509,12 +550,12 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT de la tabla `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `consultations`
 --
 ALTER TABLE `consultations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `contracts`
 --
@@ -551,6 +592,11 @@ ALTER TABLE `professions`
 ALTER TABLE `providers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT de la tabla `quotes`
+--
+ALTER TABLE `quotes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+--
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -564,12 +610,12 @@ ALTER TABLE `types_contracts`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT de la tabla `usersxclients`
 --
 ALTER TABLE `usersxclients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `usersxemployees`
 --
@@ -584,6 +630,12 @@ ALTER TABLE `usersxemployees`
 --
 ALTER TABLE `cities`
   ADD CONSTRAINT `fk-cities_countries` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`);
+
+--
+-- Filtros para la tabla `clients`
+--
+ALTER TABLE `clients`
+  ADD CONSTRAINT `fk-clients_cities` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `consultations`
@@ -611,6 +663,13 @@ ALTER TABLE `employees`
 --
 ALTER TABLE `headquarters`
   ADD CONSTRAINT `fk-headquarters_cities` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `quotes`
+--
+ALTER TABLE `quotes`
+  ADD CONSTRAINT `fk-quotes_clients` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk-quotes_employees` FOREIGN KEY (`employe_id`) REFERENCES `employees` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `users`

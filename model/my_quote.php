@@ -37,7 +37,7 @@
                 $dateTime = new DateTime($date.' '.($hourM >= 10 ? $hourM : '0'.$hourM).':'.($min == 0 ? '00' : $min));
                 $this->query = 'SELECT * FROM quotes WHERE date = "'.$dateTime->format('Y-m-d H:i:s').'" AND employe_id = '.$doctor;
                 $this->obtener_resultados_query();
-                if(empty($this->rows)) {
+                if(empty($this->rows) || (!empty($this->rows) && $this->rows[0]['status'] == 2)) {
                     $value = $hourM.':'.($min == 0 ? '00' : $min);
                     if($hourN >= 8 && $hourN < 12) $index = ($hourN < 10 ? '0'.$hourN : $hourN).':'.($min == 0 ? '00' : $min).' a.m.';
                     else $index = ($hourN < 10 ? '0'.$hourN : $hourN).':'.($min == 0 ? '00' : $min).' p.m.';
@@ -74,7 +74,7 @@
 
         public function cancel($id) {
             $delete = explode('=', $id);
-            $this->query = 'UPDATE quotes SET status = "0" WHERE id = '.$delete[1];
+            $this->query = 'UPDATE quotes SET status = "2" WHERE id = '.$delete[1];
             return $this->ejecutar_query_simple();
         }
 

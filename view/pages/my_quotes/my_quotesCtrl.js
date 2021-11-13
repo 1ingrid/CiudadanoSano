@@ -40,7 +40,7 @@ function my_quotesCtrl() {
         data: "status",
         render: function (data) {
           return (
-            (data == 1
+            (data == 0
               ? '<button class="btn btn-danger btn-xs mr-1 cancelQuote" title="Cancelar cita medica"><i class="fas fa-ban"></i></button>'
               : '')
           );
@@ -50,6 +50,8 @@ function my_quotesCtrl() {
       { data: "profession",
         render: function (data) {
           if(data === 'Medico') return 'Consulta General';
+          if(data === 'Odontologo') return 'Consulta Odontologica';
+          if(data === 'Optometra') return 'Consulta Optometria';
         }
       },
       {
@@ -61,7 +63,10 @@ function my_quotesCtrl() {
       {
         data: "status",
         render: function (data) {
-          return data == 1 ? "Activa" : "Cancelada";
+          if(data == 0) return "Pendiente";
+          if(data == 1) return "Atendida";
+          if(data == 2) return "Cancelada";
+          if(data == 3) return "Incumplida";
         },
       },
       {
