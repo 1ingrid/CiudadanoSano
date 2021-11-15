@@ -2,9 +2,9 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title">Listado de contratos</h2>
+                <h2 class="card-title">Listado de nominas</h2>
                 <div class="float-right">
-                    <button class="btn btn-info btn-sm nuevo" title="Nuevo contrato"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    <button class="btn btn-info btn-sm nuevo" title="Nueva nomina"><i class="fa fa-plus" aria-hidden="true"></i></button>
                 </div>
             </div>
             <div class="card-body">
@@ -14,13 +14,11 @@
                         <thead>
                             <tr>
                                 <th>Acciones</th>
-                                <th>Codigo</th>
-                                <th>Tipo de contrato</th>
-                                <th>No documento</th>
-                                <th>Empleado</th>
-                                <th>Profesión</th>
-                                <th>Salario</th>
-                                <th>Fecha de inicio</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Banco</th>
+                                <th>No cuenta</th>
+                                <th>Fecha</th>
                                 <th>Estado</th>
                                 <th>Creado en</th>
                                 <th>Modificado en</th>
@@ -35,7 +33,7 @@
         </div>
     </div>
 </div>
-<script src="./contracts/contractsCtrl.js"></script>
+<script src="./my_payroll/my_payrollCtrl.js"></script>
 <script>
-    $(document).ready(contractsCtrl);
+    $(document).ready(my_payrollCtrl);
 </script>

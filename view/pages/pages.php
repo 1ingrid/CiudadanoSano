@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="../../assets/css/styles.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.css">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="../../assets/library/datetimepicker/jquery.datetimepicker.css">
     </head>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
@@ -36,6 +37,7 @@
         <script src="../../helpers/app.js"></script>
         <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.js"></script>
         <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+        <script src="../../assets/library/datetimepicker/build/jquery.datetimepicker.full.js"></script>
         <script src="./pagesCtrl.js"></script>
         <script>
             $(document).ready(pagesCtrl);

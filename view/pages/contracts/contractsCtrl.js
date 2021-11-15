@@ -26,6 +26,12 @@ function contractsCtrl() {
       { data: "employe" },
       { data: "profession" },
       {
+        data: "salary",
+        render: function (data) {
+          return "$ " + new Intl.NumberFormat("de-DE").format(data);
+        },
+      },
+      {
         data: "date_init",
         render: function (data) {
           return moment(data).format("DD-MM-yyyy");
@@ -73,7 +79,8 @@ function contractsCtrl() {
       !form[0].seat_id.value ||
       !form[0].employe_id.value ||
       !form[0].profession_id.value ||
-      !form[0].date_init.value
+      !form[0].date_init.value ||
+      !form[0].salary.value
     ) {
       $("#alert").show();
     } else {
@@ -87,7 +94,8 @@ function contractsCtrl() {
         data: form.serialize(),
       }).done(function (response) {
         if (response == 1) toastr.success("Contrato agregado con exito");
-        else if (response == 2) toastr.info("Empleado ya con un contrato vigente");
+        else if (response == 2)
+          toastr.info("Empleado ya con un contrato vigente");
         else toastr.error("Error al agregar el contrato");
         volver();
         dt.page("last").draw("page");
@@ -113,6 +121,7 @@ function contractsCtrl() {
       $("#date_init").val(data.date_init);
       $("#date_end").val(data.date_end);
       $("#duration").val(data.duration);
+      $("#salary").val(data.salary);
     });
   });
 
@@ -125,7 +134,8 @@ function contractsCtrl() {
       !form[0].seat_id.value ||
       !form[0].employe_id.value ||
       !form[0].profession_id.value ||
-      !form[0].date_init.value
+      !form[0].date_init.value ||
+      !form[0].salary.value
     ) {
       $("#alert").show();
     } else {

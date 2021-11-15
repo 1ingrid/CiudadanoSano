@@ -19,6 +19,7 @@
                                 <th>No documento</th>
                                 <th>Empleado</th>
                                 <th>Profesión</th>
+                                <th>Salario</th>
                                 <th>Fecha de inicio</th>
                                 <th>Estado</th>
                                 <th>Creado en</th>

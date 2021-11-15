@@ -90,7 +90,7 @@
         </div>
     </div>
     <div class="row">
-    <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="form-group">
                 <label class="control-label" for="date_end">
                     Fecha final
@@ -100,13 +100,23 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="form-group">
                 <label class="control-label" for="duration">
                     Duración
                 </label>
                 <div class="input-group">
                     <input type="text" class="form-control" id="duration" name="duration" placeholder="Duración del contrato" value="">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label class="control-label" for="salary">
+                    <strong class="text-danger">*</strong>Salario
+                </label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="salary" name="salary" placeholder="Salario del contrato" value="">
                 </div>
             </div>
         </div>
