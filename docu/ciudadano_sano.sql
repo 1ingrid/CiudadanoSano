@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2021 a las 04:36:38
+-- Tiempo de generación: 16-11-2021 a las 05:43:23
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -195,6 +195,21 @@ INSERT INTO `headquarters` (`id`, `city_id`, `name`, `address`, `cell_phone`, `s
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `inventories`
+--
+
+CREATE TABLE `inventories` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `stock` tinyint(4) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `mepas`
 --
 
@@ -250,6 +265,8 @@ CREATE TABLE `products` (
   `name` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `presentation` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `img` blob NOT NULL,
+  `price` int(11) NOT NULL,
+  `cost` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -259,9 +276,10 @@ CREATE TABLE `products` (
 -- Volcado de datos para la tabla `products`
 --
 
-INSERT INTO `products` (`id`, `seat_id`, `provider_id`, `name`, `presentation`, `img`, `status`, `created_at`, `updated_at`) VALUES
-(1, 3, 1, 'Loratadina', 'Tabletas', 0x6c6f7261746164696e615f6465366631632e6a7067, 1, '2021-11-15 21:03:42', '2021-11-15 22:29:34'),
-(2, 3, 1, 'Loratadina', 'Jarabe', 0x6c6f7261746164696e615f6a61726162655f3337636563612e6a7067, 1, '2021-11-15 22:29:53', '2021-11-15 22:31:10');
+INSERT INTO `products` (`id`, `seat_id`, `provider_id`, `name`, `presentation`, `img`, `price`, `cost`, `status`, `created_at`, `updated_at`) VALUES
+(1, 3, 1, 'Loratadina', 'Tabletas', 0x6c6f7261746164696e615f6465366631632e6a7067, 2500, 1000, 1, '2021-11-15 21:03:42', '2021-11-15 23:33:23'),
+(2, 3, 1, 'Loratadina', 'Jarabe', 0x6c6f7261746164696e615f6a61726162655f3337636563612e6a7067, 3500, 2500, 1, '2021-11-15 22:29:53', '2021-11-15 23:33:39'),
+(3, 3, 2, 'Loratadina', 'Jarabe', 0x6c6f7261746164696e615f6a61726162655f61675f3132393731392e6a7067, 2500, 1500, 1, '2021-11-15 23:34:14', '2021-11-15 23:34:14');
 
 -- --------------------------------------------------------
 
@@ -528,6 +546,13 @@ ALTER TABLE `headquarters`
   ADD KEY `city_id` (`city_id`);
 
 --
+-- Indices de la tabla `inventories`
+--
+ALTER TABLE `inventories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- Indices de la tabla `mepas`
 --
 ALTER TABLE `mepas`
@@ -643,6 +668,11 @@ ALTER TABLE `employees`
 ALTER TABLE `headquarters`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT de la tabla `inventories`
+--
+ALTER TABLE `inventories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `mepas`
 --
 ALTER TABLE `mepas`
@@ -656,7 +686,7 @@ ALTER TABLE `payroll`
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `professions`
 --
@@ -739,6 +769,12 @@ ALTER TABLE `employees`
 --
 ALTER TABLE `headquarters`
   ADD CONSTRAINT `fk-headquarters_cities` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `inventories`
+--
+ALTER TABLE `inventories`
+  ADD CONSTRAINT `fk-inventories_products` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `payroll`

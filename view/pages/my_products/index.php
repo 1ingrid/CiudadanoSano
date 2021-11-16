@@ -17,6 +17,8 @@
                                 <th>Nombre</th>
                                 <th>Proveedor</th>
                                 <th>Presentación</th>
+                                <th>Precio</th>
+                                <th>Costo</th>
                                 <th>Estado</th>
                                 <th>Creado en</th>
                                 <th>Modificado en</th>

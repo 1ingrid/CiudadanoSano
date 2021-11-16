@@ -24,6 +24,18 @@ function my_productsCtrl() {
       { data: "provider" },
       { data: "presentation" },
       {
+        data: "price",
+        render: function (data) {
+          return "$ " + new Intl.NumberFormat("de-DE").format(data);
+        },
+      },
+      {
+        data: "cost",
+        render: function (data) {
+          return "$ " + new Intl.NumberFormat("de-DE").format(data);
+        },
+      },
+      {
         data: "status",
         render: function (data) {
           return data == 1 ? "Activo" : "Inactivo";
@@ -62,7 +74,9 @@ function my_productsCtrl() {
       !form.get("provider_id") ||
       !form.get("name") ||
       !form.get("presentation") ||
-      form.get("img")["size"] <= 0
+      form.get("img")["size"] <= 0 ||
+      !form.get("price") ||
+      !form.get("cost")
     ) {
       $("#alert").show();
     } else {
@@ -110,6 +124,8 @@ function my_productsCtrl() {
       $("#id").val(data.id);
       $("#name").val(data.name);
       $("#presentation").val(data.presentation);
+      $("#price").val(data.price);
+      $("#cost").val(data.cost);
       $("#imgCurrent").html("");
       $("#imgCurrent").html(
         '<img src="../../uploads/products/' + data.img + '" width="200" />'
@@ -122,7 +138,9 @@ function my_productsCtrl() {
     if (
       !form.get("provider_id") ||
       !form.get("name") ||
-      !form.get("presentation")
+      !form.get("presentation") ||
+      !form.get("price") ||
+      !form.get("cost")
     ) {
       $("#alert").show();
     } else {

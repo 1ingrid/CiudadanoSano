@@ -52,6 +52,28 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="price">
+                    <strong class="text-danger">*</strong>Precio
+                </label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Precio del producto" value="">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="cost">
+                    <strong class="text-danger">*</strong>Costo
+                </label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="cost" name="cost" placeholder="Costo del producto" value="">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row justify-content-center" id="imgCurrent">
 
     </div>

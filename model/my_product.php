@@ -5,7 +5,7 @@
         public function listar() {}
 
         public function listarMyProduct($seat_id) {
-            $this->query = 'SELECT products.id, seat_id, provider_id, providers.name as provider, products.name, presentation, img, products.status, 
+            $this->query = 'SELECT products.id, seat_id, provider_id, providers.name as provider, products.name, presentation, price, cost, img, products.status, 
             products.created_at, products.updated_at FROM products INNER JOIN providers ON providers.id = products.provider_id WHERE seat_id = '.$seat_id;
 			$this->obtener_resultados_query();
 			return $this->rows;
@@ -20,9 +20,9 @@
             if(copy($_FILES['img']['tmp_name'], '../uploads/products/'.$nombre_archivo)) {
                 $this->query = '
                 INSERT INTO products 
-                (seat_id, provider_id, name, presentation, img) 
+                (seat_id, provider_id, name, presentation, img, price, cost) 
                 VALUES('.$seat_id.','.$datos['provider_id'].',"'.utf8_decode($datos['name']).'","'.utf8_decode($datos['presentation']).'",
-                "'.$nombre_archivo.'")';
+                "'.$nombre_archivo.'",'.$datos['price'].','.$datos['cost'].')';
                 return $this->ejecutar_query_simple();
             } else {
                 return 0;
@@ -44,6 +44,8 @@
                     name = "'.utf8_decode($datos['name']).'",
                     presentation = "'.utf8_decode($datos['presentation']).'",
                     img = "'.$nombre_archivo.'",
+                    price = "'.$datos['price'].'",
+                    cost = "'.$datos['cost'].'",
                     updated_at = NOW() WHERE id = '.$datos['id'];
                 }
             } else {
@@ -52,6 +54,8 @@
                 provider_id = "'.$datos['provider_id'].'",
                 name = "'.utf8_decode($datos['name']).'",
                 presentation = "'.utf8_decode($datos['presentation']).'",
+                price = "'.$datos['price'].'",
+                cost = "'.$datos['cost'].'",
                 updated_at = NOW() WHERE id = '.$datos['id'];
             }
             return $this->ejecutar_query_simple();
