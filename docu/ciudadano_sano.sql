@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-11-2021 a las 16:50:12
+-- Tiempo de generación: 16-11-2021 a las 04:36:38
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -104,6 +104,7 @@ CREATE TABLE `contracts` (
   `date_init` date NOT NULL,
   `date_end` date DEFAULT NULL,
   `duration` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `salary` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -113,9 +114,9 @@ CREATE TABLE `contracts` (
 -- Volcado de datos para la tabla `contracts`
 --
 
-INSERT INTO `contracts` (`id`, `type_contract_id`, `employe_id`, `profession_id`, `date_init`, `date_end`, `duration`, `status`, `created_at`, `updated_at`) VALUES
-(4, 2, 7, 9, '2021-10-25', '2021-12-24', '2 meses', 1, '2021-10-23 19:13:04', '2021-10-23 19:13:04'),
-(5, 1, 8, 4, '2021-10-25', '0000-00-00', '', 1, '2021-10-23 19:37:42', '2021-10-23 19:37:42');
+INSERT INTO `contracts` (`id`, `type_contract_id`, `employe_id`, `profession_id`, `date_init`, `date_end`, `duration`, `salary`, `status`, `created_at`, `updated_at`) VALUES
+(4, 2, 7, 9, '2021-10-25', '2021-12-24', '2 meses', 6000000, 1, '2021-10-23 19:13:04', '2021-11-14 16:34:18'),
+(5, 1, 8, 4, '2021-10-25', '0000-00-00', '', 2500000, 1, '2021-10-23 19:37:42', '2021-11-14 17:40:56');
 
 -- --------------------------------------------------------
 
@@ -211,6 +212,56 @@ CREATE TABLE `mepas` (
 
 INSERT INTO `mepas` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Cirugía plástica', 1, '2021-10-24 12:47:28', '2021-10-31 14:45:40');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `payroll`
+--
+
+CREATE TABLE `payroll` (
+  `id` int(11) NOT NULL,
+  `employe_id` int(11) NOT NULL,
+  `bank_account` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `no_account` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `date` datetime NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `payroll`
+--
+
+INSERT INTO `payroll` (`id`, `employe_id`, `bank_account`, `no_account`, `date`, `status`, `created_at`, `updated_at`) VALUES
+(1, 8, 'Bancolombia', '3137030828', '2021-11-29 15:30:00', 1, '2021-11-15 10:05:48', '2021-11-15 11:21:15');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `seat_id` int(11) NOT NULL,
+  `provider_id` int(11) NOT NULL,
+  `name` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `presentation` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `img` blob NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `products`
+--
+
+INSERT INTO `products` (`id`, `seat_id`, `provider_id`, `name`, `presentation`, `img`, `status`, `created_at`, `updated_at`) VALUES
+(1, 3, 1, 'Loratadina', 'Tabletas', 0x6c6f7261746164696e615f6465366631632e6a7067, 1, '2021-11-15 21:03:42', '2021-11-15 22:29:34'),
+(2, 3, 1, 'Loratadina', 'Jarabe', 0x6c6f7261746164696e615f6a61726162655f3337636563612e6a7067, 1, '2021-11-15 22:29:53', '2021-11-15 22:31:10');
 
 -- --------------------------------------------------------
 
@@ -328,7 +379,7 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `name`, `description`, `permits`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Administrador', 'Super usuario con todos los permisos del sistema.', ',roles,users,countries,cities,headquarters,types_contracts,professions,employees,contracts,clients,providers,mepas', 1, '2021-09-19 16:07:10', '2021-09-24 17:56:15'),
 (2, 'Paciente', 'Rol para el ingreso de pacientes al sistema', ',my_quotes', 1, '2021-09-19 17:47:54', '2021-09-19 17:47:54'),
-(3, 'Director de sedes', 'Rol asignado al director para la gestión de sedes', ',my_contracts,my_employees', 1, '2021-09-19 17:55:33', '2021-09-21 00:17:27'),
+(3, 'Director de sedes', 'Rol asignado al director para la gestión de sedes', ',my_contracts,my_employees,my_payroll,my_products', 1, '2021-09-19 17:55:33', '2021-09-21 00:17:27'),
 (4, 'Asesor de afiliación', 'Rol asignado al asesor de afiliación para la gestión de pacientes', ',clients', 1, '2021-09-19 19:36:52', '2021-09-21 00:18:25'),
 (5, 'Medico', 'Rol utilizado para los médicos', ',my_consultations,my_assignments', 1, '2021-09-20 20:41:34', '2021-10-16 10:01:36');
 
@@ -378,7 +429,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `rol_id`, `name`, `last_name`, `email`, `password`, `status`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Miguel Angel', 'Cerquera Rodriguez', 'cerquera199627@hotmail.com', '$2y$12$yA2Fjyw0EpMZk5WjB0.bT.Rlybx4uNzh1pnjrycTDpxWldgYmDL8W', 1, '2021-09-22 22:54:26', '2021-10-09 17:49:06'),
-(19, 3, 'Miguel Angel', 'Cerquera Rodriguez', 'mcerquera@programarte.com.co', '$2y$12$nt0svoGZE0x7kHQTDTUTYe0QkzRmXeuGFBs.4Ok/DZ3MGTx0i/nxC', 1, '2021-10-23 19:19:41', '2021-10-23 19:19:41'),
+(19, 3, 'Miguel Angel', 'Cerquera Rodriguez', 'mcerquera@programarte.com.co', '$2y$12$DWTfgGgNvz9SDcZiVl3HluNXQEJRpkRRNsK3iCAnutyvoXBze1lUO', 1, '2021-10-23 19:19:41', '2021-11-14 17:31:06'),
 (20, 5, 'Ingrid', 'Blanco', 'miguelangelcerquerarodriguez@gmail.com', '$2y$12$tn.YRHFs.qjRkF0uak1atOSRt5TYBqX5Xi8Pv.IwglulPzlNSfYiq', 1, '2021-10-23 19:37:54', '2021-11-12 21:50:56'),
 (25, 2, 'Evelyn', 'Rodriguez Obando', 'dofustime27@gmail.com', '$2y$12$bVoeWzpBiSJCSRLVevkoH.DvV51d7V16FcmbCtruzCNiz2jfWqGTS', 1, '2021-11-01 20:03:47', '2021-11-01 20:05:43');
 
@@ -483,6 +534,21 @@ ALTER TABLE `mepas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `payroll`
+--
+ALTER TABLE `payroll`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `employe_id` (`employe_id`);
+
+--
+-- Indices de la tabla `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `seat_id` (`seat_id`),
+  ADD KEY `provider_id` (`provider_id`);
+
+--
 -- Indices de la tabla `professions`
 --
 ALTER TABLE `professions`
@@ -582,6 +648,16 @@ ALTER TABLE `headquarters`
 ALTER TABLE `mepas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT de la tabla `payroll`
+--
+ALTER TABLE `payroll`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT de la tabla `professions`
 --
 ALTER TABLE `professions`
@@ -663,6 +739,19 @@ ALTER TABLE `employees`
 --
 ALTER TABLE `headquarters`
   ADD CONSTRAINT `fk-headquarters_cities` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `payroll`
+--
+ALTER TABLE `payroll`
+  ADD CONSTRAINT `fk-payroll_employees` FOREIGN KEY (`employe_id`) REFERENCES `employees` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `fk-products_headquarters` FOREIGN KEY (`seat_id`) REFERENCES `headquarters` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk-products_providers` FOREIGN KEY (`provider_id`) REFERENCES `providers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `quotes`
