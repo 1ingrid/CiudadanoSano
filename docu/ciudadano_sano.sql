@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2021 a las 05:43:23
+-- Tiempo de generación: 17-11-2021 a las 04:49:37
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -89,6 +89,13 @@ CREATE TABLE `consultations` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `consultations`
+--
+
+INSERT INTO `consultations` (`id`, `client_id`, `employe_id`, `reason`, `detail`, `formula`, `formula_status`, `formula_date`, `status`, `created_at`, `updated_at`) VALUES
+(1, 5, 8, 'Dolor intenso en la parte inferior de la espalda', 'El paciente presenta un dolor intenso en la zona umbral de la parte inferior de la espalda', '1 tableta de dolex cada 2 horas\r\n2 pildoras de loratadina cada 6 horas', 1, '2021-12-16 20:40:43', 1, '2021-11-16 20:40:43', '2021-11-16 20:40:43');
 
 -- --------------------------------------------------------
 
@@ -201,11 +208,20 @@ INSERT INTO `headquarters` (`id`, `city_id`, `name`, `address`, `cell_phone`, `s
 CREATE TABLE `inventories` (
   `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `stock` tinyint(4) NOT NULL DEFAULT '0',
+  `seat_id` int(11) NOT NULL,
+  `entries` smallint(6) NOT NULL DEFAULT '0',
+  `stock` smallint(6) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `inventories`
+--
+
+INSERT INTO `inventories` (`id`, `product_id`, `seat_id`, `entries`, `stock`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, 50, 50, 1, '2021-11-16 22:42:02', '2021-11-16 22:42:02');
 
 -- --------------------------------------------------------
 
@@ -260,7 +276,6 @@ INSERT INTO `payroll` (`id`, `employe_id`, `bank_account`, `no_account`, `date`,
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
-  `seat_id` int(11) NOT NULL,
   `provider_id` int(11) NOT NULL,
   `name` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `presentation` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
@@ -276,10 +291,10 @@ CREATE TABLE `products` (
 -- Volcado de datos para la tabla `products`
 --
 
-INSERT INTO `products` (`id`, `seat_id`, `provider_id`, `name`, `presentation`, `img`, `price`, `cost`, `status`, `created_at`, `updated_at`) VALUES
-(1, 3, 1, 'Loratadina', 'Tabletas', 0x6c6f7261746164696e615f6465366631632e6a7067, 2500, 1000, 1, '2021-11-15 21:03:42', '2021-11-15 23:33:23'),
-(2, 3, 1, 'Loratadina', 'Jarabe', 0x6c6f7261746164696e615f6a61726162655f3337636563612e6a7067, 3500, 2500, 1, '2021-11-15 22:29:53', '2021-11-15 23:33:39'),
-(3, 3, 2, 'Loratadina', 'Jarabe', 0x6c6f7261746164696e615f6a61726162655f61675f3132393731392e6a7067, 2500, 1500, 1, '2021-11-15 23:34:14', '2021-11-15 23:34:14');
+INSERT INTO `products` (`id`, `provider_id`, `name`, `presentation`, `img`, `price`, `cost`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Loratadina', 'Tabletas', 0x6c6f7261746164696e615f6465366631632e6a7067, 2500, 1000, 1, '2021-11-15 21:03:42', '2021-11-15 23:33:23'),
+(2, 1, 'Loratadina', 'Jarabe', 0x6c6f7261746164696e615f6a61726162655f3337636563612e6a7067, 3500, 2500, 1, '2021-11-15 22:29:53', '2021-11-15 23:33:39'),
+(3, 2, 'Loratadina', 'Jarabe', 0x6c6f7261746164696e615f6a61726162655f61675f3132393731392e6a7067, 2500, 1500, 1, '2021-11-15 23:34:14', '2021-11-15 23:34:14');
 
 -- --------------------------------------------------------
 
@@ -372,7 +387,8 @@ INSERT INTO `quotes` (`id`, `client_id`, `employe_id`, `date`, `status`, `create
 (15, 5, 8, '2021-11-13 14:40:00', 1, '2021-11-12 21:39:09', '2021-11-12 21:39:09'),
 (16, 5, 8, '2021-11-13 15:40:00', 1, '2021-11-12 22:46:03', '2021-11-12 22:46:03'),
 (17, 5, 8, '2021-11-14 14:40:00', 2, '2021-11-12 22:48:10', '2021-11-12 22:48:10'),
-(18, 5, 8, '2021-11-14 16:20:00', 0, '2021-11-13 10:47:23', '2021-11-13 10:47:23');
+(18, 5, 8, '2021-11-14 16:20:00', 0, '2021-11-13 10:47:23', '2021-11-13 10:47:23'),
+(19, 5, 8, '2021-11-17 10:00:00', 1, '2021-11-16 20:33:17', '2021-11-16 20:33:17');
 
 -- --------------------------------------------------------
 
@@ -395,9 +411,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `description`, `permits`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Administrador', 'Super usuario con todos los permisos del sistema.', ',roles,users,countries,cities,headquarters,types_contracts,professions,employees,contracts,clients,providers,mepas', 1, '2021-09-19 16:07:10', '2021-09-24 17:56:15'),
+(1, 'Administrador', 'Super usuario con todos los permisos del sistema.', ',roles,users,countries,cities,headquarters,types_contracts,professions,employees,contracts,clients,providers,mepas,products', 1, '2021-09-19 16:07:10', '2021-09-24 17:56:15'),
 (2, 'Paciente', 'Rol para el ingreso de pacientes al sistema', ',my_quotes', 1, '2021-09-19 17:47:54', '2021-09-19 17:47:54'),
-(3, 'Director de sedes', 'Rol asignado al director para la gestión de sedes', ',my_contracts,my_employees,my_payroll,my_products', 1, '2021-09-19 17:55:33', '2021-09-21 00:17:27'),
+(3, 'Director de sedes', 'Rol asignado al director para la gestión de sedes', ',my_contracts,my_employees,my_payroll,my_inventories', 1, '2021-09-19 17:55:33', '2021-09-21 00:17:27'),
 (4, 'Asesor de afiliación', 'Rol asignado al asesor de afiliación para la gestión de pacientes', ',clients', 1, '2021-09-19 19:36:52', '2021-09-21 00:18:25'),
 (5, 'Medico', 'Rol utilizado para los médicos', ',my_consultations,my_assignments', 1, '2021-09-20 20:41:34', '2021-10-16 10:01:36');
 
@@ -550,7 +566,8 @@ ALTER TABLE `headquarters`
 --
 ALTER TABLE `inventories`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`);
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `seat_id` (`seat_id`);
 
 --
 -- Indices de la tabla `mepas`
@@ -570,7 +587,6 @@ ALTER TABLE `payroll`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `seat_id` (`seat_id`),
   ADD KEY `provider_id` (`provider_id`);
 
 --
@@ -646,7 +662,7 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT de la tabla `consultations`
 --
 ALTER TABLE `consultations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `contracts`
 --
@@ -671,7 +687,7 @@ ALTER TABLE `headquarters`
 -- AUTO_INCREMENT de la tabla `inventories`
 --
 ALTER TABLE `inventories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `mepas`
 --
@@ -701,7 +717,7 @@ ALTER TABLE `providers`
 -- AUTO_INCREMENT de la tabla `quotes`
 --
 ALTER TABLE `quotes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
@@ -774,6 +790,7 @@ ALTER TABLE `headquarters`
 -- Filtros para la tabla `inventories`
 --
 ALTER TABLE `inventories`
+  ADD CONSTRAINT `fk-inventories_headquarters` FOREIGN KEY (`seat_id`) REFERENCES `headquarters` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk-inventories_products` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -786,7 +803,6 @@ ALTER TABLE `payroll`
 -- Filtros para la tabla `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `fk-products_headquarters` FOREIGN KEY (`seat_id`) REFERENCES `headquarters` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk-products_providers` FOREIGN KEY (`provider_id`) REFERENCES `providers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --

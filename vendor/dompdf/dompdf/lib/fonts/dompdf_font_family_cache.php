@@ -78,6 +78,6 @@
     'normal' => $fontDir . '/DejaVuSerif',
   ),
   'zen kurenaido' => array(
-    'normal' => $fontDir . '/zen_kurenaido_normal_c3bd3162806a06e3af06e1211bb135c8',
+    'normal' => $fontDir . '/zen_kurenaido_normal_b813c0e672753ebc4d97e988f265ce7e',
   ),
 ) ?>
