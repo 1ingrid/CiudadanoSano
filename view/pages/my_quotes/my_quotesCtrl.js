@@ -40,7 +40,7 @@ function my_quotesCtrl() {
         data: "status",
         render: function (data) {
           return (
-            (data == 0
+            (data == 1
               ? '<button class="btn btn-danger btn-xs mr-1 cancelQuote" title="Cancelar cita medica"><i class="fas fa-ban"></i></button>'
               : '')
           );
@@ -63,8 +63,8 @@ function my_quotesCtrl() {
       {
         data: "status",
         render: function (data) {
-          if(data == 0) return "Pendiente";
-          if(data == 1) return "Atendida";
+          if(data == 1) return "Pendiente";
+          if(data == 0) return "Atendida";
           if(data == 2) return "Cancelada";
           if(data == 3) return "Incumplida";
         },

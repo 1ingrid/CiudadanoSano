@@ -12,7 +12,7 @@ function my_assignmentsCtrl() {
       {
         data: "status",
         render: function (data) {
-          return data == 0
+          return data == 1
             ? '<select class="form-control status bg-dark">' +
                 '<option value="">Seleccione...</option>' +
                 '<option value="1">Atendida</option>' +
@@ -39,8 +39,8 @@ function my_assignmentsCtrl() {
       {
         data: "status",
         render: function (data) {
-          if(data == 0) return "Pendiente";
-          if(data == 1) return "Atendida";
+          if(data == 1) return "Pendiente";
+          if(data == 0) return "Atendida";
           if(data == 2) return "Cancelada";
           if(data == 3) return "Incumplida";
         },
