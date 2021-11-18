@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2021 a las 04:49:37
+-- Tiempo de generación: 18-11-2021 a las 06:22:03
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -226,6 +226,24 @@ INSERT INTO `inventories` (`id`, `product_id`, `seat_id`, `entries`, `stock`, `s
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `invoices`
+--
+
+CREATE TABLE `invoices` (
+  `id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `employe_id` int(11) NOT NULL,
+  `iva` smallint(6) NOT NULL DEFAULT '0',
+  `total` smallint(6) NOT NULL DEFAULT '0',
+  `neto` smallint(6) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `mepas`
 --
 
@@ -243,6 +261,21 @@ CREATE TABLE `mepas` (
 
 INSERT INTO `mepas` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Cirugía plástica', 1, '2021-10-24 12:47:28', '2021-10-31 14:45:40');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mov_invoices`
+--
+
+CREATE TABLE `mov_invoices` (
+  `id` int(11) NOT NULL,
+  `invoice_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `count` smallint(6) NOT NULL DEFAULT '0',
+  `price` smallint(6) NOT NULL DEFAULT '0',
+  `total` smallint(6) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -415,7 +448,8 @@ INSERT INTO `roles` (`id`, `name`, `description`, `permits`, `status`, `created_
 (2, 'Paciente', 'Rol para el ingreso de pacientes al sistema', ',my_quotes', 1, '2021-09-19 17:47:54', '2021-09-19 17:47:54'),
 (3, 'Director de sedes', 'Rol asignado al director para la gestión de sedes', ',my_contracts,my_employees,my_payroll,my_inventories', 1, '2021-09-19 17:55:33', '2021-09-21 00:17:27'),
 (4, 'Asesor de afiliación', 'Rol asignado al asesor de afiliación para la gestión de pacientes', ',clients', 1, '2021-09-19 19:36:52', '2021-09-21 00:18:25'),
-(5, 'Medico', 'Rol utilizado para los médicos', ',my_consultations,my_assignments', 1, '2021-09-20 20:41:34', '2021-10-16 10:01:36');
+(5, 'Medico', 'Rol utilizado para los médicos', ',my_consultations,my_assignments', 1, '2021-09-20 20:41:34', '2021-10-16 10:01:36'),
+(6, 'Farmacia', 'Rol encargado del despacho de productos a los pacientes', ',billing', 1, '2021-11-17 22:16:34', '2021-11-17 22:16:34');
 
 -- --------------------------------------------------------
 
@@ -465,7 +499,8 @@ INSERT INTO `users` (`id`, `rol_id`, `name`, `last_name`, `email`, `password`, `
 (1, 1, 'Miguel Angel', 'Cerquera Rodriguez', 'cerquera199627@hotmail.com', '$2y$12$yA2Fjyw0EpMZk5WjB0.bT.Rlybx4uNzh1pnjrycTDpxWldgYmDL8W', 1, '2021-09-22 22:54:26', '2021-10-09 17:49:06'),
 (19, 3, 'Miguel Angel', 'Cerquera Rodriguez', 'mcerquera@programarte.com.co', '$2y$12$DWTfgGgNvz9SDcZiVl3HluNXQEJRpkRRNsK3iCAnutyvoXBze1lUO', 1, '2021-10-23 19:19:41', '2021-11-14 17:31:06'),
 (20, 5, 'Ingrid', 'Blanco', 'miguelangelcerquerarodriguez@gmail.com', '$2y$12$tn.YRHFs.qjRkF0uak1atOSRt5TYBqX5Xi8Pv.IwglulPzlNSfYiq', 1, '2021-10-23 19:37:54', '2021-11-12 21:50:56'),
-(25, 2, 'Evelyn', 'Rodriguez Obando', 'dofustime27@gmail.com', '$2y$12$bVoeWzpBiSJCSRLVevkoH.DvV51d7V16FcmbCtruzCNiz2jfWqGTS', 1, '2021-11-01 20:03:47', '2021-11-01 20:05:43');
+(25, 2, 'Evelyn', 'Rodriguez Obando', 'dofustime27@gmail.com', '$2y$12$bVoeWzpBiSJCSRLVevkoH.DvV51d7V16FcmbCtruzCNiz2jfWqGTS', 1, '2021-11-01 20:03:47', '2021-11-01 20:05:43'),
+(26, 6, 'Paterson', 'Sinisterra', 'psinisterra123@gmail.com', '$2y$12$tDQ7ZGXDMTPI8iYDouy26e0hGSh/0ufqOnaDJGeg8l/sYur.psorC', 1, '2021-11-17 22:18:15', '2021-11-17 22:18:15');
 
 -- --------------------------------------------------------
 
@@ -570,10 +605,26 @@ ALTER TABLE `inventories`
   ADD KEY `seat_id` (`seat_id`);
 
 --
+-- Indices de la tabla `invoices`
+--
+ALTER TABLE `invoices`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `client_id` (`client_id`),
+  ADD KEY `employe_id` (`employe_id`);
+
+--
 -- Indices de la tabla `mepas`
 --
 ALTER TABLE `mepas`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `mov_invoices`
+--
+ALTER TABLE `mov_invoices`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `invoice_id` (`invoice_id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indices de la tabla `payroll`
@@ -689,10 +740,20 @@ ALTER TABLE `headquarters`
 ALTER TABLE `inventories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT de la tabla `invoices`
+--
+ALTER TABLE `invoices`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `mepas`
 --
 ALTER TABLE `mepas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `mov_invoices`
+--
+ALTER TABLE `mov_invoices`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `payroll`
 --
@@ -722,7 +783,7 @@ ALTER TABLE `quotes`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `types_contracts`
 --
@@ -732,7 +793,7 @@ ALTER TABLE `types_contracts`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT de la tabla `usersxclients`
 --
@@ -792,6 +853,20 @@ ALTER TABLE `headquarters`
 ALTER TABLE `inventories`
   ADD CONSTRAINT `fk-inventories_headquarters` FOREIGN KEY (`seat_id`) REFERENCES `headquarters` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk-inventories_products` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `invoices`
+--
+ALTER TABLE `invoices`
+  ADD CONSTRAINT `fk-invoices_clients` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk-invoices_employees` FOREIGN KEY (`employe_id`) REFERENCES `employees` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `mov_invoices`
+--
+ALTER TABLE `mov_invoices`
+  ADD CONSTRAINT `fk-mov_invoices_invoices` FOREIGN KEY (`invoice_id`) REFERENCES `invoices` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk-mov_invoices_products` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `payroll`
