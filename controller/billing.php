@@ -30,18 +30,6 @@
                 $resultado = $billing->nuevo($_POST);
                 echo json_encode($resultado);
             break;
-            case 'modificar':
-                $resultado = $billing->actualizar(file_get_contents("php://input"));
-                echo json_encode($resultado);
-            break;
-            case 'desactivar':
-                $resultado = $billing->desactivar(file_get_contents("php://input"));
-                echo json_encode($resultado);
-            break;
-            case 'activar':
-                $resultado = $billing->activar(file_get_contents("php://input"));
-                echo json_encode($resultado);
-            break;
             
         }
     } else {

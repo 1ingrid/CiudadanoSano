@@ -1,11 +1,11 @@
-<div class="row">
+<div class="row" id="cont">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h2 class="card-title">Modulo de facturación</h2>
                 <div class="float-right">
-                    <button class="btn btn-primary btn-sm" id="procesar" title="Finalizar venta"><i class="fas fa-save"></i></button>
-                    <button class="btn btn-danger btn-sm" id="cancelar"  title="Cancelar venta"><i class="fas fa-ban"></i></button>
+                    <button class="btn btn-primary btn-sm" id="process" disabled title="Finalizar venta"><i class="fas fa-save"></i></button>
+                    <button class="btn btn-danger btn-sm" id="cancel"  title="Cancelar venta"><i class="fas fa-ban"></i></button>
                 </div>
             </div>
             <div class="card-body">
@@ -110,9 +110,9 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td id="subTotal">COP 0</td>
-                                <td id="iva">COP 0</td>
-                                <td id="total">COP 0</td>
+                                <td id="subTotal">$ 0</td>
+                                <td id="iva">$ 0</td>
+                                <td id="total">$ 0</td>
                             </tr>
                             </tbody>
                         </table>

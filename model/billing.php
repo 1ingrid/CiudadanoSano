@@ -2,13 +2,10 @@
     require_once ("../helpers/modeloAbstractoDB.php");
     class Billing extends ModeloAbstractoDB {
 
-        public function listar() {
-			$this->query = 'SELECT * FROM countries';
-			$this->obtener_resultados_query();
-			return $this->rows;
-		}
+        public function listar() {}
 
         public function nuevo($datos) {
+            var_dump($datos);
             $this->query = '
                 INSERT INTO countries 
                 (name) 
