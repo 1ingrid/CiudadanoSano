@@ -20,8 +20,9 @@ function employeesCtrl() {
               : '<button class="btn btn-info btn-xs mr-1 activar" title="Activar empleado"><i class="fas fa-redo-alt"></i></button>') +
             '<button class="btn btn-success btn-xs mr-1 editar" title="Editar empleado"><i class="far fa-edit"></i></button>' +
             (!row.user
-              ? '<button class="btn btn-info btn-xs createUserDoctor" title="Crear usuario medico"><i class="fas fa-user-md"></i></button>' +
-                '<button class="btn btn-dark btn-xs createUserDirector" title="Crear usuario director de sede"><i class="fas fa-user-tie"></i></button>'
+              ? '<button class="btn btn-info btn-xs mr-1 createUserDoctor" title="Crear usuario medico"><i class="fas fa-user-md"></i></button>' +
+                '<button class="btn btn-dark btn-xs mr-1 createUserDirector" title="Crear usuario director de sede"><i class="fas fa-user-tie"></i></button>' +
+                '<button class="btn btn-warning btn-xs mr-1 createUserFactura" title="Crear usuario de facturación"><i class="fas fa-user-tie"></i></button>'
               : "")
           );
         },
@@ -266,6 +267,33 @@ function employeesCtrl() {
     }).done(function (response) {
       if (response == 200) toastr.success("Usuario director de sede creado con exito");
       else if (response == 400) toastr.error("Error al crear el usuario director de sede");
+      else toastr.error("El usuario ya existe");
+      dt.page("last").draw("page");
+      dt.ajax.reload(null, false);
+    });
+  });
+
+  $("#listado").on("click", ".createUserFactura", function () {
+    var data = dt.row($(this).parents("tr")).data();
+    const form = {
+      id: data.id,
+      rol_id: 6,
+      name: data.name,
+      last_name: data.last_name,
+      email: data.email,
+      password: new Date().getTime()
+    };
+    $.ajax({
+      url: BASE_URL + "employe.php",
+      type: "POST",
+      headers: {
+        accion: "registroUser",
+        token: createToken(getToken()),
+      },
+      data: form,
+    }).done(function (response) {
+      if (response == 200) toastr.success("Usuario facturación de sede creado con exito");
+      else if (response == 400) toastr.error("Error al crear el usuario facturación");
       else toastr.error("El usuario ya existe");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

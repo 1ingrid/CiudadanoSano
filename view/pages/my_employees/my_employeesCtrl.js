@@ -20,7 +20,7 @@ function my_employeesCtrl() {
               : '<button class="btn btn-info btn-xs mr-1 activar" title="Activar empleado"><i class="fas fa-redo-alt"></i></button>') +
             '<button class="btn btn-success btn-xs mr-1 editar" title="Editar empleado"><i class="far fa-edit"></i></button>' +
             (!row.user
-              ? '<button class="btn btn-info btn-xs createUserDoctor" title="Crear usuario medico"><i class="fas fa-user-md"></i></button>'
+              ? '<button class="btn btn-info btn-xs mr-1 createUserDoctor" title="Crear usuario medico"><i class="fas fa-user-md"></i></button>'
               : "")
           );
         },

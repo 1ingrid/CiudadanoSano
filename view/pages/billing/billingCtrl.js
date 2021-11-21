@@ -74,9 +74,14 @@ function billingCtrl() {
           iva: product.iva,
           total: product.subtotal,
           neto: product.total,
-          mov: products
+          mov: products,
         },
-      }).done(function (response) {});
+      }).done(function (response) {
+        if (JSON.parse(response).code == 200)
+          debugBase64(
+            "data:application/pdf;base64," + JSON.parse(response).pdf
+          );
+      });
     }
   });
 
@@ -109,6 +114,16 @@ function billingCtrl() {
     if (products.length === 0) $("#process").attr("disabled", true);
     else $("#process").attr("disabled", false);
   };
+
+  function debugBase64(base64URL) {
+    window
+      .open()
+      .document.write(
+        '<iframe src="' +
+          base64URL +
+          '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>'
+      );
+  }
 
   const getClient = (id) => {
     $.ajax({
@@ -150,6 +165,8 @@ function billingCtrl() {
         $("#add_product_sale").slideDown();
         $("#add_product_sale").focus();
         product = JSON.parse(response);
+        product.count = 1;
+        product.total = product.price;
       } else {
         resetProduct();
       }

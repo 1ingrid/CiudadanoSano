@@ -3,14 +3,12 @@
     require_once '../model/userxemploye.php';
     require_once '../model/user.php';
     require_once '../middleware/jwtToken.php';
-    require_once '../helpers/email.php';
     require_once '../helpers/tools.php';
 
     $myEmploye = new MyEmploye();
     $userxEmploye = new UserxEmploye();
     $user = new User();
     $jwt = new JwtToken();
-    $email = new Email();
     $tools = new Tools();
 
     $token = !empty($_SERVER['HTTP_TOKEN']) ? $_SERVER['HTTP_TOKEN'] : '';
