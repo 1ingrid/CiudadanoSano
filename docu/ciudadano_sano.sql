@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2021 a las 23:49:36
+-- Tiempo de generación: 22-11-2021 a las 06:43:45
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -95,7 +95,7 @@ CREATE TABLE `consultations` (
 --
 
 INSERT INTO `consultations` (`id`, `client_id`, `employe_id`, `reason`, `detail`, `formula`, `formula_status`, `formula_date`, `status`, `created_at`, `updated_at`) VALUES
-(1, 5, 8, 'Dolor intenso en la parte inferior de la espalda', 'El paciente presenta un dolor intenso en la zona umbral de la parte inferior de la espalda', '1 tableta de dolex cada 2 horas\r\n2 pildoras de loratadina cada 6 horas', 1, '2021-12-16 20:40:43', 1, '2021-11-16 20:40:43', '2021-11-16 20:40:43');
+(1, 5, 8, 'Dolor intenso en la parte inferior de la espalda', 'El paciente presenta un dolor intenso en la zona umbral de la parte inferior de la espalda', '1 tableta de dolex cada 2 horas\r\n2 pildoras de loratadina cada 6 horas', 0, '2021-12-16 20:40:43', 1, '2021-11-16 20:40:43', '2021-11-16 20:40:43');
 
 -- --------------------------------------------------------
 
@@ -223,13 +223,14 @@ CREATE TABLE `inventories` (
 --
 
 INSERT INTO `inventories` (`id`, `product_id`, `seat_id`, `entries`, `stock`, `status`, `created_at`, `updated_at`) VALUES
-(2, 2, 3, 10, 4, 1, '2021-11-18 22:22:43', '2021-11-21 17:45:04'),
-(3, 2, 3, 30, 30, 1, '2021-11-18 22:22:58', '2021-11-18 22:22:58'),
-(4, 3, 3, 15, 12, 1, '2021-11-18 22:23:05', '2021-11-21 17:45:04'),
+(2, 2, 3, 10, 0, 1, '2021-11-18 22:22:43', '2021-11-21 22:00:07'),
+(3, 2, 3, 30, 17, 1, '2021-11-18 22:22:58', '2021-11-22 00:41:16'),
+(4, 3, 3, 15, 0, 1, '2021-11-18 22:23:05', '2021-11-22 00:41:16'),
 (5, 2, 3, 10, 10, 1, '2021-11-21 17:35:48', '2021-11-21 17:35:48'),
 (6, 1, 3, 5, 0, 1, '2021-11-21 17:37:13', '2021-11-21 17:45:04'),
-(7, 1, 3, 20, 20, 1, '2021-11-21 17:48:09', '2021-11-21 17:48:09'),
-(8, 2, 3, 10, 10, 1, '2021-11-21 17:48:23', '2021-11-21 17:48:23');
+(7, 1, 3, 20, 5, 1, '2021-11-21 17:48:09', '2021-11-22 00:41:16'),
+(8, 2, 3, 10, 10, 1, '2021-11-21 17:48:23', '2021-11-21 17:48:23'),
+(9, 3, 3, 10, 9, 1, '2021-11-22 00:40:16', '2021-11-22 00:41:16');
 
 -- --------------------------------------------------------
 
@@ -241,9 +242,9 @@ CREATE TABLE `invoices` (
   `id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
   `employe_id` int(11) NOT NULL,
-  `iva` smallint(6) NOT NULL DEFAULT '0',
-  `total` smallint(6) NOT NULL DEFAULT '0',
-  `neto` smallint(6) NOT NULL DEFAULT '0',
+  `iva` mediumint(9) NOT NULL DEFAULT '0',
+  `total` mediumint(9) NOT NULL DEFAULT '0',
+  `neto` mediumint(9) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -254,9 +255,19 @@ CREATE TABLE `invoices` (
 --
 
 INSERT INTO `invoices` (`id`, `client_id`, `employe_id`, `iva`, `total`, `neto`, `status`, `created_at`, `updated_at`) VALUES
-(5, 5, 9, 2090, 11000, 3500, 1, '2021-11-21 17:38:37', '2021-11-21 17:38:37'),
+(5, 5, 9, 2090, 11000, 3500, 0, '2021-11-21 17:38:37', '2021-11-21 17:38:37'),
 (6, 5, 9, 3420, 18000, 2500, 1, '2021-11-21 17:41:35', '2021-11-21 17:41:35'),
-(7, 5, 9, 2280, 12000, 2500, 1, '2021-11-21 17:45:04', '2021-11-21 17:45:04');
+(7, 5, 9, 2280, 12000, 2500, 1, '2021-11-21 17:45:04', '2021-11-21 17:45:04'),
+(8, 5, 9, 3420, 18000, 2500, 1, '2021-11-21 21:49:28', '2021-11-21 21:49:28'),
+(9, 5, 9, 1615, 8500, 2500, 1, '2021-11-21 22:00:07', '2021-11-21 22:00:07'),
+(10, 5, 9, 1615, 8500, 2500, 1, '2021-11-21 22:02:59', '2021-11-21 22:02:59'),
+(11, 5, 9, 1615, 8500, 2500, 1, '2021-11-21 22:06:09', '2021-11-21 22:06:09'),
+(12, 5, 9, 1615, 8500, 2500, 1, '2021-11-21 22:09:02', '2021-11-21 22:09:02'),
+(13, 5, 9, 2090, 11000, 13090, 1, '2021-11-22 00:09:20', '2021-11-22 00:09:20'),
+(14, 5, 9, 2565, 13500, 16065, 1, '2021-11-22 00:12:13', '2021-11-22 00:12:13'),
+(15, 5, 9, 2090, 11000, 13090, 1, '2021-11-22 00:15:27', '2021-11-22 00:15:27'),
+(16, 5, 9, 5700, 30000, 32767, 1, '2021-11-22 00:35:57', '2021-11-22 00:35:57'),
+(17, 5, 9, 4370, 23000, 27370, 1, '2021-11-22 00:41:16', '2021-11-22 00:41:16');
 
 -- --------------------------------------------------------
 
@@ -307,7 +318,34 @@ INSERT INTO `mov_invoices` (`id`, `invoice_id`, `product_id`, `count`, `price`, 
 (10, 6, 3, 1, 2500, 2500),
 (11, 7, 1, 1, 2500, 2500),
 (12, 7, 2, 2, 3500, 7000),
-(13, 7, 3, 1, 2500, 2500);
+(13, 7, 3, 1, 2500, 2500),
+(14, 8, 1, 2, 2500, 5000),
+(15, 8, 2, 3, 3500, 10500),
+(16, 8, 3, 1, 2500, 2500),
+(17, 9, 1, 1, 2500, 2500),
+(18, 9, 2, 1, 3500, 3500),
+(19, 9, 3, 1, 2500, 2500),
+(20, 10, 1, 1, 2500, 2500),
+(21, 10, 2, 1, 3500, 3500),
+(22, 10, 3, 1, 2500, 2500),
+(23, 11, 1, 1, 2500, 2500),
+(24, 11, 2, 1, 3500, 3500),
+(25, 11, 3, 1, 2500, 2500),
+(26, 12, 1, 1, 2500, 2500),
+(27, 12, 2, 1, 3500, 3500),
+(28, 12, 3, 1, 2500, 2500),
+(29, 13, 1, 2, 2500, 5000),
+(30, 13, 2, 1, 3500, 3500),
+(31, 13, 3, 1, 2500, 2500),
+(32, 14, 2, 1, 3500, 3500),
+(33, 14, 3, 2, 2500, 5000),
+(34, 14, 1, 2, 2500, 5000),
+(35, 16, 1, 3, 2500, 7500),
+(36, 16, 2, 5, 3500, 17500),
+(37, 16, 3, 2, 2500, 5000),
+(38, 17, 1, 2, 2500, 5000),
+(39, 17, 2, 3, 3500, 10500),
+(40, 17, 3, 3, 2500, 7500);
 
 -- --------------------------------------------------------
 
@@ -478,10 +516,10 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `name`, `description`, `permits`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Administrador', 'Super usuario con todos los permisos del sistema.', ',roles,users,countries,cities,headquarters,types_contracts,professions,employees,contracts,clients,providers,mepas,products', 1, '2021-09-19 16:07:10', '2021-09-24 17:56:15'),
 (2, 'Paciente', 'Rol para el ingreso de pacientes al sistema', ',my_quotes', 1, '2021-09-19 17:47:54', '2021-09-19 17:47:54'),
-(3, 'Director de sedes', 'Rol asignado al director para la gestión de sedes', ',my_contracts,my_employees,my_payroll,my_inventories', 1, '2021-09-19 17:55:33', '2021-09-21 00:17:27'),
+(3, 'Director de sedes', 'Rol asignado al director para la gestión de sedes', ',my_contracts,my_employees,my_payroll,my_inventories,my_invoices', 1, '2021-09-19 17:55:33', '2021-09-21 00:17:27'),
 (4, 'Asesor de afiliación', 'Rol asignado al asesor de afiliación para la gestión de pacientes', ',clients', 1, '2021-09-19 19:36:52', '2021-09-21 00:18:25'),
 (5, 'Medico', 'Rol utilizado para los médicos', ',my_consultations,my_assignments', 1, '2021-09-20 20:41:34', '2021-10-16 10:01:36'),
-(6, 'Farmacia', 'Rol encargado del despacho de productos a los pacientes', ',billing', 1, '2021-11-17 22:16:34', '2021-11-17 22:16:34');
+(6, 'Farmacia', 'Rol encargado del despacho de productos a los pacientes', ',billing,my_formulas', 1, '2021-11-17 22:16:34', '2021-11-17 22:16:34');
 
 -- --------------------------------------------------------
 
@@ -771,12 +809,12 @@ ALTER TABLE `headquarters`
 -- AUTO_INCREMENT de la tabla `inventories`
 --
 ALTER TABLE `inventories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT de la tabla `mepas`
 --
@@ -786,7 +824,7 @@ ALTER TABLE `mepas`
 -- AUTO_INCREMENT de la tabla `mov_invoices`
 --
 ALTER TABLE `mov_invoices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT de la tabla `payroll`
 --

@@ -74,7 +74,7 @@ function billingCtrl() {
           client_id: $("#id").val(),
           iva: product.iva,
           total: product.subtotal,
-          neto: product.total,
+          neto: product.subtotal + product.iva,
           mov: products,
         },
       }).done(function (response) {

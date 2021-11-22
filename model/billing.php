@@ -21,11 +21,11 @@
                 VALUES('.$datos['client_id'].','.$employe_id.','.$datos['iva'].','.$datos['total'].','.$datos['neto'].')';
             $invoice = $this->ejecutar_query_simple();
             if($invoice !== 1) return [ 'code' => 400 ];
-            $this->query = 'SELECT MAX(invoices.id) as id, headquarters.name as seat, headquarters.cell_phone, headquarters.address, invoices.created_at, 
+            $this->query = 'SELECT invoices.id, headquarters.name as seat, headquarters.cell_phone, headquarters.address, invoices.created_at, 
             CONCAT(employees.name," ",employees.last_name) as employe, clients.no_document, CONCAT(clients.name," ",clients.last_name) as client, 
             total, iva, neto FROM invoices INNER JOIN employees ON employees.id = invoices.employe_id 
             INNER JOIN headquarters ON headquarters.id = employees.seat_id INNER JOIN clients ON clients.id = invoices.client_id 
-            WHERE client_id = '.$datos['client_id'].' AND employe_id = '.$employe_id;
+            WHERE invoices.id = ( SELECT MAX(invoices.id) FROM invoices ) AND client_id = '.$datos['client_id'].' AND employe_id = '.$employe_id;
 			$this->obtener_resultados_query();
 			$invoice = (object) $this->rows[0];
             foreach ($datos['mov'] as $key => $value) {
