@@ -19,10 +19,6 @@
 
         switch ($_SERVER['HTTP_ACCION']) {
 
-            case 'listar':
-                $listado = $billing->listar();
-                echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
-            break;
             case 'getClient':
                 $result = $client->consultarDocument($_GET['no_document']);
                 echo json_encode(!empty($result) ? $result[0] : []);
@@ -35,7 +31,7 @@
                 $resultado = $billing->nuevoInvoice($_POST, $dataUser['id'], $dataUser['seat_id']);
                 echo json_encode($resultado);
             break;
-            
+
         }
     } else {
         echo json_encode($jwt->message);
