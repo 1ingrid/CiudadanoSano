@@ -50,6 +50,7 @@ function billingCtrl() {
     products = [];
     product = {};
     $("#id").val("");
+    $("#product_id").val("");
     $("#no_document").val("");
     $("#name").val("");
     $("#last_name").val("");

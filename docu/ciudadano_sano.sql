@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2021 a las 06:22:03
+-- Tiempo de generación: 21-11-2021 a las 23:49:36
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -144,7 +144,8 @@ CREATE TABLE `countries` (
 --
 
 INSERT INTO `countries` (`id`, `name`, `status`, `updated_at`, `created_at`) VALUES
-(2, 'Colombia', 1, '2021-09-27 08:06:49', '2021-09-27 08:06:39');
+(2, 'Colombia', 1, '2021-09-27 08:06:49', '2021-09-27 08:06:39'),
+(3, 'USA', 1, '2021-11-19 23:42:20', '2021-11-18 22:36:46');
 
 -- --------------------------------------------------------
 
@@ -172,7 +173,8 @@ CREATE TABLE `employees` (
 
 INSERT INTO `employees` (`id`, `seat_id`, `no_document`, `name`, `last_name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
 (7, 3, '1132456789', 'Miguel Angel', 'Cerquera Rodriguez', 'mcerquera@programarte.com.co', 'Cra 96a # 45 - 106 ', '3137030828', 1, '2021-10-23 19:03:06', '2021-10-23 19:03:06'),
-(8, 3, '31456987', 'Ingrid', 'Blanco', 'miguelangelcerquerarodriguez@gmail.com', 'Cra 34 # 10 - 102', '3114562321', 1, '2021-10-23 19:37:16', '2021-10-23 19:37:16');
+(8, 3, '31456987', 'Ingrid', 'Blanco', 'miguelangelcerquerarodriguez@gmail.com', 'Cra 34 # 10 - 102', '3114562321', 1, '2021-10-23 19:37:16', '2021-10-23 19:37:16'),
+(9, 3, '31862752', 'Paterson', 'Sinisterra', 'mipajina50@hotmail.com', 'Cra 45 # 12 - 78', '3114568987', 1, '2021-11-19 23:43:33', '2021-11-19 23:43:33');
 
 -- --------------------------------------------------------
 
@@ -221,7 +223,13 @@ CREATE TABLE `inventories` (
 --
 
 INSERT INTO `inventories` (`id`, `product_id`, `seat_id`, `entries`, `stock`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, 50, 50, 1, '2021-11-16 22:42:02', '2021-11-16 22:42:02');
+(2, 2, 3, 10, 4, 1, '2021-11-18 22:22:43', '2021-11-21 17:45:04'),
+(3, 2, 3, 30, 30, 1, '2021-11-18 22:22:58', '2021-11-18 22:22:58'),
+(4, 3, 3, 15, 12, 1, '2021-11-18 22:23:05', '2021-11-21 17:45:04'),
+(5, 2, 3, 10, 10, 1, '2021-11-21 17:35:48', '2021-11-21 17:35:48'),
+(6, 1, 3, 5, 0, 1, '2021-11-21 17:37:13', '2021-11-21 17:45:04'),
+(7, 1, 3, 20, 20, 1, '2021-11-21 17:48:09', '2021-11-21 17:48:09'),
+(8, 2, 3, 10, 10, 1, '2021-11-21 17:48:23', '2021-11-21 17:48:23');
 
 -- --------------------------------------------------------
 
@@ -240,6 +248,15 @@ CREATE TABLE `invoices` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `invoices`
+--
+
+INSERT INTO `invoices` (`id`, `client_id`, `employe_id`, `iva`, `total`, `neto`, `status`, `created_at`, `updated_at`) VALUES
+(5, 5, 9, 2090, 11000, 3500, 1, '2021-11-21 17:38:37', '2021-11-21 17:38:37'),
+(6, 5, 9, 3420, 18000, 2500, 1, '2021-11-21 17:41:35', '2021-11-21 17:41:35'),
+(7, 5, 9, 2280, 12000, 2500, 1, '2021-11-21 17:45:04', '2021-11-21 17:45:04');
 
 -- --------------------------------------------------------
 
@@ -276,6 +293,21 @@ CREATE TABLE `mov_invoices` (
   `price` smallint(6) NOT NULL DEFAULT '0',
   `total` smallint(6) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `mov_invoices`
+--
+
+INSERT INTO `mov_invoices` (`id`, `invoice_id`, `product_id`, `count`, `price`, `total`) VALUES
+(5, 5, 1, 2, 2500, 5000),
+(6, 5, 3, 1, 2500, 2500),
+(7, 5, 2, 1, 3500, 3500),
+(8, 6, 1, 2, 2500, 5000),
+(9, 6, 2, 3, 3500, 10500),
+(10, 6, 3, 1, 2500, 2500),
+(11, 7, 1, 1, 2500, 2500),
+(12, 7, 2, 2, 3500, 7000),
+(13, 7, 3, 1, 2500, 2500);
 
 -- --------------------------------------------------------
 
@@ -500,7 +532,7 @@ INSERT INTO `users` (`id`, `rol_id`, `name`, `last_name`, `email`, `password`, `
 (19, 3, 'Miguel Angel', 'Cerquera Rodriguez', 'mcerquera@programarte.com.co', '$2y$12$DWTfgGgNvz9SDcZiVl3HluNXQEJRpkRRNsK3iCAnutyvoXBze1lUO', 1, '2021-10-23 19:19:41', '2021-11-14 17:31:06'),
 (20, 5, 'Ingrid', 'Blanco', 'miguelangelcerquerarodriguez@gmail.com', '$2y$12$tn.YRHFs.qjRkF0uak1atOSRt5TYBqX5Xi8Pv.IwglulPzlNSfYiq', 1, '2021-10-23 19:37:54', '2021-11-12 21:50:56'),
 (25, 2, 'Evelyn', 'Rodriguez Obando', 'dofustime27@gmail.com', '$2y$12$bVoeWzpBiSJCSRLVevkoH.DvV51d7V16FcmbCtruzCNiz2jfWqGTS', 1, '2021-11-01 20:03:47', '2021-11-01 20:05:43'),
-(26, 6, 'Paterson', 'Sinisterra', 'psinisterra123@gmail.com', '$2y$12$tDQ7ZGXDMTPI8iYDouy26e0hGSh/0ufqOnaDJGeg8l/sYur.psorC', 1, '2021-11-17 22:18:15', '2021-11-17 22:18:15');
+(27, 6, 'Paterson', 'Sinisterra', 'mipajina50@hotmail.com', '$2y$12$1DmfCtwe5OBRxGUphyG81eCdCdKZbiToH6Gl89iZidh6OqzF6eJDG', 1, '2021-11-19 23:48:18', '2021-11-19 23:53:14');
 
 -- --------------------------------------------------------
 
@@ -539,7 +571,8 @@ CREATE TABLE `usersxemployees` (
 
 INSERT INTO `usersxemployees` (`id`, `user_id`, `employe_id`) VALUES
 (8, 19, 7),
-(9, 20, 8);
+(9, 20, 8),
+(10, 27, 9);
 
 --
 -- Índices para tablas volcadas
@@ -723,12 +756,12 @@ ALTER TABLE `contracts`
 -- AUTO_INCREMENT de la tabla `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `headquarters`
 --
@@ -738,12 +771,12 @@ ALTER TABLE `headquarters`
 -- AUTO_INCREMENT de la tabla `inventories`
 --
 ALTER TABLE `inventories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `mepas`
 --
@@ -753,7 +786,7 @@ ALTER TABLE `mepas`
 -- AUTO_INCREMENT de la tabla `mov_invoices`
 --
 ALTER TABLE `mov_invoices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `payroll`
 --
@@ -793,7 +826,7 @@ ALTER TABLE `types_contracts`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT de la tabla `usersxclients`
 --
@@ -803,7 +836,7 @@ ALTER TABLE `usersxclients`
 -- AUTO_INCREMENT de la tabla `usersxemployees`
 --
 ALTER TABLE `usersxemployees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Restricciones para tablas volcadas
 --

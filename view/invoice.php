@@ -85,10 +85,6 @@
                 min-width: 100px;
                 margin: 0 auto;
                 border-radius: 5px;
-                background:
-                rgba(0,0,0,.80);
-                color:
-                #000;
                 padding: 20px;
             }
         </style>
@@ -114,7 +110,7 @@
                     <div class="round">
                         <span class="h3">Factura</span>
                         <p><strong>No. Factura:</strong> <?php echo $invoice->id; ?> </p>
-                        <p><strong>Fecha:</strong> <?php echo $invoice->created_at; ?> </p>
+                        <p><strong>Fecha:</strong> <?php echo date_format(date_create($invoice->created_at), 'd/m/Y'); ?> </p>
                         <p><strong>Vendedor:</strong> <?php echo $invoice->employe; ?> </p>
                     </div>
                     </td>
@@ -127,10 +123,8 @@
                         <span class="h3">Cliente</span>
                         <table class="datos_cliente">
                             <tr>
-                                <td><strong>Identificación:</strong> <?php echo $invoice->no_document; ?> </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Nombre:</strong> <?php echo $invoice->client; ?> </td>
+                                <td style="text-align: center;"><strong>Identificación:</strong> <?php echo $invoice->no_document; ?> </td>
+                                <td style="text-align: center;"><strong>Nombre:</strong> <?php echo $invoice->client; ?> </td>
                             </tr>
                         </table>
                     </div>
@@ -150,23 +144,23 @@
                 <tr>
                     <td style="text-align: center;"><?php echo $v['count']; ?></td>
                     <td><?php echo $v['name']; ?></td>
-                    <td style="text-align: right;"><?php echo $v['price']; ?></td>
-                    <td style="text-align: right;"><?php echo $v['total']; ?></td>
+                    <td style="text-align: right;"><?php echo number_format($v['price']); ?></td>
+                    <td style="text-align: right;"><?php echo number_format($v['total']); ?></td>
                 </tr>
             <?php } ?>       
         </tbody>
         <tfoot id="detalle_totales">
             <tr>
-            <td colspan="3" style="text-align: right;"><span>Subtotal:</span></td>
-            <td style="text-align: right;"><span><?php echo $invoice->total; ?></span></td>
+            <td colspan="3" style="text-align: right;"><strong>Subtotal:</strong></td>
+            <td style="text-align: right;"><span><?php echo number_format($invoice->total); ?></span></td>
             </tr>
             <tr>
-            <td colspan="3" style="text-align: right;"><span>Iva (19 %):</span></td>
-            <td style="text-align: right;"><span><?php echo $invoice->iva; ?></span></td>
+            <td colspan="3" style="text-align: right;"><strong>Iva (19 %):</strong></td>
+            <td style="text-align: right;"><span><?php echo number_format($invoice->iva); ?></span></td>
             </tr>
             <tr>
-            <td colspan="3" style="text-align: right;"><span>Total:</span></td>
-            <td style="text-align: right;"><span><?php echo $invoice->neto; ?></span></td>
+            <td colspan="3" style="text-align: right;"><strong>Total:</strong></td>
+            <td style="text-align: right;"><span><?php echo number_format($invoice->neto); ?></span></td>
             </tr>
         </tfoot>
         </table>
