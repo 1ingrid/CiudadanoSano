@@ -93,6 +93,13 @@ function rolesCtrl() {
       if (permits.indexOf("cities") > -1) $("#cities").prop("checked", true);
       if (permits.indexOf("headquarters") > -1) $("#headquarters").prop("checked", true);
       if (permits.indexOf("types_contracts") > -1) $("#types_contracts").prop("checked", true);
+      if (permits.indexOf("contracts") > -1) $("#contracts").prop("checked", true);
+      if (permits.indexOf("clients") > -1) $("#clients").prop("checked", true);
+      if (permits.indexOf("professions") > -1) $("#professions").prop("checked", true);
+      if (permits.indexOf("employees") > -1) $("#employees").prop("checked", true);
+      if (permits.indexOf("providers") > -1) $("#providers").prop("checked", true);
+      if (permits.indexOf("mepas") > -1) $("#mepas").prop("checked", true);
+      if (permits.indexOf("products") > -1) $("#products").prop("checked", true);
     });
   });
 
