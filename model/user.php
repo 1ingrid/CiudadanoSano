@@ -34,7 +34,8 @@
             $put = json_decode($datos);
             if(!empty($put->password)) $password = password_hash($put->password, PASSWORD_BCRYPT, ['cost' => 12]);
             else $password = $this->consultarEmail($put->email)[0]['password'];
-            $this->query = '
+            if(!empty($put->rol_id)) {
+                $this->query = '
                 UPDATE users SET 
                 rol_id = '.$put->rol_id.',
                 name = "'.utf8_decode($put->name).'",
@@ -42,6 +43,15 @@
                 email = "'.$put->email.'",
                 password = "'.$password.'",
                 updated_at = NOW() WHERE id = '.$put->id;
+            } else {
+                $this->query = '
+                UPDATE users SET 
+                name = "'.utf8_decode($put->name).'",
+                last_name = "'.utf8_decode($put->last_name).'",
+                email = "'.$put->email.'",
+                password = "'.$password.'",
+                updated_at = NOW() WHERE id = '.$put->id;
+            }
             return $this->ejecutar_query_simple();
         }
 

@@ -123,7 +123,6 @@ function usersCtrl() {
     if (
       !form[0].name.value ||
       !form[0].last_name.value ||
-      !form[0].rol_id.value ||
       !form[0].email.value
     ) {
       $("#alert").show();

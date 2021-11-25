@@ -26,7 +26,7 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label class="control-label" for="rol_id">
-                    <strong class="text-danger">*</strong>Rol
+                    Rol
                 </label>
                 <div class="input-group">
                     <select class="form-control" id="rol_id" name="rol_id" value="">
@@ -53,7 +53,7 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label class="control-label" for="password">
-                    <strong class="text-danger">*</strong>Password
+                    Password
                 </label>
                 <div class="input-group">
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password del usuario" value="">
@@ -63,7 +63,7 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label class="control-label" for="confir_password">
-                    <strong class="text-danger">*</strong>Confirmar password
+                    Confirmar password
                 </label>
                 <div class="input-group">
                     <input type="password" class="form-control" id="confir_password" name="confir_password" placeholder="Confirmar el password del usuario" value="">

@@ -1,5 +1,6 @@
 function my_quotesCtrl() {
   var hours = [
+    { value: "", option: "Seleccione una hora..." },
     { value: "08:00", option: "08:00 a.m." },
     { value: "08:20", option: "08:20 a.m." },
     { value: "08:40", option: "08:40 a.m." },

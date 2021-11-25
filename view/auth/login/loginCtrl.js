@@ -2,6 +2,18 @@ function loginCtrl() {
   $("#alert").hide();
 
   $("form").on("click", "#signin", function () {
+    login();
+  });
+
+  $("#password").keypress(function (e) {
+    var keycode = e.keyCode ? e.keyCode : e.which;
+    if (keycode == "13") {
+      e.preventDefault();
+      login();
+    }
+  });
+
+  const login = () => {
     var form = $("form");
     if (!form[0].email.value || !form[0].password.value) {
       $("#alert").show();
@@ -28,5 +40,5 @@ function loginCtrl() {
         }
       });
     }
-  });
+  };
 }

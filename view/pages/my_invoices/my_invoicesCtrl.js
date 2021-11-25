@@ -20,9 +20,24 @@ function my_invoicesCtrl() {
       },
       { data: "client" },
       { data: "employe" },
-      { data: "iva" },
-      { data: "total" },
-      { data: "neto" },
+      {
+        data: "iva",
+        render: function (data) {
+          return "$ " + new Intl.NumberFormat("de-DE").format(data);
+        },
+      },
+      {
+        data: "total",
+        render: function (data) {
+          return "$ " + new Intl.NumberFormat("de-DE").format(data);
+        },
+      },
+      {
+        data: "neto",
+        render: function (data) {
+          return "$ " + new Intl.NumberFormat("de-DE").format(data);
+        },
+      },
       {
         data: "status",
         render: function (data) {

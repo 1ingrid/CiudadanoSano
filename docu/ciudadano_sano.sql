@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2021 a las 08:06:30
+-- Tiempo de generación: 25-11-2021 a las 06:05:00
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -35,14 +35,6 @@ CREATE TABLE `cities` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `cities`
---
-
-INSERT INTO `cities` (`id`, `country_id`, `name`, `status`, `updated_at`, `created_at`) VALUES
-(1, 2, 'Cali', 1, '2021-09-30 22:38:41', '2021-09-30 22:21:23'),
-(2, 2, 'Bogota', 1, '2021-10-23 18:56:02', '2021-10-23 18:56:02');
-
 -- --------------------------------------------------------
 
 --
@@ -62,13 +54,6 @@ CREATE TABLE `clients` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `clients`
---
-
-INSERT INTO `clients` (`id`, `city_id`, `no_document`, `name`, `last_name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
-(5, 1, '31862723', 'Evelyn', 'Rodriguez Obando', 'dofustime27@gmail.com', 'Cra 96a # 45 - 106', '3137030828', 1, '2021-11-01 20:03:47', '2021-11-01 20:03:47');
 
 -- --------------------------------------------------------
 
@@ -90,13 +75,6 @@ CREATE TABLE `consultations` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `consultations`
---
-
-INSERT INTO `consultations` (`id`, `client_id`, `employe_id`, `reason`, `detail`, `formula`, `formula_status`, `formula_date`, `status`, `created_at`, `updated_at`) VALUES
-(1, 5, 8, 'Dolor intenso en la parte inferior de la espalda', 'El paciente presenta un dolor intenso en la zona umbral de la parte inferior de la espalda', '1 tableta de dolex cada 2 horas\r\n2 pildoras de loratadina cada 6 horas', 0, '2021-12-16 20:40:43', 1, '2021-11-16 20:40:43', '2021-11-16 20:40:43');
-
 -- --------------------------------------------------------
 
 --
@@ -117,14 +95,6 @@ CREATE TABLE `contracts` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `contracts`
---
-
-INSERT INTO `contracts` (`id`, `type_contract_id`, `employe_id`, `profession_id`, `date_init`, `date_end`, `duration`, `salary`, `status`, `created_at`, `updated_at`) VALUES
-(4, 2, 7, 9, '2021-10-25', '2021-12-24', '2 meses', 6000000, 1, '2021-10-23 19:13:04', '2021-11-14 16:34:18'),
-(5, 1, 8, 4, '2021-10-25', '0000-00-00', '', 2500000, 1, '2021-10-23 19:37:42', '2021-11-14 17:40:56');
-
 -- --------------------------------------------------------
 
 --
@@ -138,14 +108,6 @@ CREATE TABLE `countries` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `countries`
---
-
-INSERT INTO `countries` (`id`, `name`, `status`, `updated_at`, `created_at`) VALUES
-(2, 'Colombia', 1, '2021-09-27 08:06:49', '2021-09-27 08:06:39'),
-(3, 'USA', 1, '2021-11-19 23:42:20', '2021-11-18 22:36:46');
 
 -- --------------------------------------------------------
 
@@ -167,15 +129,6 @@ CREATE TABLE `employees` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `employees`
---
-
-INSERT INTO `employees` (`id`, `seat_id`, `no_document`, `name`, `last_name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
-(7, 3, '1132456789', 'Miguel Angel', 'Cerquera Rodriguez', 'mcerquera@programarte.com.co', 'Cra 96a # 45 - 106 ', '3137030828', 1, '2021-10-23 19:03:06', '2021-10-23 19:03:06'),
-(8, 3, '31456987', 'Ingrid', 'Blanco', 'miguelangelcerquerarodriguez@gmail.com', 'Cra 34 # 10 - 102', '3114562321', 1, '2021-10-23 19:37:16', '2021-10-23 19:37:16'),
-(9, 3, '31862752', 'Paterson', 'Sinisterra', 'mipajina50@hotmail.com', 'Cra 45 # 12 - 78', '3114568987', 1, '2021-11-19 23:43:33', '2021-11-19 23:43:33');
-
 -- --------------------------------------------------------
 
 --
@@ -193,14 +146,6 @@ CREATE TABLE `headquarters` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `headquarters`
---
-
-INSERT INTO `headquarters` (`id`, `city_id`, `name`, `address`, `cell_phone`, `status`, `updated_at`, `created_at`) VALUES
-(3, 1, 'Red Sur Calicanto', 'Cra 45 # 48 - 12 ', '6646064', 1, '2021-10-27 22:33:48', '2021-10-19 00:05:10'),
-(4, 2, 'Red sur Santa Isabel', 'Av 5n 45 - 47', '456123', 1, '2021-10-27 22:34:11', '2021-10-23 18:58:10');
-
 -- --------------------------------------------------------
 
 --
@@ -217,20 +162,6 @@ CREATE TABLE `inventories` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `inventories`
---
-
-INSERT INTO `inventories` (`id`, `product_id`, `seat_id`, `entries`, `stock`, `status`, `created_at`, `updated_at`) VALUES
-(2, 2, 3, 10, 0, 1, '2021-11-18 22:22:43', '2021-11-21 22:00:07'),
-(3, 2, 3, 30, 17, 1, '2021-11-18 22:22:58', '2021-11-22 00:41:16'),
-(4, 3, 3, 15, 0, 1, '2021-11-18 22:23:05', '2021-11-22 00:41:16'),
-(5, 2, 3, 10, 10, 1, '2021-11-21 17:35:48', '2021-11-21 17:35:48'),
-(6, 1, 3, 5, 0, 1, '2021-11-21 17:37:13', '2021-11-21 17:45:04'),
-(7, 1, 3, 20, 5, 1, '2021-11-21 17:48:09', '2021-11-22 00:41:16'),
-(8, 2, 3, 10, 10, 1, '2021-11-21 17:48:23', '2021-11-21 17:48:23'),
-(9, 3, 3, 10, 9, 1, '2021-11-22 00:40:16', '2021-11-22 00:41:16');
 
 -- --------------------------------------------------------
 
@@ -250,25 +181,6 @@ CREATE TABLE `invoices` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `invoices`
---
-
-INSERT INTO `invoices` (`id`, `client_id`, `employe_id`, `iva`, `total`, `neto`, `status`, `created_at`, `updated_at`) VALUES
-(5, 5, 9, 2090, 11000, 3500, 0, '2021-11-21 17:38:37', '2021-11-21 17:38:37'),
-(6, 5, 9, 3420, 18000, 2500, 1, '2021-11-21 17:41:35', '2021-11-21 17:41:35'),
-(7, 5, 9, 2280, 12000, 2500, 1, '2021-11-21 17:45:04', '2021-11-21 17:45:04'),
-(8, 5, 9, 3420, 18000, 2500, 1, '2021-11-21 21:49:28', '2021-11-21 21:49:28'),
-(9, 5, 9, 1615, 8500, 2500, 1, '2021-11-21 22:00:07', '2021-11-21 22:00:07'),
-(10, 5, 9, 1615, 8500, 2500, 1, '2021-11-21 22:02:59', '2021-11-21 22:02:59'),
-(11, 5, 9, 1615, 8500, 2500, 1, '2021-11-21 22:06:09', '2021-11-21 22:06:09'),
-(12, 5, 9, 1615, 8500, 2500, 1, '2021-11-21 22:09:02', '2021-11-21 22:09:02'),
-(13, 5, 9, 2090, 11000, 13090, 1, '2021-11-22 00:09:20', '2021-11-22 00:09:20'),
-(14, 5, 9, 2565, 13500, 16065, 1, '2021-11-22 00:12:13', '2021-11-22 00:12:13'),
-(15, 5, 9, 2090, 11000, 13090, 1, '2021-11-22 00:15:27', '2021-11-22 00:15:27'),
-(16, 5, 9, 5700, 30000, 32767, 1, '2021-11-22 00:35:57', '2021-11-22 00:35:57'),
-(17, 5, 9, 4370, 23000, 27370, 1, '2021-11-22 00:41:16', '2021-11-22 00:41:16');
-
 -- --------------------------------------------------------
 
 --
@@ -282,13 +194,6 @@ CREATE TABLE `mepas` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `mepas`
---
-
-INSERT INTO `mepas` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Cirugía plástica', 1, '2021-10-24 12:47:28', '2021-10-31 14:45:40');
 
 -- --------------------------------------------------------
 
@@ -304,48 +209,6 @@ CREATE TABLE `mov_invoices` (
   `price` smallint(6) NOT NULL DEFAULT '0',
   `total` smallint(6) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `mov_invoices`
---
-
-INSERT INTO `mov_invoices` (`id`, `invoice_id`, `product_id`, `count`, `price`, `total`) VALUES
-(5, 5, 1, 2, 2500, 5000),
-(6, 5, 3, 1, 2500, 2500),
-(7, 5, 2, 1, 3500, 3500),
-(8, 6, 1, 2, 2500, 5000),
-(9, 6, 2, 3, 3500, 10500),
-(10, 6, 3, 1, 2500, 2500),
-(11, 7, 1, 1, 2500, 2500),
-(12, 7, 2, 2, 3500, 7000),
-(13, 7, 3, 1, 2500, 2500),
-(14, 8, 1, 2, 2500, 5000),
-(15, 8, 2, 3, 3500, 10500),
-(16, 8, 3, 1, 2500, 2500),
-(17, 9, 1, 1, 2500, 2500),
-(18, 9, 2, 1, 3500, 3500),
-(19, 9, 3, 1, 2500, 2500),
-(20, 10, 1, 1, 2500, 2500),
-(21, 10, 2, 1, 3500, 3500),
-(22, 10, 3, 1, 2500, 2500),
-(23, 11, 1, 1, 2500, 2500),
-(24, 11, 2, 1, 3500, 3500),
-(25, 11, 3, 1, 2500, 2500),
-(26, 12, 1, 1, 2500, 2500),
-(27, 12, 2, 1, 3500, 3500),
-(28, 12, 3, 1, 2500, 2500),
-(29, 13, 1, 2, 2500, 5000),
-(30, 13, 2, 1, 3500, 3500),
-(31, 13, 3, 1, 2500, 2500),
-(32, 14, 2, 1, 3500, 3500),
-(33, 14, 3, 2, 2500, 5000),
-(34, 14, 1, 2, 2500, 5000),
-(35, 16, 1, 3, 2500, 7500),
-(36, 16, 2, 5, 3500, 17500),
-(37, 16, 3, 2, 2500, 5000),
-(38, 17, 1, 2, 2500, 5000),
-(39, 17, 2, 3, 3500, 10500),
-(40, 17, 3, 3, 2500, 7500);
 
 -- --------------------------------------------------------
 
@@ -363,13 +226,6 @@ CREATE TABLE `payroll` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `payroll`
---
-
-INSERT INTO `payroll` (`id`, `employe_id`, `bank_account`, `no_account`, `date`, `status`, `created_at`, `updated_at`) VALUES
-(1, 8, 'Bancolombia', '3137030828', '2021-11-29 15:30:00', 1, '2021-11-15 10:05:48', '2021-11-15 11:21:15');
 
 -- --------------------------------------------------------
 
@@ -390,15 +246,6 @@ CREATE TABLE `products` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `products`
---
-
-INSERT INTO `products` (`id`, `provider_id`, `name`, `presentation`, `img`, `price`, `cost`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Loratadina', 'Tabletas', 0x6c6f7261746164696e615f6465366631632e6a7067, 2500, 1000, 1, '2021-11-15 21:03:42', '2021-11-15 23:33:23'),
-(2, 1, 'Loratadina', 'Jarabe', 0x6c6f7261746164696e615f6a61726162655f3337636563612e6a7067, 3500, 2500, 1, '2021-11-15 22:29:53', '2021-11-15 23:33:39'),
-(3, 2, 'Loratadina', 'Jarabe', 0x6c6f7261746164696e615f6a61726162655f61675f3132393731392e6a7067, 2500, 1500, 1, '2021-11-15 23:34:14', '2021-11-15 23:34:14');
-
 -- --------------------------------------------------------
 
 --
@@ -418,15 +265,10 @@ CREATE TABLE `professions` (
 --
 
 INSERT INTO `professions` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'Administrador de empresas', 1, '2021-10-19 00:08:31', '2021-10-19 00:08:31'),
 (3, 'Odontologo', 1, '2021-10-23 18:58:31', '2021-10-23 18:58:31'),
 (4, 'Medico', 1, '2021-10-23 18:58:47', '2021-10-23 18:58:47'),
-(5, 'Enfermera', 1, '2021-10-23 18:59:04', '2021-10-23 18:59:29'),
-(6, 'Enfermero', 1, '2021-10-23 18:59:35', '2021-10-23 18:59:35'),
-(7, 'Jefe de enfermeros', 1, '2021-10-23 18:59:48', '2021-10-23 18:59:52'),
 (8, 'Optometra', 1, '2021-10-23 19:00:02', '2021-10-23 19:00:02'),
-(9, 'Gerente', 1, '2021-10-23 19:00:56', '2021-10-23 19:00:56'),
-(10, 'Secretaria', 1, '2021-10-23 19:01:14', '2021-10-23 19:01:14');
+(9, 'Gerente', 1, '2021-10-23 19:00:56', '2021-10-23 19:00:56');
 
 -- --------------------------------------------------------
 
@@ -446,14 +288,6 @@ CREATE TABLE `providers` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `providers`
---
-
-INSERT INTO `providers` (`id`, `nit`, `name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
-(1, '312456769-4', 'Genfar', 'info@genfar.com.co', 'Cra 55 # 45 - 106', '45045656', 1, '2021-10-24 11:23:21', '2021-10-24 11:52:37'),
-(2, '456987123-8', 'Labanderia la solución', 'info@lasolucion.com', 'Cra 45 # 12 - 41', '5607896', 1, '2021-10-24 11:24:51', '2021-10-24 11:24:51');
-
 -- --------------------------------------------------------
 
 --
@@ -469,29 +303,6 @@ CREATE TABLE `quotes` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `quotes`
---
-
-INSERT INTO `quotes` (`id`, `client_id`, `employe_id`, `date`, `status`, `created_at`, `updated_at`) VALUES
-(3, 5, 8, '2021-11-10 14:00:00', 1, '2021-11-09 23:02:21', '2021-11-09 23:02:21'),
-(4, 5, 8, '2021-11-10 08:00:00', 1, '2021-11-10 00:03:35', '2021-11-10 00:03:35'),
-(5, 5, 8, '2021-11-11 09:20:00', 0, '2021-11-10 22:50:37', '2021-11-10 22:50:37'),
-(6, 5, 8, '2021-11-12 11:00:00', 0, '2021-11-11 23:49:54', '2021-11-11 23:49:54'),
-(7, 5, 8, '2021-11-12 15:00:00', 0, '2021-11-11 23:51:03', '2021-11-11 23:51:03'),
-(8, 5, 8, '2021-11-12 14:40:00', 0, '2021-11-11 23:52:27', '2021-11-11 23:52:27'),
-(9, 5, 8, '2021-11-12 09:20:00', 0, '2021-11-11 23:53:35', '2021-11-11 23:53:35'),
-(10, 5, 8, '2021-11-12 15:20:00', 0, '2021-11-11 23:54:42', '2021-11-11 23:54:42'),
-(11, 5, 8, '2021-11-13 16:00:00', 1, '2021-11-12 00:00:11', '2021-11-12 00:00:11'),
-(12, 5, 8, '2021-11-13 14:00:00', 1, '2021-11-12 21:31:35', '2021-11-12 21:31:35'),
-(13, 5, 8, '2021-11-15 14:40:00', 1, '2021-11-12 21:37:01', '2021-11-12 21:37:01'),
-(14, 5, 8, '2021-11-13 11:00:00', 1, '2021-11-12 21:37:50', '2021-11-12 21:37:50'),
-(15, 5, 8, '2021-11-13 14:40:00', 1, '2021-11-12 21:39:09', '2021-11-12 21:39:09'),
-(16, 5, 8, '2021-11-13 15:40:00', 1, '2021-11-12 22:46:03', '2021-11-12 22:46:03'),
-(17, 5, 8, '2021-11-14 14:40:00', 2, '2021-11-12 22:48:10', '2021-11-12 22:48:10'),
-(18, 5, 8, '2021-11-14 16:20:00', 0, '2021-11-13 10:47:23', '2021-11-13 10:47:23'),
-(19, 5, 8, '2021-11-17 10:00:00', 1, '2021-11-16 20:33:17', '2021-11-16 20:33:17');
 
 -- --------------------------------------------------------
 
@@ -566,11 +377,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `rol_id`, `name`, `last_name`, `email`, `password`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Miguel Angel', 'Cerquera Rodriguez', 'cerquera199627@hotmail.com', '$2y$12$yA2Fjyw0EpMZk5WjB0.bT.Rlybx4uNzh1pnjrycTDpxWldgYmDL8W', 1, '2021-09-22 22:54:26', '2021-10-09 17:49:06'),
-(19, 3, 'Miguel Angel', 'Cerquera Rodriguez', 'mcerquera@programarte.com.co', '$2y$12$DWTfgGgNvz9SDcZiVl3HluNXQEJRpkRRNsK3iCAnutyvoXBze1lUO', 1, '2021-10-23 19:19:41', '2021-11-14 17:31:06'),
-(20, 5, 'Ingrid', 'Blanco', 'miguelangelcerquerarodriguez@gmail.com', '$2y$12$tn.YRHFs.qjRkF0uak1atOSRt5TYBqX5Xi8Pv.IwglulPzlNSfYiq', 1, '2021-10-23 19:37:54', '2021-11-12 21:50:56'),
-(25, 2, 'Evelyn', 'Rodriguez Obando', 'dofustime27@gmail.com', '$2y$12$bVoeWzpBiSJCSRLVevkoH.DvV51d7V16FcmbCtruzCNiz2jfWqGTS', 1, '2021-11-01 20:03:47', '2021-11-01 20:05:43'),
-(27, 6, 'Paterson', 'Sinisterra', 'mipajina50@hotmail.com', '$2y$12$1DmfCtwe5OBRxGUphyG81eCdCdKZbiToH6Gl89iZidh6OqzF6eJDG', 1, '2021-11-19 23:48:18', '2021-11-19 23:53:14');
+(1, 1, 'Miguel Angel', 'Cerquera Rodriguez', 'cerquera199627@hotmail.com', '$2y$12$yA2Fjyw0EpMZk5WjB0.bT.Rlybx4uNzh1pnjrycTDpxWldgYmDL8W', 1, '2021-09-22 22:54:26', '2021-10-09 17:49:06');
 
 -- --------------------------------------------------------
 
@@ -584,13 +391,6 @@ CREATE TABLE `usersxclients` (
   `client_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `usersxclients`
---
-
-INSERT INTO `usersxclients` (`id`, `user_id`, `client_id`) VALUES
-(3, 25, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -602,15 +402,6 @@ CREATE TABLE `usersxemployees` (
   `user_id` int(11) NOT NULL,
   `employe_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `usersxemployees`
---
-
-INSERT INTO `usersxemployees` (`id`, `user_id`, `employe_id`) VALUES
-(8, 19, 7),
-(9, 20, 8),
-(10, 27, 9);
 
 --
 -- Índices para tablas volcadas
@@ -799,12 +590,12 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT de la tabla `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `headquarters`
 --
 ALTER TABLE `headquarters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `inventories`
 --
@@ -864,7 +655,7 @@ ALTER TABLE `types_contracts`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT de la tabla `usersxclients`
 --
@@ -874,7 +665,7 @@ ALTER TABLE `usersxclients`
 -- AUTO_INCREMENT de la tabla `usersxemployees`
 --
 ALTER TABLE `usersxemployees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Restricciones para tablas volcadas
 --

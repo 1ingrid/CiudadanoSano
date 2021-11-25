@@ -16,12 +16,17 @@
         function __construct() {
             $this->email = new PHPMailer(true);
             $this->email->isSMTP();
-            $this->email->Host = 'smtp.gmail.com';
-            $this->email->Port = 587;
-            $this->email->SMTPSecure = 'tls';
+            $this->email->Host = 'mail.marcsoft.com.co';
+            $this->email->Username = 'csrecover@marcsoft.com.co';
+            $this->email->Password = 'IpuyW{nKgRLm';
+            $this->email->SMTPSecure = 'ssl';
+            $this->email->Port = 465;
+            // $this->email->Host = 'smtp.gmail.com';
+            // $this->email->Username = 'csrecover10@gmail.com';
+            // $this->email->Password = 'Csano2021';
+            // $this->email->SMTPSecure = 'tls';
+            // $this->email->Port = 587;
             $this->email->SMTPAuth = true;
-            $this->email->Username = 'csrecover10@gmail.com';
-            $this->email->Password = 'Csano2021';
             $this->email->isHTML(true);
         }
 
@@ -33,7 +38,8 @@
                 $this->email->addAddress($return[0]['email']);
                 $this->email->Subject = 'Recuperar Password.';
                 $token = $this->generarToken($return[0]['id']);
-                $url = 'http://localhost/CiudadanoSano/view/auth/change/index.php?key='.$token;
+                // $url = 'http://localhost/CiudadanoSano/view/auth/change/index.php?key='.$token;
+                $url = 'https://ciudadanosano.marcsoft.com.co/view/auth/change/index.php?key='.$token;
                 $html = file_get_contents('../view/recover.php');
                 $html = str_replace('$url_pass', $url, $html);
                 $html = utf8_decode($html);
