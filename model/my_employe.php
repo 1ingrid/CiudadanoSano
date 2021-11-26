@@ -12,7 +12,7 @@
         }
 
         public function consultarDocument($no_document) {
-            $this->query = 'SELECT * FROM employees WHERE no_document = "'.$no_document.'"';
+            $this->query = 'SELECT * FROM employees WHERE status = 1 AND no_document = "'.$no_document.'"';
             $this->obtener_resultados_query();
             return $this->rows;
         }

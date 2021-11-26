@@ -26,7 +26,7 @@
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarTypesContracts':
-                $listado = $typeContract->listar();
+                $listado = $typeContract->listarxStatus();
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarEmployees':
@@ -36,7 +36,7 @@
                 echo json_encode([ 'data' => array_values($listado) ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarProfessions':
-                $listado = $profession->listar();
+                $listado = $profession->listarxStatus();
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'registro':

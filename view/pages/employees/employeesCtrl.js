@@ -97,7 +97,7 @@ function employeesCtrl() {
           },
           data: form.serialize(),
         }).done(function (response) {
-          if (response == 1) toastr.success("Empleado agregado con exito");
+          if (response == 1) toastr.success("Empleado agregado con éxito");
           else toastr.error("Error al agregar el empleado");
           volver();
           dt.page("last").draw("page");
@@ -158,7 +158,7 @@ function employeesCtrl() {
           data: JSON.stringify(getFormData(form)),
           contentType: "application/json",
         }).done(function (response) {
-          if (response == 1) toastr.success("Empleado actualizado con exito");
+          if (response == 1) toastr.success("Empleado actualizado con éxito");
           else toastr.error("Error al actualizar el empleado");
           volver();
           dt.page("last").draw("page");
@@ -194,7 +194,7 @@ function employeesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Empleado desactivado con exito");
+      if (response == 1) toastr.success("Empleado desactivado con éxito");
       else toastr.error("Error al desactivar el empleado");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -212,7 +212,7 @@ function employeesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Empleado activado con exito");
+      if (response == 1) toastr.success("Empleado activado con éxito");
       else toastr.error("Error al activar el empleado");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -238,7 +238,7 @@ function employeesCtrl() {
       },
       data: form,
     }).done(function (response) {
-      if (response == 200) toastr.success("Usuario medico creado con exito");
+      if (response == 200) toastr.success("Usuario medico creado con éxito");
       else if (response == 400) toastr.error("Error al crear el usuario medico");
       else toastr.error("El usuario ya existe");
       dt.page("last").draw("page");
@@ -265,7 +265,7 @@ function employeesCtrl() {
       },
       data: form,
     }).done(function (response) {
-      if (response == 200) toastr.success("Usuario director de sede creado con exito");
+      if (response == 200) toastr.success("Usuario director de sede creado con éxito");
       else if (response == 400) toastr.error("Error al crear el usuario director de sede");
       else toastr.error("El usuario ya existe");
       dt.page("last").draw("page");
@@ -292,7 +292,7 @@ function employeesCtrl() {
       },
       data: form,
     }).done(function (response) {
-      if (response == 200) toastr.success("Usuario facturación de sede creado con exito");
+      if (response == 200) toastr.success("Usuario facturación creado con éxito");
       else if (response == 400) toastr.error("Error al crear el usuario facturación");
       else toastr.error("El usuario ya existe");
       dt.page("last").draw("page");

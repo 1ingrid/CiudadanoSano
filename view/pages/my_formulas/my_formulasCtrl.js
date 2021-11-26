@@ -51,7 +51,7 @@ function my_formulasCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Formula dada de alta con exito");
+      if (response == 1) toastr.success("Formula dada de alta con éxito");
       else toastr.error("Error al dar de alta a la formula");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

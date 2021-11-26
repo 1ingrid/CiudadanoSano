@@ -13,7 +13,7 @@
 
     $token = !empty($_SERVER['HTTP_TOKEN']) ? $_SERVER['HTTP_TOKEN'] : '';
 
-    if($jwt->verificar($token, 'countries')) {
+    if($jwt->verificar($token, 'clients')) {
         switch ($_SERVER['HTTP_ACCION']) {
 
             case 'listar':
@@ -21,7 +21,7 @@
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarCountries':
-                $listado = $country->listar();
+                $listado = $country->listarxStatus();
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarCities':

@@ -118,7 +118,7 @@ function my_quotesCtrl() {
         },
         data: form.serialize(),
       }).done(function (response) {
-        if (response == 200) toastr.success("Cita agendada con exito");
+        if (response == 200) toastr.success("Cita agendada con éxito");
         else toastr.error("Error al agendar la cita");
         volver();
         dt.page("last").draw("page");
@@ -138,7 +138,7 @@ function my_quotesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Cita cancelada con exito");
+      if (response == 1) toastr.success("Cita cancelada con éxito");
       else toastr.error("Error al cancelar la cita");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

@@ -8,6 +8,12 @@
 			return $this->rows;
 		}
 
+        public function listarxStatus() {
+			$this->query = 'SELECT * FROM types_contracts WHERE status = 1';
+			$this->obtener_resultados_query();
+			return $this->rows;
+		}
+
         public function nuevo($datos) {
             $this->query = '
                 INSERT INTO types_contracts 

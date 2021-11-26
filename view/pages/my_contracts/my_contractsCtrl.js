@@ -90,7 +90,7 @@ function my_contractsCtrl() {
         },
         data: form.serialize(),
       }).done(function (response) {
-        if (response == 1) toastr.success("Contrato agregado con exito");
+        if (response == 1) toastr.success("Contrato agregado con éxito");
         else if (response == 2)
           toastr.info("Empleado ya con un contrato vigente");
         else toastr.error("Error al agregar el contrato");
@@ -140,7 +140,7 @@ function my_contractsCtrl() {
         data: JSON.stringify(getFormData(form)),
         contentType: "application/json",
       }).done(function (response) {
-        if (response == 1) toastr.success("Contrato actualizado con exito");
+        if (response == 1) toastr.success("Contrato actualizado con éxito");
         else toastr.error("Error al actualizar el contrato");
         volver();
         dt.page("last").draw("page");
@@ -160,7 +160,7 @@ function my_contractsCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Contrato desactivado con exito");
+      if (response == 1) toastr.success("Contrato desactivado con éxito");
       else toastr.error("Error al desactivar el contrato");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -178,7 +178,7 @@ function my_contractsCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Contrato activado con exito");
+      if (response == 1) toastr.success("Contrato activado con éxito");
       else toastr.error("Error al activar el contrato");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

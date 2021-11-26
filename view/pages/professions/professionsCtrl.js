@@ -65,7 +65,7 @@ function professionsCtrl() {
         },
         data: form.serialize(),
       }).done(function (response) {
-        if (response == 1) toastr.success("Profesión agregada con exito");
+        if (response == 1) toastr.success("Profesión agregada con éxito");
         else toastr.error("Error al agregar la profesión");
         volver();
         dt.page("last").draw("page");
@@ -101,7 +101,7 @@ function professionsCtrl() {
         data: JSON.stringify(getFormData(form)),
         contentType: "application/json",
       }).done(function (response) {
-        if (response == 1) toastr.success("Profesión actualizada con exito");
+        if (response == 1) toastr.success("Profesión actualizada con éxito");
         else toastr.error("Error al actualizar la profesión");
         volver();
         dt.page("last").draw("page");
@@ -122,7 +122,7 @@ function professionsCtrl() {
       data: { id: data.id },
     }).done(function (response) {
       if (response == 1)
-        toastr.success("Profesión desactivada con exito");
+        toastr.success("Profesión desactivada con éxito");
       else toastr.error("Error al desactivar la profesión");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -140,7 +140,7 @@ function professionsCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Profesión activada con exito");
+      if (response == 1) toastr.success("Profesión activada con éxito");
       else toastr.error("Error al activar la profesión");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

@@ -11,7 +11,7 @@
 
         public function listarxCountry($country_id) {
 			$this->query = 'SELECT cities.id, countries.name as country, country_id, cities.name, cities.status, cities.created_at, cities.updated_at 
-            FROM cities INNER JOIN countries ON countries.id = cities.country_id WHERE country_id = '.$country_id;
+            FROM cities INNER JOIN countries ON countries.id = cities.country_id WHERE cities.status = 1 AND country_id = '.$country_id;
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}

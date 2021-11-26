@@ -14,6 +14,7 @@
                         <thead>
                             <tr>
                                 <th>Acciones</th>
+                                <th>Cod produ</th>
                                 <th>Producto</th>
                                 <th>Entradas</th>
                                 <th>Stock</th>

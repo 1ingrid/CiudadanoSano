@@ -65,7 +65,7 @@ function mepasCtrl() {
         },
         data: form.serialize(),
       }).done(function (response) {
-        if (response == 1) toastr.success("Mepas agregada con exito");
+        if (response == 1) toastr.success("Mepas agregada con éxito");
         else toastr.error("Error al agregar la mepas");
         volver();
         dt.page("last").draw("page");
@@ -101,7 +101,7 @@ function mepasCtrl() {
         data: JSON.stringify(getFormData(form)),
         contentType: "application/json",
       }).done(function (response) {
-        if (response == 1) toastr.success("Mepas actualizada con exito");
+        if (response == 1) toastr.success("Mepas actualizada con éxito");
         else toastr.error("Error al actualizar la mepas");
         volver();
         dt.page("last").draw("page");
@@ -122,7 +122,7 @@ function mepasCtrl() {
       data: { id: data.id },
     }).done(function (response) {
       if (response == 1)
-        toastr.success("Mepas desactivada con exito");
+        toastr.success("Mepas desactivada con éxito");
       else toastr.error("Error al desactivar la mepas");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -140,7 +140,7 @@ function mepasCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Mepas activada con exito");
+      if (response == 1) toastr.success("Mepas activada con éxito");
       else toastr.error("Error al activar la mepas");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

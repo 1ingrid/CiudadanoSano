@@ -8,8 +8,14 @@
 			return $this->rows;
 		}
 
+        public function listarxStatus() {
+			$this->query = 'SELECT * FROM providers WHERE status = 1';
+			$this->obtener_resultados_query();
+			return $this->rows;
+		}
+
         public function consultarNit($nit) {
-            $this->query = 'SELECT * FROM providers WHERE nit = "'.$nit.'"';
+            $this->query = 'SELECT * FROM providers WHERE status = 1 AND nit = "'.$nit.'"';
             $this->obtener_resultados_query();
             return $this->rows;
         }

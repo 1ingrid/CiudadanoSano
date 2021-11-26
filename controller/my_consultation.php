@@ -22,7 +22,7 @@
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarClients':
-                $listado = $client->listar();
+                $listado = $client->listarxStatus();
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'printFormula':

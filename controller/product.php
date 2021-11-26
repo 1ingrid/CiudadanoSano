@@ -18,7 +18,7 @@
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarProviders':
-                $listado = $provider->listar();
+                $listado = $provider->listarxStatus();
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'registro':

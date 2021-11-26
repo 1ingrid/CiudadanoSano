@@ -101,7 +101,7 @@ function productsCtrl() {
           contentType: false,
           processData: false,
         }).done(function (response) {
-          if (response == 1) toastr.success("Producto agregado con exito");
+          if (response == 1) toastr.success("Producto agregado con éxito");
           else toastr.error("Error al agregar el producto");
           volver();
           dt.page("last").draw("page");
@@ -170,7 +170,7 @@ function productsCtrl() {
           contentType: false,
           processData: false,
         }).done(function (response) {
-          if (response == 1) toastr.success("Producto actualizado con exito");
+          if (response == 1) toastr.success("Producto actualizado con éxito");
           else toastr.error("Error al actualizar el producto");
           volver();
           dt.page("last").draw("page");
@@ -191,7 +191,7 @@ function productsCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Producto desactivado con exito");
+      if (response == 1) toastr.success("Producto desactivado con éxito");
       else toastr.error("Error al desactivar el producto");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -209,7 +209,7 @@ function productsCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Producto activado con exito");
+      if (response == 1) toastr.success("Producto activado con éxito");
       else toastr.error("Error al activar el producto");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

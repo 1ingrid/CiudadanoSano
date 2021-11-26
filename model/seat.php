@@ -14,7 +14,7 @@
 			$this->query = 'SELECT headquarters.id, cities.name as city, city_id, countries.name as country, country_id, headquarters.name, 
             headquarters.address, headquarters.cell_phone, headquarters.status, headquarters.created_at, headquarters.updated_at 
             FROM headquarters INNER JOIN cities ON cities.id = headquarters.city_id INNER JOIN countries ON countries.id = cities.country_id 
-            WHERE city_id = '.$city_id;
+            WHERE headquarters.status = 1 AND city_id = '.$city_id;
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}

@@ -71,7 +71,7 @@ function my_consultationsCtrl() {
         },
         data: form.serialize(),
       }).done(function (response) {
-        if (response == 1) toastr.success("Consulta agregada con exito");
+        if (response == 1) toastr.success("Consulta agregada con éxito");
         else toastr.error("Error al agregar la consulta");
         volver();
         dt.page("last").draw("page");
@@ -115,7 +115,7 @@ function my_consultationsCtrl() {
         data: JSON.stringify(getFormData(form)),
         contentType: "application/json",
       }).done(function (response) {
-        if (response == 1) toastr.success("Consulta actualizada con exito");
+        if (response == 1) toastr.success("Consulta actualizada con éxito");
         else toastr.error("Error al actualizar la consulta");
         volver();
         dt.page("last").draw("page");

@@ -82,7 +82,7 @@ function providersCtrl() {
           },
           data: form.serialize(),
         }).done(function (response) {
-          if (response == 1) toastr.success("Proveedor agregado con exito");
+          if (response == 1) toastr.success("Proveedor agregado con éxito");
           else toastr.error("Error al agregar el proveedor");
           volver();
           dt.page("last").draw("page");
@@ -134,7 +134,7 @@ function providersCtrl() {
           data: JSON.stringify(getFormData(form)),
           contentType: "application/json",
         }).done(function (response) {
-          if (response == 1) toastr.success("Proveedor actualizado con exito");
+          if (response == 1) toastr.success("Proveedor actualizado con éxito");
           else toastr.error("Error al actualizar el proveedor");
           volver();
           dt.page("last").draw("page");
@@ -170,7 +170,7 @@ function providersCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Proveedor desactivado con exito");
+      if (response == 1) toastr.success("Proveedor desactivado con éxito");
       else toastr.error("Error al desactivar el proveedor");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -188,7 +188,7 @@ function providersCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Proveedor activado con exito");
+      if (response == 1) toastr.success("Proveedor activado con éxito");
       else toastr.error("Error al activar el proveedor");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

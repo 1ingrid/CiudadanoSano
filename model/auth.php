@@ -8,7 +8,7 @@
 
         public function login($datos) {
             $this->query = 'SELECT users.id, password, users.status, permits, users.name
-            FROM users INNER JOIN roles ON roles.id = users.rol_id WHERE email = "'.$datos['email'].'"';
+            FROM users INNER JOIN roles ON roles.id = users.rol_id WHERE users.status = 1 AND email = "'.$datos['email'].'"';
 			$this->obtener_resultados_query();
 			$result = $this->rows;
             if(!empty($result) && password_verify($datos['password'], $result[0]['password'])) {

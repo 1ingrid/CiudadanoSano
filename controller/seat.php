@@ -19,7 +19,7 @@
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarCountries':
-                $listado = $country->listar();
+                $listado = $country->listarxStatus();
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarCities':

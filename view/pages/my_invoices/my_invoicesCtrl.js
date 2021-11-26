@@ -70,7 +70,7 @@ function my_invoicesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Factura anulada con exito");
+      if (response == 1) toastr.success("Factura anulada con éxito");
       else toastr.error("Error al anular la factura");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

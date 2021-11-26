@@ -87,7 +87,7 @@ function clientsCtrl() {
           },
           data: form.serialize(),
         }).done(function (response) {
-          if (response == 200) toastr.success("Cliente agregado con exito");
+          if (response == 200) toastr.success("Cliente agregado con éxito");
           else toastr.error("Error al agregar el cliente");
           volver();
           dt.page("last").draw("page");
@@ -143,7 +143,7 @@ function clientsCtrl() {
           data: JSON.stringify(getFormData(form)),
           contentType: "application/json",
         }).done(function (response) {
-          if (response == 1) toastr.success("Cliente actualizado con exito");
+          if (response == 1) toastr.success("Cliente actualizado con éxito");
           else toastr.error("Error al actualizar el cliente");
           volver();
           dt.page("last").draw("page");
@@ -179,7 +179,7 @@ function clientsCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Cliente desactivado con exito");
+      if (response == 1) toastr.success("Cliente desactivado con éxito");
       else toastr.error("Error al desactivar el cliente");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -197,7 +197,7 @@ function clientsCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Cliente activado con exito");
+      if (response == 1) toastr.success("Cliente activado con éxito");
       else toastr.error("Error al activar el cliente");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

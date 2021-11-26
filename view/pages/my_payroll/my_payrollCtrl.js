@@ -81,7 +81,7 @@ function my_payrollCtrl() {
         },
         data: form.serialize(),
       }).done(function (response) {
-        if (response == 1) toastr.success("Nomina agregada con exito");
+        if (response == 1) toastr.success("Nomina agregada con éxito");
         else toastr.error("Error al agregar la nomina");
         volver();
         dt.page("last").draw("page");
@@ -125,7 +125,7 @@ function my_payrollCtrl() {
         data: JSON.stringify(getFormData(form)),
         contentType: "application/json",
       }).done(function (response) {
-        if (response == 1) toastr.success("Nomina actualizada con exito");
+        if (response == 1) toastr.success("Nomina actualizada con éxito");
         else toastr.error("Error al actualizar la nomina");
         volver();
         dt.page("last").draw("page");
@@ -145,7 +145,7 @@ function my_payrollCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Nomina desactivada con exito");
+      if (response == 1) toastr.success("Nomina desactivada con éxito");
       else toastr.error("Error al desactivar la nomina");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -163,7 +163,7 @@ function my_payrollCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Nomina activada con exito");
+      if (response == 1) toastr.success("Nomina activada con éxito");
       else toastr.error("Error al activar la nomina");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

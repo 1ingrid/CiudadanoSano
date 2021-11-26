@@ -69,7 +69,7 @@ function headquartersCtrl() {
         },
         data: form.serialize(),
       }).done(function (response) {
-        if (response == 1) toastr.success("Sede agregada con exito");
+        if (response == 1) toastr.success("Sede agregada con éxito");
         else toastr.error("Error al agregar la sede");
         volver();
         dt.page("last").draw("page");
@@ -107,7 +107,7 @@ function headquartersCtrl() {
         data: JSON.stringify(getFormData(form)),
         contentType: "application/json",
       }).done(function (response) {
-        if (response == 1) toastr.success("Sede actualizada con exito");
+        if (response == 1) toastr.success("Sede actualizada con éxito");
         else toastr.error("Error al actualizar la sede");
         volver();
         dt.page("last").draw("page");
@@ -127,7 +127,7 @@ function headquartersCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Sede desactivada con exito");
+      if (response == 1) toastr.success("Sede desactivada con éxito");
       else toastr.error("Error al desactivar la sede");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -145,7 +145,7 @@ function headquartersCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Sede activado con exito");
+      if (response == 1) toastr.success("Sede activada con éxito");
       else toastr.error("Error al activar la sede");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

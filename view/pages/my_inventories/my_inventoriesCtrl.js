@@ -17,6 +17,7 @@ function my_inventoriesCtrl() {
             : '<button class="btn btn-info btn-xs mr-1 activar" title="Activar inventario"><i class="fas fa-redo-alt"></i></button>';
         },
       },
+      { data: "product_id" },
       { data: "product" },
       { data: "entries" },
       { data: "stock" },
@@ -65,7 +66,7 @@ function my_inventoriesCtrl() {
         },
         data: form.serialize(),
       }).done(function (response) {
-        if (response == 1) toastr.success("Inventario agregado con exito");
+        if (response == 1) toastr.success("Inventario agregado con éxito");
         else toastr.error("Error al agregar el inventario");
         volver();
         dt.page("last").draw("page");
@@ -85,7 +86,7 @@ function my_inventoriesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Inventario desactivado con exito");
+      if (response == 1) toastr.success("Inventario desactivado con éxito");
       else toastr.error("Error al desactivar el inventario");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -103,7 +104,7 @@ function my_inventoriesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Inventario activado con exito");
+      if (response == 1) toastr.success("Inventario activado con éxito");
       else toastr.error("Error al activar el inventario");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

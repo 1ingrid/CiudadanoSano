@@ -10,13 +10,14 @@
 		}
 
         public function consultarEmail($email) {
-            $this->query = 'SELECT * FROM users WHERE email = "'.$email.'"';
+            $this->query = 'SELECT * FROM users WHERE status = 1 AND email = "'.$email.'"';
             $this->obtener_resultados_query();
             return $this->rows;
         }
 
         public function consultar($id) {
-            $this->query = 'SELECT users.id, permits, users.name, last_name, email FROM users INNER JOIN roles ON roles.id = users.rol_id WHERE users.id = "'.$id.'"';
+            $this->query = 'SELECT users.id, permits, users.name, last_name, email FROM users INNER JOIN roles ON roles.id = users.rol_id 
+            WHERE users.status = 1 AND users.id = "'.$id.'"';
             $this->obtener_resultados_query();
             return $this->rows;
         }

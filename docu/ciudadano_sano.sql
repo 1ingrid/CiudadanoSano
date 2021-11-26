@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-11-2021 a las 06:05:00
+-- Tiempo de generación: 26-11-2021 a las 09:13:51
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -35,6 +35,14 @@ CREATE TABLE `cities` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `cities`
+--
+
+INSERT INTO `cities` (`id`, `country_id`, `name`, `status`, `updated_at`, `created_at`) VALUES
+(1, 1, 'Cali', 1, '2021-11-26 00:58:12', '2021-11-26 00:58:12'),
+(2, 1, 'Bogota', 1, '2021-11-26 01:01:18', '2021-11-26 01:00:23');
+
 -- --------------------------------------------------------
 
 --
@@ -54,6 +62,13 @@ CREATE TABLE `clients` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `clients`
+--
+
+INSERT INTO `clients` (`id`, `city_id`, `no_document`, `name`, `last_name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, '31862723', 'Yovany', 'Romo', 'pacics@marcsoft.com.co', 'Av 4n # 10 - 89', '3114569878', 1, '2021-11-26 01:45:27', '2021-11-26 01:45:27');
 
 -- --------------------------------------------------------
 
@@ -75,6 +90,13 @@ CREATE TABLE `consultations` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `consultations`
+--
+
+INSERT INTO `consultations` (`id`, `client_id`, `employe_id`, `reason`, `detail`, `formula`, `formula_status`, `formula_date`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, 'Dolor de cabeza', 'El paciente ingresa con un fuerte dolor de cabeza que le impide la ejecución de sus tareas diarias de forma efectiva', '1 tableta de dolex cada 6 horas por 2 meses\r\n1 tableta de ibuprofeno cada 8 horas por 2 meses', 0, '2021-12-26 03:01:04', 1, '2021-11-26 03:01:04', '2021-11-26 03:01:04');
+
 -- --------------------------------------------------------
 
 --
@@ -95,6 +117,15 @@ CREATE TABLE `contracts` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `contracts`
+--
+
+INSERT INTO `contracts` (`id`, `type_contract_id`, `employe_id`, `profession_id`, `date_init`, `date_end`, `duration`, `salary`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 9, '2021-11-26', '0000-00-00', '', 6000000, 1, '2021-11-26 01:35:00', '2021-11-26 01:35:00'),
+(2, 2, 2, 4, '2021-11-26', '2022-01-26', '2 Meses', 3000000, 1, '2021-11-26 02:31:36', '2021-11-26 02:31:36'),
+(3, 1, 4, 11, '2021-11-26', '0000-00-00', '', 1500000, 1, '2021-11-26 03:06:28', '2021-11-26 03:06:28');
+
 -- --------------------------------------------------------
 
 --
@@ -108,6 +139,14 @@ CREATE TABLE `countries` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `countries`
+--
+
+INSERT INTO `countries` (`id`, `name`, `status`, `updated_at`, `created_at`) VALUES
+(1, 'Colombia', 1, '2021-11-26 00:57:55', '2021-11-26 00:57:55'),
+(2, 'Estados Unidos', 0, '2021-11-26 00:59:35', '2021-11-26 00:59:35');
 
 -- --------------------------------------------------------
 
@@ -129,6 +168,16 @@ CREATE TABLE `employees` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `employees`
+--
+
+INSERT INTO `employees` (`id`, `seat_id`, `no_document`, `name`, `last_name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, '31123456', 'Paterson', 'Sinisterra', 'directcs@marcsoft.com.co', 'Av 6n # 10 - 45', '3114563212', 1, '2021-11-26 01:18:43', '2021-11-26 01:18:43'),
+(2, 1, '31456987', 'Jesus Antonio', 'Torres', 'mediccs@marcsoft.com.co', 'Cra 10 # 45 - 78', '3104569878', 1, '2021-11-26 02:29:13', '2021-11-26 02:29:13'),
+(3, 1, '31258963', 'Pedro Andres', 'Cortes Ruiz', 'noexiste@hotmail.com', 'Av 10n # 10 - 45', '3147894565', 0, '2021-11-26 02:30:42', '2021-11-26 02:30:42'),
+(4, 1, '31203265', 'Manuel Andres', 'Blanco', 'farmcs@marcsoft.com.co', 'Cra 45a # 12 - 45', '3157896545', 1, '2021-11-26 03:04:45', '2021-11-26 03:04:45');
+
 -- --------------------------------------------------------
 
 --
@@ -145,6 +194,14 @@ CREATE TABLE `headquarters` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `headquarters`
+--
+
+INSERT INTO `headquarters` (`id`, `city_id`, `name`, `address`, `cell_phone`, `status`, `updated_at`, `created_at`) VALUES
+(1, 1, 'Red Norte Alfonso Lopez', 'Av 5n # 10 - 85', '6604589', 1, '2021-11-26 01:05:44', '2021-11-26 01:05:44'),
+(2, 1, 'Sede Sur Caney', 'Cra 45 # 10 - 101', '5564578', 0, '2021-11-26 01:12:41', '2021-11-26 01:12:41');
 
 -- --------------------------------------------------------
 
@@ -163,6 +220,19 @@ CREATE TABLE `inventories` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `inventories`
+--
+
+INSERT INTO `inventories` (`id`, `product_id`, `seat_id`, `entries`, `stock`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 50, 50, 1, '2021-11-26 02:36:58', '2021-11-26 02:36:58'),
+(2, 2, 1, 40, 40, 1, '2021-11-26 02:37:05', '2021-11-26 02:37:05'),
+(3, 3, 1, 10, 10, 1, '2021-11-26 02:37:12', '2021-11-26 02:37:12'),
+(4, 2, 1, 10, 10, 1, '2021-11-26 02:37:19', '2021-11-26 02:37:19'),
+(5, 4, 1, 30, 28, 1, '2021-11-26 02:37:41', '2021-11-26 03:09:24'),
+(6, 5, 1, 25, 22, 1, '2021-11-26 02:37:59', '2021-11-26 03:09:24'),
+(7, 6, 1, 15, 15, 1, '2021-11-26 02:38:06', '2021-11-26 02:38:06');
+
 -- --------------------------------------------------------
 
 --
@@ -180,6 +250,13 @@ CREATE TABLE `invoices` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `invoices`
+--
+
+INSERT INTO `invoices` (`id`, `client_id`, `employe_id`, `iva`, `total`, `neto`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 4, 13110, 69000, 82110, 0, '2021-11-26 03:09:24', '2021-11-26 03:09:24');
 
 -- --------------------------------------------------------
 
@@ -210,6 +287,14 @@ CREATE TABLE `mov_invoices` (
   `total` smallint(6) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `mov_invoices`
+--
+
+INSERT INTO `mov_invoices` (`id`, `invoice_id`, `product_id`, `count`, `price`, `total`) VALUES
+(1, 1, 4, 2, 12000, 24000),
+(2, 1, 5, 3, 15000, 32767);
+
 -- --------------------------------------------------------
 
 --
@@ -226,6 +311,13 @@ CREATE TABLE `payroll` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `payroll`
+--
+
+INSERT INTO `payroll` (`id`, `employe_id`, `bank_account`, `no_account`, `date`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Bancolombia', '050789651', '2021-12-27 15:00:00', 1, '2021-11-26 02:34:12', '2021-11-26 02:34:12');
 
 -- --------------------------------------------------------
 
@@ -245,6 +337,18 @@ CREATE TABLE `products` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `products`
+--
+
+INSERT INTO `products` (`id`, `provider_id`, `name`, `presentation`, `img`, `price`, `cost`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Inhalador sabutamol', 'Aerosol', 0x696e68616c61646f725f7361627574616d6f6c5f6d6b5f3262666135632e6a7067, 20000, 7000, 1, '2021-11-26 02:07:01', '2021-11-26 02:07:01'),
+(2, 1, 'Bromhexina niños', 'Jarabe', 0x62726f6d686578696e615f6a61726162655f6d6b5f3736663164612e6a7067, 25000, 10000, 1, '2021-11-26 02:09:39', '2021-11-26 02:09:39'),
+(3, 2, 'Inhalador sabutamol', 'Aerosol', 0x696e68616c61646f725f73616c627574616d6f6c5f73616372757379745f6233333265332e6a7067, 12000, 5000, 1, '2021-11-26 02:11:07', '2021-11-26 02:11:07'),
+(4, 3, 'Dolex acetaminofen', 'Tabletas', 0x646f6c65785f61636574616d696e6f66656e5f676b735f6330643633662e6a7067, 12000, 6000, 1, '2021-11-26 02:13:07', '2021-11-26 02:13:07'),
+(5, 4, 'Ibuprofeno', 'Tabletas', 0x69627570726f66656e6f5f67656e6661725f6139653837312e6a7067, 15000, 8000, 1, '2021-11-26 02:14:04', '2021-11-26 02:14:04'),
+(6, 4, 'Acetaminofen', 'Tabletas', 0x61636574616d696e6f66656e5f67656e6661725f3563613661632e6a7067, 9000, 4000, 1, '2021-11-26 02:15:02', '2021-11-26 02:15:02');
 
 -- --------------------------------------------------------
 
@@ -268,7 +372,9 @@ INSERT INTO `professions` (`id`, `name`, `status`, `created_at`, `updated_at`) V
 (3, 'Odontologo', 1, '2021-10-23 18:58:31', '2021-10-23 18:58:31'),
 (4, 'Medico', 1, '2021-10-23 18:58:47', '2021-10-23 18:58:47'),
 (8, 'Optometra', 1, '2021-10-23 19:00:02', '2021-10-23 19:00:02'),
-(9, 'Gerente', 1, '2021-10-23 19:00:56', '2021-10-23 19:00:56');
+(9, 'Gerente', 1, '2021-10-23 19:00:56', '2021-10-23 19:00:56'),
+(10, 'Administrador de empresas', 0, '2021-11-26 01:34:02', '2021-11-26 01:34:02'),
+(11, 'Farmaceuta', 1, '2021-11-26 03:05:27', '2021-11-26 03:05:27');
 
 -- --------------------------------------------------------
 
@@ -288,6 +394,16 @@ CREATE TABLE `providers` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `providers`
+--
+
+INSERT INTO `providers` (`id`, `nit`, `name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
+(1, '100789654-2', 'Mk', 'info@mk.com.co', 'Cra 10a # 10 - 12', '6654783', 1, '2021-11-26 01:49:18', '2021-11-26 01:49:18'),
+(2, '145789654-9', 'BCNMedical', 'info@bcnmedical.com', 'Av 9n # 10 - 45', '4569878', 1, '2021-11-26 02:00:02', '2021-11-26 02:00:02'),
+(3, '123654878-1', 'GSK', 'info@gsk.com.co', 'Calle 5n # 10 - 78', '3364569', 1, '2021-11-26 02:01:18', '2021-11-26 02:01:24'),
+(4, '147852361-6', 'Genfar', 'info@genfar.com.co', 'Av 10 # 15 - 78', '6547896', 1, '2021-11-26 02:02:30', '2021-11-26 02:02:37');
+
 -- --------------------------------------------------------
 
 --
@@ -303,6 +419,13 @@ CREATE TABLE `quotes` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `quotes`
+--
+
+INSERT INTO `quotes` (`id`, `client_id`, `employe_id`, `date`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, '2021-11-27 10:00:00', 0, '2021-11-26 02:49:33', '2021-11-26 02:49:33');
 
 -- --------------------------------------------------------
 
@@ -330,7 +453,8 @@ INSERT INTO `roles` (`id`, `name`, `description`, `permits`, `status`, `created_
 (3, 'Director de sedes', 'Rol asignado al director para la gestión de sedes', ',my_contracts,my_employees,my_payroll,my_inventories,my_invoices', 1, '2021-09-19 17:55:33', '2021-09-21 00:17:27'),
 (4, 'Asesor de afiliación', 'Rol asignado al asesor de afiliación para la gestión de pacientes', ',clients', 1, '2021-09-19 19:36:52', '2021-09-21 00:18:25'),
 (5, 'Medico', 'Rol utilizado para los médicos', ',my_consultations,my_assignments', 1, '2021-09-20 20:41:34', '2021-10-16 10:01:36'),
-(6, 'Farmacia', 'Rol encargado del despacho de productos a los pacientes', ',billing,my_formulas', 1, '2021-11-17 22:16:34', '2021-11-17 22:16:34');
+(6, 'Farmacia', 'Rol encargado del despacho de productos a los pacientes', ',billing,my_formulas', 1, '2021-11-17 22:16:34', '2021-11-17 22:16:34'),
+(7, 'Afiliador de pacientes', 'Rol encargado del ingreso de pacientes al sistema', ',clients', 1, '2021-11-26 01:36:41', '2021-11-26 01:36:41');
 
 -- --------------------------------------------------------
 
@@ -352,7 +476,8 @@ CREATE TABLE `types_contracts` (
 
 INSERT INTO `types_contracts` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Indefinido', 1, '2021-10-08 21:54:26', '2021-10-08 22:01:02'),
-(2, 'Temporal', 1, '2021-10-08 21:55:03', '2021-10-08 21:55:03');
+(2, 'Temporal', 1, '2021-10-08 21:55:03', '2021-10-08 21:55:03'),
+(3, 'Obra por labor', 0, '2021-11-26 01:31:07', '2021-11-26 01:31:07');
 
 -- --------------------------------------------------------
 
@@ -377,7 +502,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `rol_id`, `name`, `last_name`, `email`, `password`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Miguel Angel', 'Cerquera Rodriguez', 'cerquera199627@hotmail.com', '$2y$12$yA2Fjyw0EpMZk5WjB0.bT.Rlybx4uNzh1pnjrycTDpxWldgYmDL8W', 1, '2021-09-22 22:54:26', '2021-10-09 17:49:06');
+(2, 1, 'Ingrid', 'Blanco', 'admincs@marcsoft.com.co', '$2y$12$EP7CK./xpLIrrkNsOpcLJ.na29MADcclxfl4tMp6QSXYFJ0EyXA3S', 1, '2021-11-26 00:54:25', '2021-11-26 00:54:25'),
+(3, 3, 'Paterson', 'Sinisterra', 'directcs@marcsoft.com.co', '$2y$12$JVnzfV4LCC6Gjtcnd/M7f.3.KY3g/UnBuUXXVlN961kUU45yElTFu', 1, '2021-11-26 01:25:53', '2021-11-26 01:25:53'),
+(4, 7, 'Andres', 'Guevara', 'afilics@marcsoft.com.co', '$2y$12$oMiUBbJvnkKOXEPgcR3H4um4GsITRspq3tv3kSNBmvV7k15KPcLDe', 1, '2021-11-26 01:39:58', '2021-11-26 01:39:58'),
+(5, 2, 'Yovany', 'Romo', 'pacics@marcsoft.com.co', '$2y$12$bQGQqInNgk78WbOQlA.q8es5WOi.UEgNuS1KabXThmbrBfgEQKR2q', 1, '2021-11-26 01:45:27', '2021-11-26 01:45:27'),
+(6, 5, 'Jesus Antonio', 'Torres', 'mediccs@marcsoft.com.co', '$2y$12$OOsVkXvfsbLPaSBxwVc7YelUOcu9QvO1MmZ/MNN6yhFvBBgv2EoKa', 1, '2021-11-26 02:29:41', '2021-11-26 02:29:41'),
+(7, 6, 'Manuel Andres', 'Blanco', 'farmcs@marcsoft.com.co', '$2y$12$/XmJ0vQYOptVBmZ4aGZTwuJxSDh4vhlZzui5oYQ1fpcEdz8JC.wmO', 1, '2021-11-26 03:06:51', '2021-11-26 03:06:51');
 
 -- --------------------------------------------------------
 
@@ -391,6 +521,13 @@ CREATE TABLE `usersxclients` (
   `client_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `usersxclients`
+--
+
+INSERT INTO `usersxclients` (`id`, `user_id`, `client_id`) VALUES
+(1, 5, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -402,6 +539,15 @@ CREATE TABLE `usersxemployees` (
   `user_id` int(11) NOT NULL,
   `employe_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usersxemployees`
+--
+
+INSERT INTO `usersxemployees` (`id`, `user_id`, `employe_id`) VALUES
+(1, 3, 1),
+(2, 6, 2),
+(3, 7, 4);
 
 --
 -- Índices para tablas volcadas
@@ -570,7 +716,7 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT de la tabla `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `consultations`
 --
@@ -580,42 +726,42 @@ ALTER TABLE `consultations`
 -- AUTO_INCREMENT de la tabla `contracts`
 --
 ALTER TABLE `contracts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `headquarters`
 --
 ALTER TABLE `headquarters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `inventories`
 --
 ALTER TABLE `inventories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `mepas`
 --
 ALTER TABLE `mepas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `mov_invoices`
 --
 ALTER TABLE `mov_invoices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `payroll`
 --
@@ -625,47 +771,47 @@ ALTER TABLE `payroll`
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `professions`
 --
 ALTER TABLE `professions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `providers`
 --
 ALTER TABLE `providers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `quotes`
 --
 ALTER TABLE `quotes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `types_contracts`
 --
 ALTER TABLE `types_contracts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `usersxclients`
 --
 ALTER TABLE `usersxclients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `usersxemployees`
 --
 ALTER TABLE `usersxemployees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Restricciones para tablas volcadas
 --

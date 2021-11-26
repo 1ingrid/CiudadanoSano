@@ -9,6 +9,14 @@
 			return $this->rows;
         }
 
+        public function listarxStatus() {
+            $this->query = 'SELECT products.id, provider_id, providers.name as provider, products.name, presentation, price, cost, img, 
+            products.status, products.created_at, products.updated_at FROM products INNER JOIN providers ON providers.id = products.provider_id 
+            WHERE products.status = 1';
+			$this->obtener_resultados_query();
+			return $this->rows;
+        }
+
         public function nuevo($datos) {
             $prefijo = substr(md5(uniqid(rand())), 0,6);
             $info_archivo = explode(".",$_FILES['img']['name']);

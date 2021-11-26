@@ -66,7 +66,7 @@ function types_contractsCtrl() {
         data: form.serialize(),
       }).done(function (response) {
         if (response == 1)
-          toastr.success("Tipo de contrato agregado con exito");
+          toastr.success("Tipo de contrato agregado con éxito");
         else toastr.error("Error al agregar el tipo de contrato");
         volver();
         dt.page("last").draw("page");
@@ -103,7 +103,7 @@ function types_contractsCtrl() {
         contentType: "application/json",
       }).done(function (response) {
         if (response == 1)
-          toastr.success("Tipo de contrato actualizado con exito");
+          toastr.success("Tipo de contrato actualizado con éxito");
         else toastr.error("Error al actualizar el tipo de contrato");
         volver();
         dt.page("last").draw("page");
@@ -124,7 +124,7 @@ function types_contractsCtrl() {
       data: { id: data.id },
     }).done(function (response) {
       if (response == 1)
-        toastr.success("Tipo de contrato desactivado con exito");
+        toastr.success("Tipo de contrato desactivado con éxito");
       else toastr.error("Error al desactivar el tipo de contrato");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -142,7 +142,7 @@ function types_contractsCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Tipo de contrato activado con exito");
+      if (response == 1) toastr.success("Tipo de contrato activado con éxito");
       else toastr.error("Error al activar el tipo de contrato");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

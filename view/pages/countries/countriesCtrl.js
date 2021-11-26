@@ -65,7 +65,7 @@ function countriesCtrl() {
         },
         data: form.serialize(),
       }).done(function (response) {
-        if (response == 1) toastr.success("Pais agregado con exito");
+        if (response == 1) toastr.success("Pais agregado con éxito");
         else toastr.error("Error al agregar el pais");
         volver();
         dt.page("last").draw("page");
@@ -101,7 +101,7 @@ function countriesCtrl() {
         data: JSON.stringify(getFormData(form)),
         contentType: "application/json",
       }).done(function (response) {
-        if (response == 1) toastr.success("Pais actualizado con exito");
+        if (response == 1) toastr.success("Pais actualizado con éxito");
         else toastr.error("Error al actualizar el pais");
         volver();
         dt.page("last").draw("page");
@@ -121,7 +121,7 @@ function countriesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Pais desactivado con exito");
+      if (response == 1) toastr.success("Pais desactivado con éxito");
       else toastr.error("Error al desactivar el pais");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -139,7 +139,7 @@ function countriesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Pais activado con exito");
+      if (response == 1) toastr.success("Pais activado con éxito");
       else toastr.error("Error al activar el pais");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

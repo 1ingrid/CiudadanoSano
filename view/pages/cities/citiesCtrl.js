@@ -67,7 +67,7 @@ function citiesCtrl() {
         },
         data: form.serialize(),
       }).done(function (response) {
-        if (response == 1) toastr.success("Ciudad agregada con exito");
+        if (response == 1) toastr.success("Ciudad agregada con éxito");
         else toastr.error("Error al agregar la ciudad");
         volver();
         dt.page("last").draw("page");
@@ -104,7 +104,7 @@ function citiesCtrl() {
         data: JSON.stringify(getFormData(form)),
         contentType: "application/json",
       }).done(function (response) {
-        if (response == 1) toastr.success("Ciudad actualizada con exito");
+        if (response == 1) toastr.success("Ciudad actualizada con éxito");
         else toastr.error("Error al actualizar la ciudad");
         volver();
         dt.page("last").draw("page");
@@ -124,7 +124,7 @@ function citiesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Ciudad desactivada con exito");
+      if (response == 1) toastr.success("Ciudad desactivada con éxito");
       else toastr.error("Error al desactivar la ciudad");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -142,7 +142,7 @@ function citiesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Ciudad activado con exito");
+      if (response == 1) toastr.success("Ciudad activado con éxito");
       else toastr.error("Error al activar la ciudad");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

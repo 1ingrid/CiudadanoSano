@@ -27,11 +27,11 @@
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarTypesContracts':
-                $listado = $typeContract->listar();
+                $listado = $typeContract->listarxStatus();
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarCountries':
-                $listado = $country->listar();
+                $listado = $country->listarxStatus();
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarCities':
@@ -47,7 +47,7 @@
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarProfessions':
-                $listado = $profession->listar();
+                $listado = $profession->listarxStatus();
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'registro':

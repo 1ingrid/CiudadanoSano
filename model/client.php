@@ -10,8 +10,17 @@
 			return $this->rows;
 		}
 
+        public function listarxStatus() {
+			$this->query = 'SELECT clients.id, no_document, clients.name, last_name, email, address, cell_phone, clients.status, clients.created_at, 
+            clients.updated_at, city_id, country_id, cities.name as city, countries.name as country 
+            FROM clients INNER JOIN cities ON cities.id = clients.city_id INNER JOIN countries ON countries.id = cities.country_id 
+            WHERE clients.status = 1';
+			$this->obtener_resultados_query();
+			return $this->rows;
+		}
+
         public function consultarDocument($no_document) {
-            $this->query = 'SELECT * FROM clients WHERE no_document = "'.$no_document.'"';
+            $this->query = 'SELECT * FROM clients WHERE status = 1 AND no_document = "'.$no_document.'"';
             $this->obtener_resultados_query();
             return $this->rows;
         }

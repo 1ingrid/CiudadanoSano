@@ -22,7 +22,7 @@
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarProducts':
-                $listado = $product->listar();
+                $listado = $product->listarxStatus();
                 echo json_encode([ 'data' => array_values($listado) ], JSON_UNESCAPED_UNICODE);
             break;
             case 'registro':

@@ -20,7 +20,8 @@ function my_employeesCtrl() {
               : '<button class="btn btn-info btn-xs mr-1 activar" title="Activar empleado"><i class="fas fa-redo-alt"></i></button>') +
             '<button class="btn btn-success btn-xs mr-1 editar" title="Editar empleado"><i class="far fa-edit"></i></button>' +
             (!row.user
-              ? '<button class="btn btn-info btn-xs mr-1 createUserDoctor" title="Crear usuario medico"><i class="fas fa-user-md"></i></button>'
+              ? '<button class="btn btn-info btn-xs mr-1 createUserDoctor" title="Crear usuario medico"><i class="fas fa-user-md"></i></button>' +
+                '<button class="btn btn-warning btn-xs mr-1 createUserFactura" title="Crear usuario de facturación"><i class="fas fa-user-tie"></i></button>'
               : "")
           );
         },
@@ -88,7 +89,7 @@ function my_employeesCtrl() {
           },
           data: form.serialize(),
         }).done(function (response) {
-          if (response == 1) toastr.success("Empleado agregado con exito");
+          if (response == 1) toastr.success("Empleado agregado con éxito");
           else toastr.error("Error al agregar el empleado");
           volver();
           dt.page("last").draw("page");
@@ -143,7 +144,7 @@ function my_employeesCtrl() {
           data: JSON.stringify(getFormData(form)),
           contentType: "application/json",
         }).done(function (response) {
-          if (response == 1) toastr.success("Empleado actualizado con exito");
+          if (response == 1) toastr.success("Empleado actualizado con éxito");
           else toastr.error("Error al actualizar el empleado");
           volver();
           dt.page("last").draw("page");
@@ -179,7 +180,7 @@ function my_employeesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Empleado desactivado con exito");
+      if (response == 1) toastr.success("Empleado desactivado con éxito");
       else toastr.error("Error al desactivar el empleado");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -197,7 +198,7 @@ function my_employeesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Empleado activado con exito");
+      if (response == 1) toastr.success("Empleado activado con éxito");
       else toastr.error("Error al activar el empleado");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -212,7 +213,7 @@ function my_employeesCtrl() {
       name: data.name,
       last_name: data.last_name,
       email: data.email,
-      password: new Date().getTime()
+      password: new Date().getTime(),
     };
     $.ajax({
       url: BASE_URL + "my_employe.php",
@@ -223,8 +224,38 @@ function my_employeesCtrl() {
       },
       data: form,
     }).done(function (response) {
-      if (response == 200) toastr.success("Usuario medico creado con exito");
-      else if (response == 400) toastr.error("Error al crear el usuario medico");
+      if (response == 200) toastr.success("Usuario medico creado con éxito");
+      else if (response == 400)
+        toastr.error("Error al crear el usuario medico");
+      else toastr.error("El usuario ya existe");
+      dt.page("last").draw("page");
+      dt.ajax.reload(null, false);
+    });
+  });
+
+  $("#listado").on("click", ".createUserFactura", function () {
+    var data = dt.row($(this).parents("tr")).data();
+    const form = {
+      id: data.id,
+      rol_id: 6,
+      name: data.name,
+      last_name: data.last_name,
+      email: data.email,
+      password: new Date().getTime(),
+    };
+    $.ajax({
+      url: BASE_URL + "my_employe.php",
+      type: "POST",
+      headers: {
+        accion: "registroUser",
+        token: createToken(getToken()),
+      },
+      data: form,
+    }).done(function (response) {
+      if (response == 200)
+        toastr.success("Usuario facturación creado con éxito");
+      else if (response == 400)
+        toastr.error("Error al crear el usuario facturación");
       else toastr.error("El usuario ya existe");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

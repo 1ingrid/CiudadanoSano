@@ -15,7 +15,7 @@ function my_assignmentsCtrl() {
           return data == 1
             ? '<select class="form-control status bg-dark">' +
                 '<option value="">Seleccione...</option>' +
-                '<option value="1">Atendida</option>' +
+                '<option value="0">Atendida</option>' +
                 '<option value="3">Incumplida</option>' +
                 "</select>"
             : "";
@@ -72,7 +72,7 @@ function my_assignmentsCtrl() {
       data: JSON.stringify({ id: data.id, status: $(this).val() }),
       contentType: "application/json",
     }).done(function (response) {
-      if (response == 1) toastr.success("Cita cambiada de estado con exito");
+      if (response == 1) toastr.success("Cita cambiada de estado con éxito");
       else toastr.error("Error al cambiar el estado de la cita");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
