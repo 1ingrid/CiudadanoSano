@@ -89,7 +89,7 @@ function usersCtrl() {
             },
             data: form.serialize(),
           }).done(function (response) {
-            if (response == 1) toastr.success("Usuario agregado con exito");
+            if (response == 1) toastr.success("Usuario agregado con éxito");
             else toastr.error("Error al agregar el usuario");
             volver();
             dt.page("last").draw("page");
@@ -145,7 +145,7 @@ function usersCtrl() {
             data: JSON.stringify(getFormData(form)),
             contentType: "application/json",
           }).done(function (response) {
-            if (response == 1) toastr.success("Usuario actualizado con exito");
+            if (response == 1) toastr.success("Usuario actualizado con éxito");
             else toastr.error("Error al actualizar el usuario");
             volver();
             dt.page("last").draw("page");
@@ -182,7 +182,7 @@ function usersCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Usuario desactivado con exito");
+      if (response == 1) toastr.success("Usuario desactivado con éxito");
       else toastr.error("Error al desactivar el usuario");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -200,7 +200,7 @@ function usersCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Usuario activado con exito");
+      if (response == 1) toastr.success("Usuario activado con éxito");
       else toastr.error("Error al activar el usuario");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);

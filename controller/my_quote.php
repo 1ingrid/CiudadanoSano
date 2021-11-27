@@ -22,7 +22,7 @@
         switch ($_SERVER['HTTP_ACCION']) {
 
             case 'listar':
-                $listado = $myQuote->listar();
+                $listado = $myQuote->listarMyQuotes($dataUser['id']);
                 echo json_encode([ 'data' => $listado ], JSON_UNESCAPED_UNICODE);
             break;
             case 'listarHeadquarters':

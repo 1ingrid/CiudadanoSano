@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-11-2021 a las 09:13:51
+-- Tiempo de generación: 27-11-2021 a las 03:38:13
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -63,13 +63,6 @@ CREATE TABLE `clients` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `clients`
---
-
-INSERT INTO `clients` (`id`, `city_id`, `no_document`, `name`, `last_name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, '31862723', 'Yovany', 'Romo', 'pacics@marcsoft.com.co', 'Av 4n # 10 - 89', '3114569878', 1, '2021-11-26 01:45:27', '2021-11-26 01:45:27');
-
 -- --------------------------------------------------------
 
 --
@@ -89,13 +82,6 @@ CREATE TABLE `consultations` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `consultations`
---
-
-INSERT INTO `consultations` (`id`, `client_id`, `employe_id`, `reason`, `detail`, `formula`, `formula_status`, `formula_date`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'Dolor de cabeza', 'El paciente ingresa con un fuerte dolor de cabeza que le impide la ejecución de sus tareas diarias de forma efectiva', '1 tableta de dolex cada 6 horas por 2 meses\r\n1 tableta de ibuprofeno cada 8 horas por 2 meses', 0, '2021-12-26 03:01:04', 1, '2021-11-26 03:01:04', '2021-11-26 03:01:04');
 
 -- --------------------------------------------------------
 
@@ -175,7 +161,6 @@ CREATE TABLE `employees` (
 INSERT INTO `employees` (`id`, `seat_id`, `no_document`, `name`, `last_name`, `email`, `address`, `cell_phone`, `status`, `created_at`, `updated_at`) VALUES
 (1, 1, '31123456', 'Paterson', 'Sinisterra', 'directcs@marcsoft.com.co', 'Av 6n # 10 - 45', '3114563212', 1, '2021-11-26 01:18:43', '2021-11-26 01:18:43'),
 (2, 1, '31456987', 'Jesus Antonio', 'Torres', 'mediccs@marcsoft.com.co', 'Cra 10 # 45 - 78', '3104569878', 1, '2021-11-26 02:29:13', '2021-11-26 02:29:13'),
-(3, 1, '31258963', 'Pedro Andres', 'Cortes Ruiz', 'noexiste@hotmail.com', 'Av 10n # 10 - 45', '3147894565', 0, '2021-11-26 02:30:42', '2021-11-26 02:30:42'),
 (4, 1, '31203265', 'Manuel Andres', 'Blanco', 'farmcs@marcsoft.com.co', 'Cra 45a # 12 - 45', '3157896545', 1, '2021-11-26 03:04:45', '2021-11-26 03:04:45');
 
 -- --------------------------------------------------------
@@ -225,13 +210,12 @@ CREATE TABLE `inventories` (
 --
 
 INSERT INTO `inventories` (`id`, `product_id`, `seat_id`, `entries`, `stock`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 50, 50, 1, '2021-11-26 02:36:58', '2021-11-26 02:36:58'),
-(2, 2, 1, 40, 40, 1, '2021-11-26 02:37:05', '2021-11-26 02:37:05'),
-(3, 3, 1, 10, 10, 1, '2021-11-26 02:37:12', '2021-11-26 02:37:12'),
-(4, 2, 1, 10, 10, 1, '2021-11-26 02:37:19', '2021-11-26 02:37:19'),
-(5, 4, 1, 30, 28, 1, '2021-11-26 02:37:41', '2021-11-26 03:09:24'),
-(6, 5, 1, 25, 22, 1, '2021-11-26 02:37:59', '2021-11-26 03:09:24'),
-(7, 6, 1, 15, 15, 1, '2021-11-26 02:38:06', '2021-11-26 02:38:06');
+(8, 1, 1, 10, 10, 1, '2021-11-26 21:33:18', '2021-11-26 21:33:18'),
+(9, 2, 1, 15, 15, 1, '2021-11-26 21:33:25', '2021-11-26 21:33:25'),
+(10, 3, 1, 20, 20, 1, '2021-11-26 21:33:32', '2021-11-26 21:33:32'),
+(11, 4, 1, 25, 25, 1, '2021-11-26 21:33:41', '2021-11-26 21:33:41'),
+(12, 5, 1, 30, 30, 1, '2021-11-26 21:33:51', '2021-11-26 21:33:51'),
+(13, 6, 1, 35, 35, 1, '2021-11-26 21:33:59', '2021-11-26 21:33:59');
 
 -- --------------------------------------------------------
 
@@ -250,13 +234,6 @@ CREATE TABLE `invoices` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `invoices`
---
-
-INSERT INTO `invoices` (`id`, `client_id`, `employe_id`, `iva`, `total`, `neto`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 4, 13110, 69000, 82110, 0, '2021-11-26 03:09:24', '2021-11-26 03:09:24');
 
 -- --------------------------------------------------------
 
@@ -286,14 +263,6 @@ CREATE TABLE `mov_invoices` (
   `price` smallint(6) NOT NULL DEFAULT '0',
   `total` smallint(6) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `mov_invoices`
---
-
-INSERT INTO `mov_invoices` (`id`, `invoice_id`, `product_id`, `count`, `price`, `total`) VALUES
-(1, 1, 4, 2, 12000, 24000),
-(2, 1, 5, 3, 15000, 32767);
 
 -- --------------------------------------------------------
 
@@ -420,13 +389,6 @@ CREATE TABLE `quotes` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `quotes`
---
-
-INSERT INTO `quotes` (`id`, `client_id`, `employe_id`, `date`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, '2021-11-27 10:00:00', 0, '2021-11-26 02:49:33', '2021-11-26 02:49:33');
-
 -- --------------------------------------------------------
 
 --
@@ -503,11 +465,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `rol_id`, `name`, `last_name`, `email`, `password`, `status`, `created_at`, `updated_at`) VALUES
 (2, 1, 'Ingrid', 'Blanco', 'admincs@marcsoft.com.co', '$2y$12$EP7CK./xpLIrrkNsOpcLJ.na29MADcclxfl4tMp6QSXYFJ0EyXA3S', 1, '2021-11-26 00:54:25', '2021-11-26 00:54:25'),
-(3, 3, 'Paterson', 'Sinisterra', 'directcs@marcsoft.com.co', '$2y$12$JVnzfV4LCC6Gjtcnd/M7f.3.KY3g/UnBuUXXVlN961kUU45yElTFu', 1, '2021-11-26 01:25:53', '2021-11-26 01:25:53'),
+(3, 3, 'Paterson', 'Sinisterra', 'directcs@marcsoft.com.co', '$2y$12$HgewZ75AK7qMwoSruc1WJeyZG7vILP1kArCJ8QyyPFjZkZ8cHO16W', 1, '2021-11-26 01:25:53', '2021-11-26 21:21:50'),
 (4, 7, 'Andres', 'Guevara', 'afilics@marcsoft.com.co', '$2y$12$oMiUBbJvnkKOXEPgcR3H4um4GsITRspq3tv3kSNBmvV7k15KPcLDe', 1, '2021-11-26 01:39:58', '2021-11-26 01:39:58'),
-(5, 2, 'Yovany', 'Romo', 'pacics@marcsoft.com.co', '$2y$12$bQGQqInNgk78WbOQlA.q8es5WOi.UEgNuS1KabXThmbrBfgEQKR2q', 1, '2021-11-26 01:45:27', '2021-11-26 01:45:27'),
-(6, 5, 'Jesus Antonio', 'Torres', 'mediccs@marcsoft.com.co', '$2y$12$OOsVkXvfsbLPaSBxwVc7YelUOcu9QvO1MmZ/MNN6yhFvBBgv2EoKa', 1, '2021-11-26 02:29:41', '2021-11-26 02:29:41'),
-(7, 6, 'Manuel Andres', 'Blanco', 'farmcs@marcsoft.com.co', '$2y$12$/XmJ0vQYOptVBmZ4aGZTwuJxSDh4vhlZzui5oYQ1fpcEdz8JC.wmO', 1, '2021-11-26 03:06:51', '2021-11-26 03:06:51');
+(6, 5, 'Jesus Antonio', 'Torres', 'mediccs@marcsoft.com.co', '$2y$12$EBI95KJISIftCdbq4PQuduVZGrWtYvMz55LsvVv0UekPZGBFiIu7C', 1, '2021-11-26 02:29:41', '2021-11-26 21:21:23'),
+(7, 6, 'Manuel Andres', 'Blanco', 'farmcs@marcsoft.com.co', '$2y$12$RpOOUDTBugV5AVh0vJ/FIuWemARhZMPKgHHVkk43Qz2kCOzTzx6Py', 1, '2021-11-26 03:06:51', '2021-11-26 21:21:12');
 
 -- --------------------------------------------------------
 
@@ -520,13 +481,6 @@ CREATE TABLE `usersxclients` (
   `user_id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `usersxclients`
---
-
-INSERT INTO `usersxclients` (`id`, `user_id`, `client_id`) VALUES
-(1, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -746,7 +700,7 @@ ALTER TABLE `headquarters`
 -- AUTO_INCREMENT de la tabla `inventories`
 --
 ALTER TABLE `inventories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `invoices`
 --
@@ -791,7 +745,7 @@ ALTER TABLE `quotes`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `types_contracts`
 --

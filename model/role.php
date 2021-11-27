@@ -8,6 +8,12 @@
 			return $this->rows;
 		}
 
+        public function listarxStatus() {
+			$this->query = 'SELECT * FROM roles WHERE id <> 2 AND id <> 3 AND id <> 4 AND id <> 5 AND id <> 6 AND status = 1';
+			$this->obtener_resultados_query();
+			return $this->rows;
+		}
+
         public function nuevo($datos) {
             $permits = '';
             if(!empty($datos['roles'])) $permits .=  ','.$datos['roles'];

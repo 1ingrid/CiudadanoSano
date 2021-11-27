@@ -2,11 +2,13 @@
     require_once ("../helpers/modeloAbstractoDB.php");
     class MyQuote extends ModeloAbstractoDB {
 
-        public function listar() {
+        public function listar() {}
+
+        public function listarMyQuotes($client_id) {
 			$this->query = 'SELECT quotes.id, CONCAT(employees.name," ",employees.last_name) as employe, professions.name as profession, 
             date, quotes.status, quotes.created_at, quotes.updated_at FROM quotes INNER JOIN employees ON employees.id = quotes.employe_id 
             INNER JOIN contracts ON employees.id = contracts.employe_id INNER JOIN professions ON professions.id = contracts.profession_id 
-            WHERE date > NOW()';
+            WHERE date > NOW() AND client_id = '.$client_id;
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}

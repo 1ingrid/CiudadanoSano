@@ -1,9 +1,12 @@
 <?php
 	abstract class ModeloAbstractoDB {
 		private static $db_host ="localhost";
-		private static $db_user = "root";
-		private static $db_pass = "";
-		protected $db_name = "ciudadano_sano";
+		// private static $db_user = "root";
+		// private static $db_pass = "";
+		// protected $db_name = "ciudadano_sano";
+		private static $db_user = "marcso_ciudadano_sano";
+		private static $db_pass = "=8+erhm$@[kD";
+		protected $db_name = "marcso_ciudadano_sano";
 		protected $query;
 		protected $rows = array();
 		private $conexion;

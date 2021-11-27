@@ -66,7 +66,7 @@ function rolesCtrl() {
         },
         data: form.serialize(),
       }).done(function (response) {
-        if (response == 1) toastr.success("Rol agregado con exito");
+        if (response == 1) toastr.success("Rol agregado con éxito");
         else toastr.error("Error al agregar el rol");
         volver();
         dt.page("last").draw("page");
@@ -118,7 +118,7 @@ function rolesCtrl() {
         data: JSON.stringify(getFormData(form)),
         contentType: "application/json",
       }).done(function (response) {
-        if (response == 1) toastr.success("Rol actualizado con exito");
+        if (response == 1) toastr.success("Rol actualizado con éxito");
         else toastr.error("Error al actualizar el rol");
         volver();
         dt.page("last").draw("page");
@@ -138,7 +138,7 @@ function rolesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Rol desactivado con exito");
+      if (response == 1) toastr.success("Rol desactivado con éxito");
       else toastr.error("Error al desactivar el rol");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
@@ -156,7 +156,7 @@ function rolesCtrl() {
       },
       data: { id: data.id },
     }).done(function (response) {
-      if (response == 1) toastr.success("Rol activado con exito");
+      if (response == 1) toastr.success("Rol activado con éxito");
       else toastr.error("Error al activar el rol");
       dt.page("last").draw("page");
       dt.ajax.reload(null, false);
